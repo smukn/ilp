@@ -980,28 +980,28 @@ function playStartGong() {
     const noiseSrc = ctx.createBufferSource();
     noiseSrc.buffer = noiseBuf;
     const nFilt = ctx.createBiquadFilter();
-    nFilt.type = 'bandpass'; nFilt.frequency.value = 1800; nFilt.Q.value = 2;
+    nFilt.type = 'bandpass'; nFilt.frequency.value = 800; nFilt.Q.value = 1.5;
     const nGain = ctx.createGain();
-    nGain.gain.setValueAtTime(0.12, t);
+    nGain.gain.setValueAtTime(0.08, t);
     noiseSrc.connect(nFilt); nFilt.connect(nGain); nGain.connect(ctx.destination);
     noiseSrc.start(t); noiseSrc.stop(t + 0.06);
 
-    // Klangschale: leicht verstimmte Oszillator-Paare erzeugen naturliches Beating
+    // Klangschale: tiefe, warme Tonlage (~C3/G3), verstimmte Paare fur Beating
     const partials = [
-      { f: 340, detune: 1.2, vol: 0.14, decay: dur },       // Grundton ~F4
-      { f: 342, detune: -0.8, vol: 0.13, decay: dur },       // Leicht verstimmt → Schwebung ~2Hz
-      { f: 680, detune: 2.0, vol: 0.06, decay: dur * 0.8 },  // Oktave
-      { f: 683, detune: -1.5, vol: 0.055, decay: dur * 0.8 }, // Verstimmt
-      { f: 1025, detune: 3.0, vol: 0.02, decay: dur * 0.6 }, // Quinte daruber
-      { f: 1365, detune: -2.0, vol: 0.01, decay: dur * 0.5 }, // Hoher Oberton
+      { f: 131, detune: 1.0, vol: 0.18, decay: dur },        // C3 – tiefer Grundton
+      { f: 132.5, detune: -0.7, vol: 0.17, decay: dur },      // Verstimmt → Schwebung ~1.5Hz
+      { f: 196, detune: 1.5, vol: 0.10, decay: dur * 0.9 },   // G3 – Quinte
+      { f: 197, detune: -1.0, vol: 0.09, decay: dur * 0.9 },   // Verstimmt
+      { f: 262, detune: 2.0, vol: 0.05, decay: dur * 0.7 },   // C4 – Oktave (dezent)
+      { f: 392, detune: -1.5, vol: 0.015, decay: dur * 0.5 },  // G4 – leiser Oberton
     ];
     partials.forEach(({ f, detune, vol, decay }) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(2200, t);
-      filter.frequency.exponentialRampToValueAtTime(400, t + decay);
+      filter.frequency.setValueAtTime(1200, t);
+      filter.frequency.exponentialRampToValueAtTime(250, t + decay);
       osc.type = 'sine';
       osc.frequency.setValueAtTime(f, t);
       osc.detune.setValueAtTime(detune, t);
@@ -1017,13 +1017,13 @@ function playStartGong() {
     // Langsame Amplituden-Modulation (Tremolo ~3Hz) fur lebendigen Klang
     const lfo = ctx.createOscillator();
     const lfoGain = ctx.createGain();
-    lfo.frequency.value = 3.2;
-    lfoGain.gain.value = 0.015;
+    lfo.frequency.value = 2.5;
+    lfoGain.gain.value = 0.012;
     lfo.connect(lfoGain);
     // LFO moduliert einen separaten leisen Ton
     const modOsc = ctx.createOscillator();
     const modGain = ctx.createGain();
-    modOsc.frequency.value = 340;
+    modOsc.frequency.value = 131;
     modGain.gain.setValueAtTime(0.04, t);
     modGain.gain.exponentialRampToValueAtTime(0.001, t + dur);
     lfoGain.connect(modOsc.frequency);
