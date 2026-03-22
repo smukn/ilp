@@ -931,7 +931,7 @@ function openExercise(ex,fromDash) {
     <div class="timer-controls"><button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startTimerWith(${totalSecs})">Komplette Praxis (${formatTime(totalSecs)})</button><button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button><button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button></div></div>
     <hr class="divider"><div class="section-title">Schritte</div><ul class="step-list">${stepsHtml}</ul>
     ${ex.tips?`<hr class="divider"><div class="section-title">Hinweise</div><p style="font-size:13px;color:var(--text2);">${ex.tips}</p>`:''}
-    ${ex.videos&&ex.videos.length?`<hr class="divider"><div class="section-title">🎬 Kurs-Videos</div><div style="display:flex;flex-direction:column;gap:8px;">${ex.videos.map(v=>`<a href="file:///Users/smu/Music/iTunes/iTunes%20Media/Movies/${encodeURI(v.file)}" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--text);font-size:13px;transition:border-color .15s;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>${v.title}</span></a>`).join('')}</div><p style="font-size:11px;color:var(--text2);margin-top:8px;">Videos offnen lokal auf deinem Mac (file://-Links).</p>`:''}
+    ${ex.videos&&ex.videos.length?`<hr class="divider"><div class="section-title">🎬 Kurs-Videos</div><div style="display:flex;flex-direction:column;gap:8px;">${ex.videos.map(v=>`<button onclick="copyVideoPath('${v.file.replace(/'/g,"\\'")}', this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;cursor:pointer;transition:border-color .15s;text-align:left;width:100%;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink:0;"><polygon points="5 3 19 12 5 21 5 3"/></svg><span style="flex:1;">${v.title}</span><span class="video-status" style="font-size:11px;color:var(--text2);">Pfad kopieren</span></button>`).join('')}</div><p style="font-size:11px;color:var(--text2);margin-top:8px;">Klicke um den Pfad zu kopieren, dann in <strong>Spotlight</strong> (Cmd+Leertaste) einfugen und Enter drucken.</p>`:''}
     <hr class="divider"><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-success" onclick="completeExercise('${ex.id}')"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L6 11L12 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Erledigt</button>${fromDash?'':`<button class="btn btn-ghost" onclick="addToDailyPractice('${ex.id}')">+ Zur taglichen Praxis</button>`}</div>`;
   document.getElementById('modal').classList.add('open');
   clearTimerInterval();
@@ -951,6 +951,18 @@ function updateTimerUI(rem,tot){const el=document.getElementById('timer-time'),r
 // ═══════════════════════════════════════════════════════
 // MEDITATION GONG (improved sound)
 // ═══════════════════════════════════════════════════════
+
+function copyVideoPath(file, btn) {
+  const path = '/Users/smu/Music/iTunes/iTunes Media/Movies/' + decodeURI(file);
+  navigator.clipboard.writeText(path).then(() => {
+    const status = btn.querySelector('.video-status');
+    if (status) { status.textContent = '✓ Kopiert!'; status.style.color = 'var(--shadow-c)'; }
+    setTimeout(() => { if (status) { status.textContent = 'Pfad kopieren'; status.style.color = 'var(--text2)'; } }, 2000);
+  }).catch(() => {
+    // Fallback: prompt
+    prompt('Pfad kopieren:', path);
+  });
+}
 
 function playGong() {
   try {
