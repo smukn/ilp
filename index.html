@@ -11,133 +11,62 @@
 <meta name="apple-mobile-web-app-title" content="ILP">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0f1117">
+<link rel="apple-touch-icon" href="ilp-icon-180.png">
 
-<!-- Inline Web App Manifest -->
-<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Integrale%20Lebenspraxis%22%2C%22short_name%22%3A%22ILP%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f1117%22%2C%22theme_color%22%3A%22%230f1117%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%2527http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%2527%2520viewBox%3D%270%2520050%252050%2527%253E%253Crect%2520width%3D%252750%2527%2520height%3D%252750%2527%2520fill%3D%2527%25230f1117%2527%2520rx%3D%252710%2527%2F%253E%253Ctext%2520x%3D%252725%2527%2520y%3D%252734%2527%2520font-size%3D%252724%2527%2520text-anchor%3D%2527middle%2527%253E%25F0%259F%259C%25BF%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Integrale%20Lebenspraxis%22%2C%22short_name%22%3A%22ILP%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f1117%22%2C%22theme_color%22%3A%22%230f1117%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22ilp-icon-180.png%22%2C%22sizes%22%3A%22180x180%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
 <style>
   :root {
-    --bg: #0f1117;
-    --bg2: #1a1d2e;
-    --bg3: #232640;
-    --border: #2e3158;
-    --text: #e8eaf0;
-    --text2: #9499b8;
-    --accent: #6c7adb;
-    --accent2: #8b59cc;
-    --gold: #f0c060;
-    --silver: #a8b8c8;
-    --platinum: #b8f0e8;
-    --body-c: #e8785a;
-    --mind-c: #6cb8e8;
-    --soul-c: #a87ccc;
-    --shadow-c: #68c896;
-    --radius: 12px;
-    --radius-sm: 8px;
+    --bg: #0f1117; --bg2: #1a1d2e; --bg3: #232640; --border: #2e3158;
+    --text: #e8eaf0; --text2: #9499b8; --accent: #6c7adb; --accent2: #8b59cc;
+    --gold: #f0c060; --silver: #a8b8c8; --platinum: #b8f0e8;
+    --body-c: #e8785a; --mind-c: #6cb8e8; --soul-c: #a87ccc; --shadow-c: #68c896;
+    --ethics-c: #e0b860; --relation-c: #e87ca0; --work-c: #80a0d0; --creative-c: #d090e0;
+    --radius: 12px; --radius-sm: 8px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.5;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh; font-size: 15px; line-height: 1.5;
   }
 
-  /* ── Layout ── */
   .app { display: flex; min-height: 100vh; }
-
   .sidebar {
-    width: 240px;
-    background: var(--bg2);
-    border-right: 1px solid var(--border);
-    padding: 24px 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
+    width: 240px; background: var(--bg2); border-right: 1px solid var(--border);
+    padding: 24px 0; position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; flex-shrink: 0; display: flex; flex-direction: column;
   }
-
-  .sidebar-logo {
-    padding: 0 20px 24px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 16px;
-  }
-  .sidebar-logo h1 { font-size: 15px; font-weight: 700; color: var(--text); }
+  .sidebar-logo { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+  .sidebar-logo h1 { font-size: 15px; font-weight: 700; }
   .sidebar-logo p { font-size: 11px; color: var(--text2); margin-top: 2px; }
-
   .nav-section { padding: 0 12px 8px; }
   .nav-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); padding: 8px 8px 4px; }
   .nav-item {
     display: flex; align-items: center; gap: 10px;
     padding: 8px 12px; border-radius: var(--radius-sm);
-    cursor: pointer; color: var(--text2);
-    font-size: 13px; font-weight: 500;
-    transition: all .15s;
-    border: none; background: none; width: 100%; text-align: left;
+    cursor: pointer; color: var(--text2); font-size: 13px; font-weight: 500;
+    transition: all .15s; border: none; background: none; width: 100%; text-align: left;
   }
   .nav-item:hover { background: var(--bg3); color: var(--text); }
   .nav-item.active { background: rgba(108,122,219,.18); color: var(--accent); }
-  .nav-item .dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
-
-  .sidebar-footer {
-    margin-top: auto;
-    padding: 16px 20px 0;
-    border-top: 1px solid var(--border);
-    font-size: 11px;
-    color: var(--text2);
-  }
-
+  .nav-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .sidebar-footer { margin-top: auto; padding: 16px 20px 0; border-top: 1px solid var(--border); font-size: 11px; color: var(--text2); }
   .main { flex: 1; overflow-y: auto; }
   .content { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
-
-  /* ── Pages ── */
   .page { display: none; }
   .page.active { display: block; }
-
-  /* ── Headers ── */
   .page-header { margin-bottom: 28px; }
   .page-header h2 { font-size: 22px; font-weight: 700; }
   .page-header p { color: var(--text2); margin-top: 4px; font-size: 13px; }
-
-  /* ── Cards ── */
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
   .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
 
-  /* ── Mobile Bottom Navigation ── */
-  .mobile-nav {
-    display: none;
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: var(--bg2); border-top: 1px solid var(--border);
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
-    z-index: 50;
-  }
-  .mobile-nav-inner {
-    display: flex; justify-content: space-around; align-items: stretch;
-  }
-  .mobile-nav-btn {
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
-    padding: 4px 6px; border-radius: var(--radius-sm);
-    background: none; border: none; cursor: pointer; color: var(--text2);
-    font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px;
-    transition: color .15s; min-width: 44px; flex: 1;
-  }
+  /* Mobile Nav */
+  .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg2); border-top: 1px solid var(--border); padding: 8px 0 calc(8px + env(safe-area-inset-bottom)); z-index: 50; }
+  .mobile-nav-inner { display: flex; justify-content: space-around; align-items: stretch; }
+  .mobile-nav-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px 6px; border-radius: var(--radius-sm); background: none; border: none; cursor: pointer; color: var(--text2); font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px; transition: color .15s; min-width: 44px; flex: 1; }
   .mobile-nav-btn svg { width: 20px; height: 20px; }
   .mobile-nav-btn.active { color: var(--accent); }
 
@@ -145,48 +74,32 @@
     .sidebar { display: none; }
     .mobile-nav { display: block; }
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .content {
-      padding: 16px 16px calc(80px + env(safe-area-inset-bottom)) 16px;
-    }
+    .content { padding: 16px 16px calc(80px + env(safe-area-inset-bottom)) 16px; }
     .main { padding-top: env(safe-area-inset-top); }
     .page-header h2 { font-size: 18px; }
     .modal { border-radius: var(--radius) var(--radius) 0 0; max-height: 92vh; }
     .modal-overlay { align-items: flex-end; }
   }
 
-  /* ── Module badges ── */
-  .module-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 3px 10px; border-radius: 20px;
-    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;
-  }
+  /* Badges */
+  .module-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
   .badge-body { background: rgba(232,120,90,.15); color: var(--body-c); }
   .badge-mind { background: rgba(108,184,232,.15); color: var(--mind-c); }
   .badge-soul { background: rgba(168,124,204,.15); color: var(--soul-c); }
   .badge-shadow { background: rgba(104,200,150,.15); color: var(--shadow-c); }
-
-  /* ── Level badges ── */
-  .level-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 2px 8px; border-radius: 20px;
-    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
-  }
+  .badge-ethics { background: rgba(224,184,96,.15); color: var(--ethics-c); }
+  .badge-relation { background: rgba(232,124,160,.15); color: var(--relation-c); }
+  .badge-work { background: rgba(128,160,208,.15); color: var(--work-c); }
+  .badge-creative { background: rgba(208,144,224,.15); color: var(--creative-c); }
+  .level-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
   .level-gold { background: rgba(240,192,96,.15); color: var(--gold); border: 1px solid rgba(240,192,96,.3); }
   .level-silver { background: rgba(168,184,200,.15); color: var(--silver); border: 1px solid rgba(168,184,200,.3); }
   .level-platinum { background: rgba(184,240,232,.15); color: var(--platinum); border: 1px solid rgba(184,240,232,.3); }
-
-  /* ── Progress bar ── */
-  .progress-bar {
-    height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden;
-  }
+  .progress-bar { height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
   .progress-fill { height: 100%; border-radius: 3px; transition: width .4s; }
 
-  /* ── Button ── */
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-    padding: 9px 18px; border-radius: var(--radius-sm); border: none;
-    font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s;
-  }
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 18px; border-radius: var(--radius-sm); border: none; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; }
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-primary:hover { background: #7d8be0; }
   .btn-ghost { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
@@ -194,89 +107,47 @@
   .btn-sm { padding: 5px 12px; font-size: 12px; }
   .btn-success { background: #3a7a58; color: #fff; }
   .btn-success:hover { background: #45916a; }
-  .btn-danger { background: #7a3a3a; color: #fff; }
-  .btn-danger:hover { background: #914545; }
 
-  /* ── Dashboard ── */
-  .stat-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 18px 20px;
-  }
+  /* Dashboard */
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
   .stat-card .stat-value { font-size: 28px; font-weight: 700; }
   .stat-card .stat-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
-
   .streak-fire { font-size: 24px; }
 
-  /* ── Today's Practice ── */
-  .practice-item {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px;
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); margin-bottom: 10px;
-    cursor: pointer; transition: all .15s;
-  }
+  /* Practice items */
+  .practice-item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; cursor: pointer; transition: all .15s; }
   .practice-item:hover { border-color: var(--accent); background: var(--bg3); }
   .practice-item.done { opacity: .55; }
   .practice-item.done .practice-name { text-decoration: line-through; }
-
-  .practice-check {
-    width: 22px; height: 22px; border-radius: 50%;
-    border: 2px solid var(--border); flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    transition: all .15s;
-  }
-  .practice-item.done .practice-check {
-    background: var(--accent); border-color: var(--accent);
-  }
+  .practice-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+  .practice-item.done .practice-check { background: var(--accent); border-color: var(--accent); }
   .practice-check svg { display: none; }
   .practice-item.done .practice-check svg { display: block; }
-
   .practice-info { flex: 1; }
   .practice-name { font-size: 14px; font-weight: 600; }
-  .practice-meta { font-size: 12px; color: var(--text2); margin-top: 2px; display: flex; align-items: center; gap: 8px; }
+  .practice-meta { font-size: 12px; color: var(--text2); margin-top: 2px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .practice-actions { display: flex; gap: 6px; }
 
-  /* ── Exercise Detail Modal ── */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.7);
-    display: none; align-items: center; justify-content: center;
-    z-index: 100; padding: 20px;
-  }
+  /* Modal */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
   .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); max-width: 600px; width: 100%;
-    max-height: 80vh; overflow-y: auto;
-    padding: 28px;
-  }
+  .modal { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 28px; }
   .modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
   .modal-title { font-size: 18px; font-weight: 700; }
   .modal-close { background: var(--bg3); border: none; color: var(--text2); cursor: pointer; padding: 4px 10px; border-radius: 6px; font-size: 16px; }
   .modal-close:hover { color: var(--text); }
 
-  /* ── Timer ── */
-  .timer-display {
-    text-align: center; padding: 32px 0;
-  }
-  .timer-ring {
-    width: 160px; height: 160px; margin: 0 auto 24px;
-    position: relative;
-  }
+  /* Timer */
+  .timer-display { text-align: center; padding: 32px 0; }
+  .timer-ring { width: 160px; height: 160px; margin: 0 auto 24px; position: relative; }
   .timer-ring svg { transform: rotate(-90deg); }
   .timer-ring .ring-bg { fill: none; stroke: var(--bg3); stroke-width: 8; }
   .timer-ring .ring-progress { fill: none; stroke: var(--accent); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset .5s; }
-  .timer-time {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums;
-  }
+  .timer-time { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 32px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .timer-controls { display: flex; gap: 10px; justify-content: center; }
 
-  /* ── Exercise Library ── */
-  .exercise-card {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 18px; margin-bottom: 12px;
-    cursor: pointer; transition: border-color .15s;
-  }
+  /* Exercise cards */
+  .exercise-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; margin-bottom: 12px; cursor: pointer; transition: border-color .15s; }
   .exercise-card:hover { border-color: var(--accent); }
   .exercise-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
   .exercise-card-title { font-size: 15px; font-weight: 600; }
@@ -284,193 +155,190 @@
   .exercise-card-desc { font-size: 13px; color: var(--text2); }
   .exercise-card-duration { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 4px; margin-top: 6px; }
 
-  /* ── Journal ── */
-  textarea {
-    width: 100%; background: var(--bg3); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); color: var(--text); padding: 12px;
-    font-size: 13px; font-family: inherit; resize: vertical;
-    min-height: 100px; line-height: 1.6;
-  }
+  /* Journal */
+  textarea { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); padding: 12px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 100px; line-height: 1.6; }
   textarea:focus { outline: none; border-color: var(--accent); }
-
-  .journal-entry {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 16px; margin-bottom: 10px;
-  }
+  .journal-entry { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 10px; }
   .journal-date { font-size: 11px; color: var(--text2); margin-bottom: 6px; }
   .journal-text { font-size: 13px; line-height: 1.6; }
 
-  /* ── Misc ── */
+  /* Misc */
   .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
   .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text2); margin-bottom: 14px; }
-  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; background: var(--bg3); color: var(--text2); }
-
+  .notice { background: rgba(108,122,219,.1); border: 1px solid rgba(108,122,219,.25); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 13px; color: var(--text2); margin-bottom: 16px; }
   .step-list { list-style: none; }
-  .step-list li {
-    display: flex; gap: 12px; padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
+  .step-list li { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
   .step-list li:last-child { border-bottom: none; }
-  .step-num {
-    width: 22px; height: 22px; border-radius: 50%; background: var(--bg3);
-    font-size: 11px; font-weight: 700; display: flex; align-items: center;
-    justify-content: center; flex-shrink: 0; color: var(--accent); margin-top: 1px;
-  }
-
-  .notice {
-    background: rgba(108,122,219,.1); border: 1px solid rgba(108,122,219,.25);
-    border-radius: var(--radius-sm); padding: 12px 14px;
-    font-size: 13px; color: var(--text2); margin-bottom: 16px;
-  }
-
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: var(--bg3); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); margin-top: 1px; }
   .inline-flex { display: flex; align-items: center; gap: 8px; }
-  .gap-8 { gap: 8px; }
-  .mt-12 { margin-top: 12px; }
-  .mt-16 { margin-top: 16px; }
-  .mt-8 { margin-top: 8px; }
   .mb-0 { margin-bottom: 0; }
 
-  /* ── Week view ── */
-  .week-grid {
-    display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;
-    margin-bottom: 20px;
-  }
-  .week-day {
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: var(--radius-sm); padding: 8px; text-align: center;
-  }
+  /* Week */
+  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 20px; }
+  .week-day { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px; text-align: center; }
   .week-day.today { border-color: var(--accent); }
   .week-day .day-name { font-size: 10px; color: var(--text2); text-transform: uppercase; font-weight: 700; }
   .week-day .day-num { font-size: 18px; font-weight: 700; margin: 2px 0; }
   .week-day .day-dots { display: flex; gap: 2px; justify-content: center; flex-wrap: wrap; }
   .day-dot { width: 5px; height: 5px; border-radius: 50%; }
 
-  /* ── Tab bar (within page) ── */
-  .tab-bar { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-  .tab-btn {
-    padding: 8px 16px; background: none; border: none; color: var(--text2);
-    font-size: 13px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent;
-    margin-bottom: -1px; transition: all .15s;
-  }
+  /* Tabs */
+  .tab-bar { display: flex; gap: 4px; border-bottom: 1px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 16px; background: none; border: none; color: var(--text2); font-size: 13px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; }
   .tab-btn.active { color: var(--text); border-bottom-color: var(--accent); }
 
-  /* ── Settings ── */
-  .settings-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 0; border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
+  /* Settings */
+  .settings-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
   .settings-row:last-child { border-bottom: none; }
   .settings-label { font-weight: 500; }
   .settings-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
-
-  .toggle {
-    width: 40px; height: 22px; border-radius: 11px; background: var(--bg3);
-    border: none; cursor: pointer; position: relative; transition: background .2s;
-    flex-shrink: 0;
-  }
-  .toggle::after {
-    content: ''; position: absolute; top: 3px; left: 3px;
-    width: 16px; height: 16px; border-radius: 50%; background: var(--text2);
-    transition: all .2s;
-  }
+  .toggle { width: 40px; height: 22px; border-radius: 11px; background: var(--bg3); border: none; cursor: pointer; position: relative; transition: background .2s; flex-shrink: 0; }
+  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--text2); transition: all .2s; }
   .toggle.on { background: var(--accent); }
   .toggle.on::after { left: 21px; background: #fff; }
+  select, input[type=time] { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 6px 10px; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer; }
+  select:focus, input[type=time]:focus { outline: none; border-color: var(--accent); }
 
-  select {
-    background: var(--bg3); border: 1px solid var(--border);
-    color: var(--text); padding: 6px 10px; border-radius: var(--radius-sm);
-    font-size: 12px; cursor: pointer;
-  }
-  select:focus { outline: none; border-color: var(--accent); }
-
-  /* ── Quadrant diagram ── */
-  .quadrant-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
-    background: var(--border); border-radius: var(--radius); overflow: hidden;
-    border: 1px solid var(--border);
-  }
-  .quadrant {
-    background: var(--bg2); padding: 16px;
-  }
+  /* Quadrant */
+  .quadrant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+  .quadrant { background: var(--bg2); padding: 16px; }
   .quadrant-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text2); margin-bottom: 6px; }
   .quadrant-title { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
   .quadrant-items { font-size: 12px; color: var(--text2); line-height: 1.7; }
-
-  .empty-state {
-    text-align: center; padding: 48px 24px; color: var(--text2);
-  }
+  .empty-state { text-align: center; padding: 48px 24px; color: var(--text2); }
   .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
   .empty-state p { font-size: 13px; }
+
+  /* Heatmap */
+  .heatmap { display: flex; gap: 3px; flex-wrap: wrap; }
+  .heat-cell { width: 14px; height: 14px; border-radius: 3px; background: var(--bg3); }
+  .heat-1 { background: rgba(108,122,219,.25); }
+  .heat-2 { background: rgba(108,122,219,.5); }
+  .heat-3 { background: rgba(108,122,219,.75); }
+  .heat-4 { background: var(--accent); }
+
+  /* Onboarding */
+  .onboarding-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 200; display: flex; align-items: center; justify-content: center; }
+  .onboarding-card { max-width: 480px; width: 90%; text-align: center; padding: 40px 32px; }
+  .onboarding-card h1 { font-size: 28px; margin-bottom: 8px; }
+  .onboarding-card .subtitle { color: var(--text2); font-size: 14px; margin-bottom: 32px; }
+  .onboarding-step { display: none; }
+  .onboarding-step.active { display: block; }
+  .onboarding-modules { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left; margin: 24px 0; }
+  .onboarding-module { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+  .onboarding-module h3 { font-size: 14px; margin-bottom: 4px; }
+  .onboarding-module p { font-size: 12px; color: var(--text2); }
+  .onboarding-dots { display: flex; gap: 8px; justify-content: center; margin-top: 24px; }
+  .onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bg3); }
+  .onboarding-dot.active { background: var(--accent); }
 </style>
 </head>
 <body>
-<div class="app">
 
+<!-- ══════════ ONBOARDING ══════════ -->
+<div class="onboarding-overlay" id="onboarding" style="display:none;">
+  <div class="onboarding-card">
+    <div class="onboarding-step active" id="onb-step-0">
+      <div style="font-size:60px; margin-bottom:16px;">🜿</div>
+      <h1>Integrale Lebenspraxis</h1>
+      <p class="subtitle">Dein Begleiter für ganzheitliche Entwicklung nach Ken Wilber</p>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:32px;">
+        Integrale Praxis bedeutet: Alle wesentlichen Dimensionen deines Lebens gleichzeitig zu trainieren.
+        Nicht perfekt, sondern <strong>integral</strong> – jeden Tag ein wenig in jedem Bereich.
+      </p>
+      <button class="btn btn-primary" onclick="nextOnboarding()">Los geht's</button>
+    </div>
+
+    <div class="onboarding-step" id="onb-step-1">
+      <h2 style="font-size:20px; margin-bottom:8px;">Die 4 Kernmodule</h2>
+      <p class="subtitle">Jedes Modul trainiert eine andere Dimension deines Seins</p>
+      <div class="onboarding-modules">
+        <div class="onboarding-module" style="border-left: 3px solid var(--body-c);">
+          <h3 style="color:var(--body-c);">Korper</h3>
+          <p>Physische Bewegung, Atmung, Energie</p>
+        </div>
+        <div class="onboarding-module" style="border-left: 3px solid var(--mind-c);">
+          <h3 style="color:var(--mind-c);">Geist</h3>
+          <p>Integrales Denken, Perspektivenvielfalt</p>
+        </div>
+        <div class="onboarding-module" style="border-left: 3px solid var(--soul-c);">
+          <h3 style="color:var(--soul-c);">Seele</h3>
+          <p>Meditation, Kontemplation, Stille</p>
+        </div>
+        <div class="onboarding-module" style="border-left: 3px solid var(--shadow-c);">
+          <h3 style="color:var(--shadow-c);">Schatten</h3>
+          <p>Unbewusstes integrieren, 3-2-1 Prozess</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="nextOnboarding()">Weiter</button>
+    </div>
+
+    <div class="onboarding-step" id="onb-step-2">
+      <div style="font-size:48px; margin-bottom:16px;">⭐</div>
+      <h2 style="font-size:20px; margin-bottom:8px;">Das Gold-Stern-Minimum</h2>
+      <p class="subtitle">Auch 10 Minuten pro Tag haben tiefe Wirkung</p>
+      <div style="text-align:left; margin:24px 0; font-size:13px;">
+        <div style="padding:10px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+          <span><span style="color:var(--body-c);">●</span> 3-Minuten Korperubung</span><span style="color:var(--text2);">3 Min</span>
+        </div>
+        <div style="padding:10px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+          <span><span style="color:var(--mind-c);">●</span> 1-Minuten Geist-Modul</span><span style="color:var(--text2);">1 Min</span>
+        </div>
+        <div style="padding:10px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
+          <span><span style="color:var(--soul-c);">●</span> 3-Minuten Meditation</span><span style="color:var(--text2);">3 Min</span>
+        </div>
+        <div style="padding:10px 0; display:flex; justify-content:space-between;">
+          <span><span style="color:var(--shadow-c);">●</span> 3-2-1 Schatten-Prozess</span><span style="color:var(--text2);">5 Min</span>
+        </div>
+      </div>
+      <p style="font-size:13px; color:var(--text2); margin-bottom:24px;">
+        <strong>Kontinuitat schlagt Intensitat.</strong> Starte mit dem Gold-Minimum. Du kannst jederzeit erweitern.
+      </p>
+      <button class="btn btn-primary" onclick="finishOnboarding()">Praxis starten</button>
+    </div>
+
+    <div class="onboarding-dots">
+      <div class="onboarding-dot active" id="onb-dot-0"></div>
+      <div class="onboarding-dot" id="onb-dot-1"></div>
+      <div class="onboarding-dot" id="onb-dot-2"></div>
+    </div>
+  </div>
+</div>
+
+<div class="app">
 <!-- ── Sidebar ── -->
 <nav class="sidebar">
   <div class="sidebar-logo">
     <h1>Integrale Lebenspraxis</h1>
-    <p>Ken Wilber · ILP-Begleiter</p>
+    <p>Ken Wilber &middot; ILP-Begleiter</p>
   </div>
-
   <div class="nav-section">
-    <div class="nav-label">Übersicht</div>
-    <button class="nav-item active" onclick="showPage('dashboard')">
-      <div class="dot" style="background:var(--accent)"></div> Heute
-    </button>
-    <button class="nav-item" onclick="showPage('week')">
-      <div class="dot" style="background:var(--text2)"></div> Wochenansicht
-    </button>
-    <button class="nav-item" onclick="showPage('journal')">
-      <div class="dot" style="background:var(--text2)"></div> Journal
-    </button>
+    <div class="nav-label">Ubersicht</div>
+    <button class="nav-item active" onclick="showPage('dashboard')"><div class="dot" style="background:var(--accent)"></div> Heute</button>
+    <button class="nav-item" onclick="showPage('week')"><div class="dot" style="background:var(--text2)"></div> Wochenansicht</button>
+    <button class="nav-item" onclick="showPage('stats')"><div class="dot" style="background:var(--text2)"></div> Fortschritt</button>
+    <button class="nav-item" onclick="showPage('journal')"><div class="dot" style="background:var(--text2)"></div> Journal</button>
   </div>
-
   <div class="nav-section">
     <div class="nav-label">Module</div>
-    <button class="nav-item" onclick="showPage('library', 'body')">
-      <div class="dot" style="background:var(--body-c)"></div> Körper
-    </button>
-    <button class="nav-item" onclick="showPage('library', 'mind')">
-      <div class="dot" style="background:var(--mind-c)"></div> Geist
-    </button>
-    <button class="nav-item" onclick="showPage('library', 'soul')">
-      <div class="dot" style="background:var(--soul-c)"></div> Seele
-    </button>
-    <button class="nav-item" onclick="showPage('library', 'shadow')">
-      <div class="dot" style="background:var(--shadow-c)"></div> Schatten
-    </button>
-    <button class="nav-item" onclick="showPage('library', 'all')">
-      <div class="dot" style="background:var(--text2)"></div> Alle Übungen
-    </button>
+    <button class="nav-item" onclick="showPage('library','body')"><div class="dot" style="background:var(--body-c)"></div> Korper</button>
+    <button class="nav-item" onclick="showPage('library','mind')"><div class="dot" style="background:var(--mind-c)"></div> Geist</button>
+    <button class="nav-item" onclick="showPage('library','soul')"><div class="dot" style="background:var(--soul-c)"></div> Seele</button>
+    <button class="nav-item" onclick="showPage('library','shadow')"><div class="dot" style="background:var(--shadow-c)"></div> Schatten</button>
+    <button class="nav-item" onclick="showPage('library','extra')"><div class="dot" style="background:var(--text2)"></div> Zusatzmodule</button>
+    <button class="nav-item" onclick="showPage('library','all')"><div class="dot" style="background:var(--text2)"></div> Alle Ubungen</button>
   </div>
-
   <div class="nav-section">
     <div class="nav-label">Theorie</div>
-    <button class="nav-item" onclick="showPage('theory')">
-      <div class="dot" style="background:var(--text2)"></div> AQAL-Rahmen
-    </button>
+    <button class="nav-item" onclick="showPage('theory')"><div class="dot" style="background:var(--text2)"></div> AQAL-Rahmen</button>
   </div>
-
   <div class="nav-section">
     <div class="nav-label">Einstellungen</div>
-    <button class="nav-item" onclick="showPage('settings')">
-      <div class="dot" style="background:var(--text2)"></div> Meine Praxis
-    </button>
-    <button class="nav-item" onclick="showPage('logo')">
-      <div class="dot" style="background:var(--text2)"></div> App-Icon
-    </button>
+    <button class="nav-item" onclick="showPage('settings')"><div class="dot" style="background:var(--text2)"></div> Meine Praxis</button>
   </div>
-
-  <div class="sidebar-footer">
-    Basierend auf Integral Life Practice<br>
-    Wilber · Patten · Leonard · Morelli
-  </div>
+  <div class="sidebar-footer">Basierend auf Integral Life Practice<br>Wilber &middot; Patten &middot; Leonard &middot; Morelli</div>
 </nav>
 
-<!-- ── Main Content ── -->
 <main class="main">
 <div class="content">
 
@@ -478,82 +346,73 @@
   <div id="page-dashboard" class="page active">
     <div class="page-header">
       <h2 id="dashboard-greeting">Guten Morgen</h2>
-      <p id="dashboard-date" style="color:var(--text2); font-size:13px;"></p>
+      <p id="dashboard-date"></p>
     </div>
-
-    <!-- Stats -->
-    <div class="grid-4" style="margin-bottom:24px;" id="stats-grid">
-      <div class="stat-card">
-        <div class="streak-fire">🔥</div>
-        <div class="stat-value" id="stat-streak">0</div>
-        <div class="stat-label">Tage Streak</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-today">0/4</div>
-        <div class="stat-label">Heute erledigt</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-total">0</div>
-        <div class="stat-label">Gesamt-Sessions</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="stat-week">0</div>
-        <div class="stat-label">Diese Woche</div>
-      </div>
+    <div class="grid-4" style="margin-bottom:24px;">
+      <div class="stat-card"><div class="streak-fire">🔥</div><div class="stat-value" id="stat-streak">0</div><div class="stat-label">Tage Streak</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-today">0/4</div><div class="stat-label">Heute erledigt</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-total">0</div><div class="stat-label">Gesamt-Sessions</div></div>
+      <div class="stat-card"><div class="stat-value" id="stat-week">0</div><div class="stat-label">Diese Woche</div></div>
     </div>
-
-    <!-- Today's Practice -->
     <div class="section-title">Heutige Praxis</div>
-    <div class="notice">
-      💡 Das <strong>Gold-Stern-Minimum</strong>: Eine kurze Übung aus jedem Kernmodul – auch 10 Minuten täglich haben tiefe Wirkung.
-    </div>
-
+    <div class="notice">💡 Das <strong>Gold-Stern-Minimum</strong>: Eine kurze Ubung aus jedem Kernmodul – auch 10 Minuten taglich haben tiefe Wirkung.</div>
     <div id="today-practices"></div>
-
     <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
-      <button class="btn btn-ghost btn-sm" onclick="resetToday()">Zurücksetzen</button>
+      <button class="btn btn-ghost btn-sm" onclick="resetToday()">Zurucksetzen</button>
       <button class="btn btn-ghost btn-sm" onclick="showPage('settings')">Praxis anpassen</button>
+      <span id="sync-status" style="font-size:11px; color:var(--text2); align-self:center;"></span>
     </div>
   </div>
 
   <!-- ══════════ WEEK ══════════ -->
   <div id="page-week" class="page">
-    <div class="page-header">
-      <h2>Wochenansicht</h2>
-      <p>Dein Fortschritt der letzten 7 Tage</p>
-    </div>
-
+    <div class="page-header"><h2>Wochenansicht</h2><p>Dein Fortschritt der letzten 7 Tage</p></div>
     <div class="week-grid" id="week-grid"></div>
-
     <div class="section-title">Modul-Fortschritt</div>
     <div id="module-progress-grid" style="display:flex; flex-direction:column; gap:12px;"></div>
   </div>
 
+  <!-- ══════════ STATS ══════════ -->
+  <div id="page-stats" class="page">
+    <div class="page-header"><h2>Fortschritt</h2><p>Langzeit-Statistiken deiner Praxis</p></div>
+    <div class="section-title">Letzte 90 Tage</div>
+    <div class="card">
+      <div class="heatmap" id="heatmap-90"></div>
+      <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:11px; color:var(--text2);">
+        <span>Vor 90 Tagen</span>
+        <div style="display:flex; align-items:center; gap:4px;">Wenig <div class="heat-cell heat-1" style="width:10px;height:10px;"></div><div class="heat-cell heat-2" style="width:10px;height:10px;"></div><div class="heat-cell heat-3" style="width:10px;height:10px;"></div><div class="heat-cell heat-4" style="width:10px;height:10px;"></div> Viel</div>
+        <span>Heute</span>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card mb-0">
+        <div class="section-title">Modul-Verteilung</div>
+        <div id="stats-module-dist"></div>
+      </div>
+      <div class="card mb-0">
+        <div class="section-title">Monats-Ubersicht</div>
+        <div id="stats-monthly"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ══════════ LIBRARY ══════════ -->
   <div id="page-library" class="page">
-    <div class="page-header">
-      <h2 id="library-title">Übungsbibliothek</h2>
-      <p>Alle Praktiken aus Integral Life Practice</p>
-    </div>
-
+    <div class="page-header"><h2 id="library-title">Ubungsbibliothek</h2><p>Alle Praktiken aus Integral Life Practice</p></div>
     <div class="tab-bar" id="library-tabs">
-      <button class="tab-btn active" onclick="setLibraryFilter('all', this)">Alle</button>
-      <button class="tab-btn" onclick="setLibraryFilter('body', this)"><span style="color:var(--body-c)">●</span> Körper</button>
-      <button class="tab-btn" onclick="setLibraryFilter('mind', this)"><span style="color:var(--mind-c)">●</span> Geist</button>
-      <button class="tab-btn" onclick="setLibraryFilter('soul', this)"><span style="color:var(--soul-c)">●</span> Seele</button>
-      <button class="tab-btn" onclick="setLibraryFilter('shadow', this)"><span style="color:var(--shadow-c)">●</span> Schatten</button>
+      <button class="tab-btn active" onclick="setLibFilter('all',this)">Alle</button>
+      <button class="tab-btn" onclick="setLibFilter('body',this)"><span style="color:var(--body-c)">●</span> Korper</button>
+      <button class="tab-btn" onclick="setLibFilter('mind',this)"><span style="color:var(--mind-c)">●</span> Geist</button>
+      <button class="tab-btn" onclick="setLibFilter('soul',this)"><span style="color:var(--soul-c)">●</span> Seele</button>
+      <button class="tab-btn" onclick="setLibFilter('shadow',this)"><span style="color:var(--shadow-c)">●</span> Schatten</button>
+      <button class="tab-btn" onclick="setLibFilter('extra',this)">Zusatz</button>
     </div>
-
     <div id="library-list"></div>
   </div>
 
   <!-- ══════════ JOURNAL ══════════ -->
   <div id="page-journal" class="page">
-    <div class="page-header">
-      <h2>Praxis-Journal</h2>
-      <p>Notizen, Einsichten und Reflexionen</p>
-    </div>
-
+    <div class="page-header"><h2>Praxis-Journal</h2><p>Notizen, Einsichten und Reflexionen</p></div>
     <div class="card">
       <div class="section-title">Neue Notiz</div>
       <textarea id="journal-input" placeholder="Was hast du heute in deiner Praxis bemerkt? Einsichten, Fragen, Erfahrungen..."></textarea>
@@ -562,250 +421,119 @@
         <button class="btn btn-primary btn-sm" onclick="saveJournalEntry()">Speichern</button>
       </div>
     </div>
-
-    <div class="section-title">Frühere Einträge</div>
+    <div class="section-title">Fruhere Eintrage</div>
     <div id="journal-entries"></div>
   </div>
 
   <!-- ══════════ THEORY ══════════ -->
   <div id="page-theory" class="page">
-    <div class="page-header">
-      <h2>AQAL-Rahmen</h2>
-      <p>Die theoretische Grundlage der Integralen Praxis</p>
-    </div>
-
-    <div class="notice">
-      AQAL steht für <strong>All Quadrants, All Levels, All Lines, All States, All Types</strong> – ein Karten­modell der menschlichen Entwicklung.
-    </div>
-
+    <div class="page-header"><h2>AQAL-Rahmen</h2><p>Die theoretische Grundlage der Integralen Praxis</p></div>
+    <div class="notice">AQAL steht fur <strong>All Quadrants, All Levels, All Lines, All States, All Types</strong> – ein Kartenmodell der menschlichen Entwicklung.</div>
     <div class="section-title">Die vier Quadranten</div>
     <div class="quadrant-grid" style="margin-bottom:24px;">
-      <div class="quadrant">
-        <div class="quadrant-label">Oben-Links · Intentional</div>
-        <div class="quadrant-title">Ich (I)</div>
-        <div class="quadrant-items">
-          Bewusstsein · Gedanken<br>
-          Gefühle · Träume<br>
-          Innere Erfahrung<br>
-          <em>Praxis: Meditation, Schatten</em>
-        </div>
-      </div>
-      <div class="quadrant">
-        <div class="quadrant-label">Oben-Rechts · Verhaltensmäßig</div>
-        <div class="quadrant-title">Es (It)</div>
-        <div class="quadrant-items">
-          Körper · Gehirn<br>
-          Verhalten · Neurologie<br>
-          Physische Handlungen<br>
-          <em>Praxis: Sport, Ernährung</em>
-        </div>
-      </div>
-      <div class="quadrant">
-        <div class="quadrant-label">Unten-Links · Kulturell</div>
-        <div class="quadrant-title">Wir (We)</div>
-        <div class="quadrant-items">
-          Kultur · Werte<br>
-          Gemeinsame Bedeutung<br>
-          Intersubjektivität<br>
-          <em>Praxis: Sangha, Dialog</em>
-        </div>
-      </div>
-      <div class="quadrant">
-        <div class="quadrant-label">Unten-Rechts · Sozial</div>
-        <div class="quadrant-title">Es/Sie (Its)</div>
-        <div class="quadrant-items">
-          Soziale Systeme<br>
-          Institutionen · Umwelt<br>
-          Technologie<br>
-          <em>Praxis: Ethisches Handeln</em>
-        </div>
-      </div>
+      <div class="quadrant"><div class="quadrant-label">Oben-Links &middot; Intentional</div><div class="quadrant-title">Ich (I)</div><div class="quadrant-items">Bewusstsein &middot; Gedanken<br>Gefuhle &middot; Traume<br>Innere Erfahrung<br><em>Praxis: Meditation, Schatten</em></div></div>
+      <div class="quadrant"><div class="quadrant-label">Oben-Rechts &middot; Verhaltensmassig</div><div class="quadrant-title">Es (It)</div><div class="quadrant-items">Korper &middot; Gehirn<br>Verhalten &middot; Neurologie<br>Physische Handlungen<br><em>Praxis: Sport, Ernahrung</em></div></div>
+      <div class="quadrant"><div class="quadrant-label">Unten-Links &middot; Kulturell</div><div class="quadrant-title">Wir (We)</div><div class="quadrant-items">Kultur &middot; Werte<br>Gemeinsame Bedeutung<br>Intersubjektivitat<br><em>Praxis: Sangha, Dialog</em></div></div>
+      <div class="quadrant"><div class="quadrant-label">Unten-Rechts &middot; Sozial</div><div class="quadrant-title">Es/Sie (Its)</div><div class="quadrant-items">Soziale Systeme<br>Institutionen &middot; Umwelt<br>Technologie<br><em>Praxis: Ethisches Handeln</em></div></div>
     </div>
-
     <div class="section-title">Die Kernmodule</div>
     <div class="grid-2" style="margin-bottom:24px;">
-      <div class="card mb-0">
-        <div class="inline-flex" style="margin-bottom:8px;">
-          <span class="module-badge badge-body">Körper</span>
-        </div>
-        <p style="font-size:13px; color:var(--text2);">Der physische Aspekt. Umfasst Bewegung, Ernährung, Energie. Die 3-Minuten-Übung ist das Minimum – kurz, aber effektiv, weil sie alle 3 Körpersysteme (kausal, subtil, grob) anspricht.</p>
-      </div>
-      <div class="card mb-0">
-        <div class="inline-flex" style="margin-bottom:8px;">
-          <span class="module-badge badge-mind">Geist</span>
-        </div>
-        <p style="font-size:13px; color:var(--text2);">Mentale Entwicklung durch integrales Denken. Das Studium der AQAL-Theorie, Perspektivenwechsel und die Erkenntnis der eigenen Entwicklungsstufen schärfen die Wahrnehmung.</p>
-      </div>
-      <div class="card mb-0">
-        <div class="inline-flex" style="margin-bottom:8px;">
-          <span class="module-badge badge-soul">Seele</span>
-        </div>
-        <p style="font-size:13px; color:var(--text2);">Spirituelle Praxis in Zuständen (States). Meditation, kontemplatives Gebet, Big Mind – der direkte Kontakt mit dem Zeugen-Bewusstsein und dem Seinszustand.</p>
-      </div>
-      <div class="card mb-0">
-        <div class="inline-flex" style="margin-bottom:8px;">
-          <span class="module-badge badge-shadow">Schatten</span>
-        </div>
-        <p style="font-size:13px; color:var(--text2);">Integration abgespaltener Persönlichkeitsanteile. Der 3-2-1 Prozess macht unbewusste Muster sichtbar. Unbearbeiteter Schatten unterminiert jede andere spirituelle Praxis.</p>
-      </div>
+      <div class="card mb-0"><span class="module-badge badge-body">Korper</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Der physische Aspekt. Die 3-Minuten-Ubung stimuliert alle 3 Korperschichten: kausal, subtil, grob.</p></div>
+      <div class="card mb-0"><span class="module-badge badge-mind">Geist</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Mentale Entwicklung durch integrales Denken, Perspektivenwechsel und AQAL-Theorie.</p></div>
+      <div class="card mb-0"><span class="module-badge badge-soul">Seele</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Spirituelle Praxis: Meditation, kontemplatives Gebet, Big Mind – Kontakt mit dem Zeugen-Bewusstsein.</p></div>
+      <div class="card mb-0"><span class="module-badge badge-shadow">Schatten</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Integration abgespaltener Personlichkeitsanteile. Der 3-2-1 Prozess macht unbewusste Muster sichtbar.</p></div>
     </div>
-
     <div class="section-title">Die Praxis-Level</div>
     <div class="card">
       <div style="display:flex; flex-direction:column; gap:14px;">
-        <div>
-          <div class="inline-flex" style="margin-bottom:6px;">
-            <span class="level-badge level-gold">★ Gold</span>
-            <span style="font-size:13px; font-weight:600;">Minimum Viable Practice</span>
-          </div>
-          <p style="font-size:13px; color:var(--text2);">Die kürzest mögliche Version jeder Übung. Auch wenn du nur 10 Minuten hast – das Gold-Niveau hält die Praxis am Leben. Kontinuität schlägt Intensität.</p>
-        </div>
+        <div><span class="level-badge level-gold">★ Gold</span> <strong style="font-size:13px;">Minimum Viable Practice</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Die kurzest mogliche Version jeder Ubung. Auch 10 Minuten halten die Praxis am Leben. Kontinuitat schlagt Intensitat.</p></div>
         <hr class="divider" style="margin:0;">
-        <div>
-          <div class="inline-flex" style="margin-bottom:6px;">
-            <span class="level-badge level-silver">◆ Silber</span>
-            <span style="font-size:13px; font-weight:600;">Vertiefte Praxis</span>
-          </div>
-          <p style="font-size:13px; color:var(--text2);">Vollständigere Versionen der Übungen. Empfohlen wenn Zeit und Energie es erlauben. Ideal für 3–5 Tage pro Woche.</p>
-        </div>
+        <div><span class="level-badge level-silver">◆ Silber</span> <strong style="font-size:13px;">Vertiefte Praxis</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Vollstandigere Versionen. Empfohlen 3–5 Tage pro Woche wenn Zeit erlaubt.</p></div>
         <hr class="divider" style="margin:0;">
-        <div>
-          <div class="inline-flex" style="margin-bottom:6px;">
-            <span class="level-badge level-platinum">✦ Platin</span>
-            <span style="font-size:13px; font-weight:600;">Intensive Praxis</span>
-          </div>
-          <p style="font-size:13px; color:var(--text2);">Volle, tiefe Praxis für Zeiten besonderer Ausrichtung oder Retreats. Nicht für jeden Tag – aber transformativ wenn möglich.</p>
-        </div>
+        <div><span class="level-badge level-platinum">✦ Platin</span> <strong style="font-size:13px;">Intensive Praxis</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Volle, tiefe Praxis fur Retreats oder besondere Ausrichtung. Nicht fur jeden Tag – aber transformativ.</p></div>
       </div>
     </div>
   </div>
 
   <!-- ══════════ SETTINGS ══════════ -->
   <div id="page-settings" class="page">
-    <div class="page-header">
-      <h2>Meine Praxis</h2>
-      <p>Passe deine tägliche Praxis an</p>
-    </div>
+    <div class="page-header"><h2>Meine Praxis</h2><p>Passe deine tagliche Praxis an</p></div>
 
-    <div class="section-title">Tägliches Minimum (Gold-Stern)</div>
-    <div class="card">
-      <p style="font-size:13px; color:var(--text2); margin-bottom:16px;">Wähle welche Übungen täglich in deinem Dashboard erscheinen sollen.</p>
-      <div id="settings-practice-list"></div>
-    </div>
-
-    <div class="section-title" style="margin-top:20px;">Ziel-Level</div>
+    <div class="section-title">Erinnerungen</div>
     <div class="card">
       <div class="settings-row">
-        <div>
-          <div class="settings-label">Standard-Level</div>
-          <div class="settings-desc">Bevorzugtes Übungs-Niveau wenn Zeit vorhanden</div>
+        <div><div class="settings-label">Tagliche Erinnerung</div><div class="settings-desc">Benachrichtigung zur Praxis-Zeit</div></div>
+        <button class="toggle" id="toggle-reminder" onclick="toggleReminder(this)"></button>
+      </div>
+      <div class="settings-row">
+        <div><div class="settings-label">Erinnerungszeit</div><div class="settings-desc">Wann mochtest du erinnert werden?</div></div>
+        <input type="time" id="reminder-time" value="07:00" onchange="saveReminderTime(this.value)">
+      </div>
+    </div>
+
+    <div class="section-title">Cloud-Sync</div>
+    <div class="card">
+      <p style="font-size:12px; color:var(--text2); margin-bottom:12px;">Synchronisiere deinen Fortschritt zwischen iPhone und Mac uber dein GitHub-Repository.</p>
+      <div class="settings-row">
+        <div><div class="settings-label">GitHub Token</div><div class="settings-desc">Personal Access Token mit <code>repo</code>-Berechtigung</div></div>
+        <div style="display:flex; gap:6px;">
+          <input type="password" id="sync-token-input" placeholder="github_pat_..." style="background:var(--bg3); border:1px solid var(--border); color:var(--text); padding:6px 10px; border-radius:6px; font-size:12px; width:180px;" onkeydown="if(event.key==='Enter')saveSyncToken(this.value)">
+          <button class="btn btn-ghost btn-sm" onclick="saveSyncToken(document.getElementById('sync-token-input').value)">Speichern</button>
         </div>
+      </div>
+      <div class="settings-row">
+        <div><div class="settings-label">Jetzt synchronisieren</div><div class="settings-desc" id="sync-status-settings"></div></div>
+        <button class="btn btn-primary btn-sm" onclick="manualSync()">Sync</button>
+      </div>
+    </div>
+
+    <div class="section-title">Tagliches Minimum (Gold-Stern)</div>
+    <div class="card"><div id="settings-practice-list"></div></div>
+
+    <div class="section-title">Ziel-Level</div>
+    <div class="card">
+      <div class="settings-row">
+        <div><div class="settings-label">Standard-Level</div><div class="settings-desc">Bevorzugtes Ubungs-Niveau</div></div>
         <select id="settings-level" onchange="saveSetting('defaultLevel', this.value)">
-          <option value="gold">Gold (Minimum)</option>
-          <option value="silver">Silber (Vertieft)</option>
-          <option value="platinum">Platin (Intensiv)</option>
+          <option value="gold">Gold (Minimum)</option><option value="silver">Silber (Vertieft)</option><option value="platinum">Platin (Intensiv)</option>
         </select>
       </div>
     </div>
-
-    <div class="section-title" style="margin-top:20px;">Geräte-Synchronisation</div>
-    <div class="card">
-      <div class="notice" style="margin-bottom:16px;">
-        Synchronisiert Fortschritt, Streak und Journal zwischen iPhone und Mac über dein GitHub-Repository. Einmalig den Token eingeben – danach läuft Sync automatisch.
-      </div>
-      <div class="settings-row" style="border:none; padding-bottom:0;">
-        <div>
-          <div class="settings-label">GitHub Personal Access Token</div>
-          <div class="settings-desc">Token mit <code>repo</code>-Berechtigung (wird nur lokal gespeichert)</div>
-        </div>
-      </div>
-      <input type="password" id="sync-token-input"
-        style="width:100%; background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-sm); color:var(--text); padding:10px 12px; font-size:13px; font-family:inherit; margin:10px 0;"
-        placeholder="github_pat_..."
-        onchange="saveSyncToken(this.value)">
-      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" onclick="manualSync()">↕ Jetzt synchronisieren</button>
-        <button class="btn btn-ghost btn-sm" onclick="clearSyncToken()">Token löschen</button>
-        <span id="sync-status" style="font-size:12px; color:var(--text2);"></span>
-      </div>
-    </div>
   </div>
 
-  <!-- ══════════ LOGO ══════════ -->
-  <div id="page-logo" class="page">
-    <div class="page-header">
-      <h2>App-Icon</h2>
-      <p>Lade das Icon herunter und füge es zu GitHub hinzu</p>
-    </div>
-
-    <div class="card" style="margin-bottom:20px;">
-      <div class="section-title">Vorschau & Download</div>
-      <div id="logo-preview-area">
-        <div style="text-align:center; padding:24px; color:var(--text2); font-size:13px;">
-          Wird geladen…
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-title">So fügst du das Icon zu GitHub hinzu</div>
-      <ul class="step-list">
-        <li><div class="step-num">1</div><div>Lade <strong>ilp-icon-180.png</strong> (iPhone) und <strong>ilp-icon-512.png</strong> (Android) herunter</div></li>
-        <li><div class="step-num">2</div><div>Gehe zu deinem GitHub-Repository → <strong>„Add file" → „Upload files"</strong></div></li>
-        <li><div class="step-num">3</div><div>Beide PNG-Dateien hochladen → <strong>„Commit changes"</strong></div></li>
-        <li><div class="step-num">4</div><div>In der <code>index.html</code> den Bleistift-Button klicken und diese Zeilen im <code>&lt;head&gt;</code> ergänzen:<br><br>
-          <code style="background:var(--bg3); padding:8px 10px; border-radius:6px; font-size:12px; display:block; line-height:1.8;">
-            &lt;link rel="apple-touch-icon" href="ilp-icon-180.png"&gt;<br>
-            &lt;link rel="icon" href="ilp-icon-32.png"&gt;
-          </code>
-        </div></li>
-        <li><div class="step-num">5</div><div>Auf dem iPhone: Safari → Seite neu laden → <strong>„Zum Home-Bildschirm"</strong> → das Icon erscheint</div></li>
-      </ul>
-    </div>
-  </div>
-
-</div><!-- /content -->
+</div>
 </main>
-</div><!-- /app -->
+</div>
 
-<!-- ── Mobile Bottom Navigation ── -->
+<!-- Mobile Nav -->
 <nav class="mobile-nav">
   <div class="mobile-nav-inner">
     <button class="mobile-nav-btn active" id="mbnav-dashboard" onclick="showPage('dashboard'); setMobileNav('dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Heute
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Heute
     </button>
     <button class="mobile-nav-btn" id="mbnav-library" onclick="showPage('library','all'); setMobileNav('library')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-      Übungen
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Ubungen
     </button>
-    <button class="mobile-nav-btn" id="mbnav-week" onclick="showPage('week'); setMobileNav('week')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      Woche
+    <button class="mobile-nav-btn" id="mbnav-stats" onclick="showPage('stats'); setMobileNav('stats')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Stats
     </button>
     <button class="mobile-nav-btn" id="mbnav-journal" onclick="showPage('journal'); setMobileNav('journal')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      Journal
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Journal
     </button>
     <button class="mobile-nav-btn" id="mbnav-theory" onclick="showPage('theory'); setMobileNav('theory')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-      Theorie
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Theorie
     </button>
     <button class="mobile-nav-btn" id="mbnav-settings" onclick="showPage('settings'); setMobileNav('settings')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      Praxis
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Praxis
     </button>
   </div>
 </nav>
 
-<!-- ══════════ MODAL ══════════ -->
+<!-- Modal -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal" id="modal-content">
     <div class="modal-header">
-      <div>
-        <div id="modal-badges" style="display:flex; gap:6px; margin-bottom:8px;"></div>
-        <div class="modal-title" id="modal-title"></div>
-      </div>
+      <div><div id="modal-badges" style="display:flex; gap:6px; margin-bottom:8px;"></div><div class="modal-title" id="modal-title"></div></div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div id="modal-body"></div>
@@ -818,459 +546,306 @@
 // ═══════════════════════════════════════════════════════
 
 const MODULES = {
-  body:   { label: 'Körper',   color: 'var(--body-c)',   badgeClass: 'badge-body'   },
-  mind:   { label: 'Geist',    color: 'var(--mind-c)',   badgeClass: 'badge-mind'   },
-  soul:   { label: 'Seele',    color: 'var(--soul-c)',   badgeClass: 'badge-soul'   },
-  shadow: { label: 'Schatten', color: 'var(--shadow-c)', badgeClass: 'badge-shadow' },
+  body:     { label: 'Korper',      color: 'var(--body-c)',     badgeClass: 'badge-body' },
+  mind:     { label: 'Geist',       color: 'var(--mind-c)',     badgeClass: 'badge-mind' },
+  soul:     { label: 'Seele',       color: 'var(--soul-c)',     badgeClass: 'badge-soul' },
+  shadow:   { label: 'Schatten',    color: 'var(--shadow-c)',   badgeClass: 'badge-shadow' },
+  ethics:   { label: 'Ethik',       color: 'var(--ethics-c)',   badgeClass: 'badge-ethics' },
+  relation: { label: 'Beziehung',   color: 'var(--relation-c)', badgeClass: 'badge-relation' },
+  work:     { label: 'Arbeit',      color: 'var(--work-c)',     badgeClass: 'badge-work' },
+  creative: { label: 'Kreativitat', color: 'var(--creative-c)', badgeClass: 'badge-creative' },
 };
 
 const EXERCISES = [
-  // ─── KÖRPER ───
-  {
-    id: 'body-3min',
-    module: 'body',
-    title: '3-Minuten Körperübung',
-    subtitle: 'Das Gold-Stern Minimum',
-    duration: 3,
-    level: 'gold',
-    description: 'Die kürzeste vollständige Körperpraxis. Stimuliert alle drei Körperschichten (kausal, subtil, grob) in nur 3 Minuten.',
-    steps: [
-      { text: '<strong>Kniebeugen-Pumpen</strong> (30–60 Sek) – Steh mit schulterbreiten Füßen. Gehe in tiefe Kniebeuge, drücke dich hoch. Spüre die grobe Körperkraft, die geerdet und präsent wird.', time: 60 },
-      { text: '<strong>Herz-Öffner</strong> (30–60 Sek) – Steh aufrecht, breite die Arme aus, öffne Brust und Herz. Atme tief. Spüre wie subtile Energie (Prana) fließt.', time: 60 },
-      { text: '<strong>Stiller Stand</strong> (30–60 Sek) – Steh ruhig, Augen halb geschlossen. Lasse alle Anstrengung los. Erlebe das formlose Gewahrsein dahinter – den kausalen Körper.', time: 60 },
+  // ─── KORPER ───
+  { id:'body-3min', module:'body', title:'3-Minuten Korperubung', subtitle:'Das Gold-Stern Minimum', duration:3, level:'gold',
+    description:'Die kurzeste vollstandige Korperpraxis. Stimuliert alle drei Korperschichten (kausal, subtil, grob) in nur 3 Minuten.',
+    steps:[
+      {text:'<strong>Kniebeugen-Pumpen</strong> (30–60 Sek) – Steh mit schulterbreiten Fussen. Tiefe Kniebeuge, drucke dich hoch. Spure die grobe Korperkraft.',time:60},
+      {text:'<strong>Herz-Offner</strong> (30–60 Sek) – Steh aufrecht, breite die Arme aus, offne Brust und Herz. Atme tief. Spure subtile Energie.',time:60},
+      {text:'<strong>Stiller Stand</strong> (30–60 Sek) – Steh ruhig, Augen halb geschlossen. Lasse alle Anstrengung los. Erlebe formloses Gewahrsein – den kausalen Korper.',time:60},
     ],
-    tips: 'Qualität > Quantität. Auch 3 Minuten haben Wirkung wenn du wirklich präsent bist. Idealerweise morgens als Einstieg.',
-    goldMin: 3, silverMin: 20, platinumMin: 45,
-  },
-  {
-    id: 'body-yoga',
-    module: 'body',
-    title: 'Yoga / Bewegungsmeditation',
-    subtitle: 'Subtiler Körper & Atempraxis',
-    duration: 20,
-    level: 'silver',
-    description: 'Eine vollständige Körperpraxis, die physische Stärke mit subtiler Energiearbeit verbindet.',
-    steps: [
-      { text: '<strong>Ankommen</strong> (3 Min) – Lege dich kurz auf den Rücken, atme natürlich, scan deinen Körper von Kopf bis Fuß ohne etwas zu ändern.', time: 180 },
-      { text: '<strong>Sonnengruß</strong> (5–10 Min) – 3–6 Runden Surya Namaskar in deinem eigenen Rhythmus. Synchronisiere Bewegung mit Atem.', time: 600 },
-      { text: '<strong>Yin-Positionen</strong> (5 Min) – Wähle 2–3 gehaltene Dehnpositionen (2 Min je). Lass die Muskelspannung los, atme in den Bereich hinein.', time: 300 },
-      { text: '<strong>Savasana</strong> (3 Min) – Vollständige Ruhe. Integriere die Praxis.', time: 180 },
-    ],
-    tips: 'Du brauchst keine Yogamatte-Perfektion. Jede bewusste Bewegung ist Praxis.',
-    goldMin: 3, silverMin: 20, platinumMin: 60,
-  },
-  {
-    id: 'body-run',
-    module: 'body',
-    title: 'Laufen / Ausdauer',
-    subtitle: 'Grober Körper & Vitalität',
-    duration: 30,
-    level: 'silver',
-    description: 'Aerobe Ausdauerpraxis als integraler Körpertraining.',
-    steps: [
-      { text: '<strong>Warmmachen</strong> (3 Min) – Gehe schnell, schwinge Arme, wecke den Körper auf.', time: 180 },
-      { text: '<strong>Laufen</strong> (20–30 Min) – Tempo nach Gefühl. Halte einen Puls bei dem du noch sprechen könntest. Bleibe präsent.', time: 1500 },
-      { text: '<strong>Abkühlen</strong> (5 Min) – Gehe langsam aus, dehne Beine und Hüften.', time: 300 },
-    ],
-    tips: 'Statt Musik: Nutze das Laufen als bewegte Meditation. Wahrnehmen ohne zu beurteilen.',
-    goldMin: 3, silverMin: 30, platinumMin: 60,
-  },
-  {
-    id: 'body-strength',
-    module: 'body',
-    title: 'Krafttraining',
-    subtitle: 'Struktureller grober Körper',
-    duration: 40,
-    level: 'silver',
-    description: 'Widerstandstraining für Kraft, Muskelaufbau und Knochengesundheit.',
-    steps: [
-      { text: '<strong>Aufwärmen</strong> (5 Min) – Kreisen, Schwingen, leichte Mobilisierung aller Gelenke.', time: 300 },
-      { text: '<strong>Compound-Bewegungen</strong> (25 Min) – Kniebeugen, Liegestütze, Klimmzüge oder Deadlift. 3 Sätze je 8–12 Wdh.', time: 1500 },
-      { text: '<strong>Isolation / Stabilität</strong> (5 Min) – Core, Schultern, Gleichgewicht.', time: 300 },
-      { text: '<strong>Cool-Down</strong> (5 Min) – Dehnen, tief atmen, Körper spüren.', time: 300 },
-    ],
-    tips: 'Integrale Praxis: Körper als Tempel, nicht als Ego-Projekt. Trainiere aus Freude an Gesundheit.',
-    goldMin: 3, silverMin: 40, platinumMin: 90,
-  },
+    tips:'Qualitat > Quantitat. Auch 3 Minuten haben Wirkung wenn du wirklich prasent bist. Idealerweise morgens als Einstieg.',
+    goldMin:3, silverMin:20, platinumMin:45 },
+  { id:'body-yoga', module:'body', title:'Yoga / Bewegungsmeditation', subtitle:'Subtiler Korper & Atempraxis', duration:20, level:'silver',
+    description:'Vollstandige Korperpraxis, die physische Starke mit subtiler Energiearbeit verbindet.',
+    steps:[
+      {text:'<strong>Ankommen</strong> (3 Min) – Liege auf dem Rucken, atme naturlich, scan den Korper.',time:180},
+      {text:'<strong>Sonnengruss</strong> (5–10 Min) – 3–6 Runden Surya Namaskar. Synchronisiere Bewegung mit Atem.',time:600},
+      {text:'<strong>Yin-Positionen</strong> (5 Min) – 2–3 gehaltene Dehnpositionen. Muskelspannung loslassen.',time:300},
+      {text:'<strong>Savasana</strong> (3 Min) – Vollstandige Ruhe. Integriere die Praxis.',time:180},
+    ], tips:'Jede bewusste Bewegung ist Praxis.', goldMin:3, silverMin:20, platinumMin:60 },
+  { id:'body-run', module:'body', title:'Laufen / Ausdauer', subtitle:'Grober Korper & Vitalitat', duration:30, level:'silver',
+    description:'Aerobe Ausdauerpraxis als integrales Korpertraining.',
+    steps:[
+      {text:'<strong>Warmmachen</strong> (3 Min) – Schnell gehen, Arme schwingen.',time:180},
+      {text:'<strong>Laufen</strong> (20–30 Min) – Tempo nach Gefuhl. Bleibe prasent.',time:1500},
+      {text:'<strong>Abkuhlen</strong> (5 Min) – Langsam auslaufen, dehnen.',time:300},
+    ], tips:'Nutze das Laufen als bewegte Meditation.', goldMin:3, silverMin:30, platinumMin:60 },
+  { id:'body-strength', module:'body', title:'Krafttraining', subtitle:'Struktureller grober Korper', duration:40, level:'silver',
+    description:'Widerstandstraining fur Kraft, Muskelaufbau und Knochengesundheit.',
+    steps:[
+      {text:'<strong>Aufwarmen</strong> (5 Min) – Kreisen, Schwingen, Mobilisierung.',time:300},
+      {text:'<strong>Compound-Bewegungen</strong> (25 Min) – Kniebeugen, Liegestutze, Klimmzuge. 3 Satze je 8–12 Wdh.',time:1500},
+      {text:'<strong>Cool-Down</strong> (5 Min) – Dehnen, tief atmen.',time:300},
+    ], tips:'Korper als Tempel, nicht als Ego-Projekt.', goldMin:3, silverMin:40, platinumMin:90 },
 
   // ─── GEIST ───
-  {
-    id: 'mind-1min',
-    module: 'mind',
-    title: '1-Minuten Geist-Modul',
-    subtitle: 'Das Gold-Stern Minimum',
-    duration: 1,
-    level: 'gold',
-    description: 'Kurze mentale Übung die das integrale Karten­system aktiviert und bewusst macht.',
-    steps: [
-      { text: '<strong>Vierquadranten-Scan</strong> – Frage dich: Was erlebe ich <em>innerlich</em> (Ich)? Was tut mein <em>Körper/Verhalten</em> (Es)? Was verbindet mich mit anderen <em>kulturell</em> (Wir)? In welchen <em>Systemen</em> befinde ich mich (Es/Sie)?', time: 60 },
-    ],
-    tips: 'Diese 1 Minute schärft über Zeit deine integrale Wahrnehmung radikal. Baue sie in bestehende Routinen ein: beim Kaffee, vor Meetings.',
-    goldMin: 1, silverMin: 15, platinumMin: 60,
-  },
-  {
-    id: 'mind-integral-review',
-    module: 'mind',
-    title: 'Integrale Überprüfung',
-    subtitle: 'AQAL-Selbstreflexion',
-    duration: 15,
-    level: 'silver',
-    description: 'Eine tiefere Analyse deines Lebens durch die integralen Linsen.',
-    steps: [
-      { text: '<strong>Ich-Quadrant</strong> (3 Min) – Wie ist dein innerer Zustand? Welche Gefühle, Gedanken, inneren Überzeugungen sind gerade aktiv?', time: 180 },
-      { text: '<strong>Es-Quadrant</strong> (3 Min) – Wie ist dein Körper, dein Verhalten, deine Handlungen? Was tust du wirklich vs. was du zu tun meinst?', time: 180 },
-      { text: '<strong>Wir-Quadrant</strong> (3 Min) – Wie sind deine Beziehungen, deine Kultur, dein Zugehörigkeitsgefühl? Was verbindet dich?', time: 180 },
-      { text: '<strong>Es/Sie-Quadrant</strong> (3 Min) – In welchen Systemen und Strukturen lebst du? Was beeinflusst dich unsichtbar?', time: 180 },
-      { text: '<strong>Integration</strong> (3 Min) – Was fällt dir auf? Wo besteht eine Lücke zwischen Quadranten?', time: 180 },
-    ],
-    tips: 'Halte die Antworten im Journal fest. Muster werden über Wochen sichtbar.',
-    goldMin: 1, silverMin: 15, platinumMin: 45,
-  },
-  {
-    id: 'mind-reading',
-    module: 'mind',
-    title: 'Integrale Lektüre',
-    subtitle: 'Mentale Linien entwickeln',
-    duration: 20,
-    level: 'silver',
-    description: 'Gezieltes Studium integraler und entwicklungspsychologischer Texte.',
-    steps: [
-      { text: '<strong>Lesen</strong> (15–20 Min) – Wähle einen Text aus der integralen Tradition (Wilber, Beck, Torbert, Kegan...). Lies langsam und aktiv.', time: 1200 },
-      { text: '<strong>Notiz</strong> (5 Min) – Was ist dir aufgefallen? Welche Idee hat dich am stärksten berührt oder herausgefordert?', time: 300 },
-    ],
-    tips: 'Empfehlenswert: Integral Psychology, A Brief History of Everything, Spiral Dynamics. Lies nicht um Wissen anzuhäufen – lies um dich zu transformieren.',
-    goldMin: 1, silverMin: 20, platinumMin: 60,
-  },
+  { id:'mind-1min', module:'mind', title:'1-Minuten Geist-Modul', subtitle:'Das Gold-Stern Minimum', duration:1, level:'gold',
+    description:'Kurze mentale Ubung die das integrale Kartensystem aktiviert.',
+    steps:[{text:'<strong>Vierquadranten-Scan</strong> – Was erlebe ich <em>innerlich</em> (Ich)? Was tut mein <em>Korper/Verhalten</em> (Es)? Was verbindet mich mit anderen <em>kulturell</em> (Wir)? In welchen <em>Systemen</em> befinde ich mich (Es/Sie)?',time:60}],
+    tips:'Diese 1 Minute scharft uber Zeit deine integrale Wahrnehmung radikal.', goldMin:1, silverMin:15, platinumMin:60 },
+  { id:'mind-integral-review', module:'mind', title:'Integrale Uberprufung', subtitle:'AQAL-Selbstreflexion', duration:15, level:'silver',
+    description:'Tiefere Analyse deines Lebens durch die integralen Linsen.',
+    steps:[
+      {text:'<strong>Ich-Quadrant</strong> (3 Min) – Innerer Zustand: Gefuhle, Gedanken, Uberzeugungen.',time:180},
+      {text:'<strong>Es-Quadrant</strong> (3 Min) – Korper, Verhalten, Handlungen.',time:180},
+      {text:'<strong>Wir-Quadrant</strong> (3 Min) – Beziehungen, Kultur, Zugehorigkeit.',time:180},
+      {text:'<strong>Es/Sie-Quadrant</strong> (3 Min) – Systeme, Strukturen, unsichtbare Einflusse.',time:180},
+      {text:'<strong>Integration</strong> (3 Min) – Wo besteht eine Lucke zwischen Quadranten?',time:180},
+    ], tips:'Halte Antworten im Journal fest. Muster werden uber Wochen sichtbar.', goldMin:1, silverMin:15, platinumMin:45 },
+  { id:'mind-reading', module:'mind', title:'Integrale Lekture', subtitle:'Mentale Linien entwickeln', duration:20, level:'silver',
+    description:'Gezieltes Studium integraler Texte.',
+    steps:[
+      {text:'<strong>Lesen</strong> (15–20 Min) – Text aus der integralen Tradition. Langsam und aktiv lesen.',time:1200},
+      {text:'<strong>Notiz</strong> (5 Min) – Was ist aufgefallen? Welche Idee hat beruhrt oder herausgefordert?',time:300},
+    ], tips:'Lies nicht um Wissen anzuhaufen – lies um dich zu transformieren.', goldMin:1, silverMin:20, platinumMin:60 },
 
   // ─── SEELE ───
-  {
-    id: 'soul-1min',
-    module: 'soul',
-    title: '3-Minuten Meditation',
-    subtitle: 'Das Gold-Stern Minimum',
-    duration: 3,
-    level: 'gold',
-    description: 'Kürzeste wirksame Meditationspraxis. Selbst 3 Minuten tägliches Sitzen transformieren über Zeit.',
-    steps: [
-      { text: '<strong>Setze dich aufrecht</strong> – Bequem sitzen (Stuhl oder Boden). Rücken aufrecht aber entspannt. Hände auf den Knien.', time: 15 },
-      { text: '<strong>Ankern</strong> (1 Min) – Schließe die Augen. Beobachte 3 tiefe Atemzüge. Lass den Atem natürlich werden.', time: 60 },
-      { text: '<strong>Zeugen</strong> (2 Min) – Gedanken kommen und gehen – beobachte sie ohne mitzugehen. Du bist nicht der Gedanke – du bist der Raum in dem Gedanken entstehen.', time: 120 },
-    ],
-    tips: 'Das Ziel ist nicht gedankenloses Sitzen sondern das Wiederkehren zum Gewahrsein. Jedes Zurückkommen ist Praxis, kein Versagen.',
-    goldMin: 3, silverMin: 20, platinumMin: 45,
-  },
-  {
-    id: 'soul-bigmind',
-    module: 'soul',
-    title: 'Big Mind Prozess',
-    subtitle: 'Nicht-duales Gewahrsein',
-    duration: 20,
-    level: 'silver',
-    description: 'Geführter Dialog-Prozess nach Genpo Roshi – Zugang zu transpersonalen Bewusstseinszuständen.',
-    steps: [
-      { text: '<strong>Vorbereitung</strong> (2 Min) – Sitze bequem. Lasse den Alltag hinter dir. Atme dreimal tief.', time: 120 },
-      { text: '<strong>Kleiner Geist (Small Mind)</strong> (3 Min) – Spreche innerlich: "Ich bin der kleine Geist." Spüre die Enge, die Sorgen, das persönliche Ich. Erlabe diese Stimme vollständig.', time: 180 },
-      { text: '<strong>Sucher</strong> (3 Min) – "Ich bin der Sucher." Was suchst du? Erlabe die Sehnsucht nach Tiefe, Bedeutung, Wahrheit.', time: 180 },
-      { text: '<strong>Nicht-Sucher</strong> (3 Min) – "Ich bin der Nicht-Sucher." Hier gibt es nichts zu finden – alles ist bereits da. Entspanne in das Vollständige.', time: 180 },
-      { text: '<strong>Big Mind</strong> (5 Min) – "Ich bin Big Mind." Grenzenlos, allgegenwärtig, unvergänglich. Alles entsteht in mir. Verweile hier.', time: 300 },
-      { text: '<strong>Big Heart</strong> (3 Min) – "Ich bin Big Heart." Unbegrenzte Mitgefühl für alles Lebende, einschließlich dir selbst. Fühle die Wärme.', time: 180 },
-      { text: '<strong>Integration</strong> (1 Min) – Öffne langsam die Augen. Bringe den weiten Geist mit in den Alltag.', time: 60 },
-    ],
-    tips: 'Der Big Mind Prozess ist überraschend zugänglich – kein jahrelange Meditationserfahrung nötig. Genpo Roshi hat diese Methode entwickelt um nicht-duale Zustände direkt erfahrbar zu machen.',
-    goldMin: 3, silverMin: 20, platinumMin: 45,
-  },
-  {
-    id: 'soul-sitting',
-    module: 'soul',
-    title: 'Sitz-Meditation (Vipassana)',
-    subtitle: 'Einsichtsmeditation',
-    duration: 20,
-    level: 'silver',
-    description: 'Klassische Achtsamkeits- und Einsichtsmeditation. Basis der meisten westlichen Meditationspraktiken.',
-    steps: [
-      { text: '<strong>Ankunft</strong> (2 Min) – Setze dich aufrecht. Drei tiefe Atemzüge. Intention setzen: "Ich meditiere für meine eigene Befreiung und die aller Wesen."', time: 120 },
-      { text: '<strong>Atemfokus</strong> (5 Min) – Beobachte ausschließlich den Atem an einer Stelle (Nasenlöcher oder Bauch). Wenn Gedanken kommen, sanft zurückkehren.', time: 300 },
-      { text: '<strong>Vipassana-Scan</strong> (10 Min) – Bewege die Aufmerksamkeit langsam durch den Körper. Beobachte Empfindungen ohne sie zu verändern – Hitze, Kribbeln, Schwere, Leere.', time: 600 },
-      { text: '<strong>Metta (Liebende Güte)</strong> (3 Min) – "Möge ich glücklich sein. Mögen andere glücklich sein. Mögen alle Wesen frei sein." Spüre die Wärme.', time: 180 },
-    ],
-    tips: 'Nicht kämpfen – beobachten. Der wandernde Geist ist normal. Das Zurückkehren ist die eigentliche Praxis.',
-    goldMin: 3, silverMin: 20, platinumMin: 60,
-  },
-  {
-    id: 'soul-prayer',
-    module: 'soul',
-    title: 'Kontemplatives Gebet',
-    subtitle: 'Für spirituelle Traditionen',
-    duration: 15,
-    level: 'silver',
-    description: 'Kontemplatives Gebet als direkte Verbindung mit dem Göttlichen – kompatibel mit allen Traditionen.',
-    steps: [
-      { text: '<strong>Stille</strong> (3 Min) – Komme zur Ruhe. Lass den inneren Monolog langsamer werden.', time: 180 },
-      { text: '<strong>Öffnen</strong> (5 Min) – Öffne dich einem Größeren. Nenne es Gott, Kosmos, das Absolute – wie du möchtest. Stelle keine Forderungen, bitte nur um Öffnung.', time: 300 },
-      { text: '<strong>Empfangen</strong> (5 Min) – Sitze in stiller Empfangsbereitschaft. Was kommt? Impulse, Worte, Stille selbst?', time: 300 },
-      { text: '<strong>Dankbarkeit</strong> (2 Min) – Bringe Dankbarkeit für das Wunder des Daseins selbst.', time: 120 },
-    ],
-    tips: 'Das Integrale Modell respektiert alle spirituellen Wege. Nutze was dir resoniert – das Ergebnis (Zugang zu tiefen Bewusstseinszuständen) ist ähnlich.',
-    goldMin: 3, silverMin: 15, platinumMin: 45,
-  },
+  { id:'soul-1min', module:'soul', title:'3-Minuten Meditation', subtitle:'Das Gold-Stern Minimum', duration:3, level:'gold',
+    description:'Kurzeste wirksame Meditationspraxis. Selbst 3 Minuten tagliches Sitzen transformieren uber Zeit.',
+    steps:[
+      {text:'<strong>Setze dich aufrecht</strong> – Bequem sitzen. Rucken aufrecht aber entspannt.',time:15},
+      {text:'<strong>Ankern</strong> (1 Min) – Schliesse die Augen. 3 tiefe Atemzuge. Lass den Atem naturlich werden.',time:60},
+      {text:'<strong>Zeugen</strong> (2 Min) – Gedanken beobachten ohne mitzugehen. Du bist der Raum in dem Gedanken entstehen.',time:120},
+    ], tips:'Das Ziel ist das Wiederkehren zum Gewahrsein. Jedes Zuruckkommen ist Praxis.', goldMin:3, silverMin:20, platinumMin:45 },
+  { id:'soul-bigmind', module:'soul', title:'Big Mind Prozess', subtitle:'Nicht-duales Gewahrsein', duration:20, level:'silver',
+    description:'Gefuhrter Dialog-Prozess nach Genpo Roshi.',
+    steps:[
+      {text:'<strong>Vorbereitung</strong> (2 Min) – Sitze bequem. Dreimal tief atmen.',time:120},
+      {text:'<strong>Kleiner Geist</strong> (3 Min) – "Ich bin der kleine Geist." Spure die Enge, die Sorgen.',time:180},
+      {text:'<strong>Sucher</strong> (3 Min) – "Ich bin der Sucher." Erlebe die Sehnsucht nach Tiefe.',time:180},
+      {text:'<strong>Nicht-Sucher</strong> (3 Min) – "Ich bin der Nicht-Sucher." Alles ist bereits da.',time:180},
+      {text:'<strong>Big Mind</strong> (5 Min) – "Ich bin Big Mind." Grenzenlos, allgegenwartig. Verweile hier.',time:300},
+      {text:'<strong>Big Heart</strong> (3 Min) – "Ich bin Big Heart." Unbegrenztes Mitgefuhl.',time:180},
+      {text:'<strong>Integration</strong> (1 Min) – Offne langsam die Augen.',time:60},
+    ], tips:'Uberraschend zuganglich – kein jahrelange Erfahrung notig.', goldMin:3, silverMin:20, platinumMin:45 },
+  { id:'soul-sitting', module:'soul', title:'Sitz-Meditation (Vipassana)', subtitle:'Einsichtsmeditation', duration:20, level:'silver',
+    description:'Klassische Achtsamkeits- und Einsichtsmeditation.',
+    steps:[
+      {text:'<strong>Ankunft</strong> (2 Min) – Aufrecht sitzen. Intention: "Fur meine Befreiung und die aller Wesen."',time:120},
+      {text:'<strong>Atemfokus</strong> (5 Min) – Atem beobachten. Bei Gedanken sanft zuruckkehren.',time:300},
+      {text:'<strong>Vipassana-Scan</strong> (10 Min) – Aufmerksamkeit langsam durch den Korper bewegen.',time:600},
+      {text:'<strong>Metta</strong> (3 Min) – "Moge ich glucklich sein. Mogen alle Wesen frei sein."',time:180},
+    ], tips:'Nicht kampfen – beobachten. Das Zuruckkehren ist die Praxis.', goldMin:3, silverMin:20, platinumMin:60 },
+  { id:'soul-prayer', module:'soul', title:'Kontemplatives Gebet', subtitle:'Fur spirituelle Traditionen', duration:15, level:'silver',
+    description:'Kontemplatives Gebet als Verbindung mit dem Grosseren.',
+    steps:[
+      {text:'<strong>Stille</strong> (3 Min) – Zur Ruhe kommen. Inneren Monolog verlangsamen.',time:180},
+      {text:'<strong>Offnen</strong> (5 Min) – Offne dich einem Grosseren. Bitte nur um Offnung.',time:300},
+      {text:'<strong>Empfangen</strong> (5 Min) – Stille Empfangsbereitschaft.',time:300},
+      {text:'<strong>Dankbarkeit</strong> (2 Min) – Dankbarkeit fur das Dasein.',time:120},
+    ], tips:'Das Integrale Modell respektiert alle spirituellen Wege.', goldMin:3, silverMin:15, platinumMin:45 },
 
   // ─── SCHATTEN ───
-  {
-    id: 'shadow-321',
-    module: 'shadow',
-    title: '3-2-1 Schatten-Prozess',
-    subtitle: 'Das Gold-Stern Minimum',
-    duration: 10,
-    level: 'gold',
-    description: 'Die effektivste Kurzform der Schattenarbeit. 3 Schritte transformieren ein abgespaltenes Ich-Anteils in eine integrierte Stärke.',
-    steps: [
-      { text: '<strong>Wähle einen Auslöser</strong> – Denke an eine Person oder Situation die dich emotional stark berührt (positiv ODER negativ). Starke Reaktionen zeigen Schatten-Material an.', time: 60 },
-      { text: '<strong>3 – Er/Sie/Es:</strong> Beschreibe die Person/Qualität in der dritten Person. "Er/sie ist..." Schreibe oder spreche alles aus was du über diese Person denkst.', time: 120 },
-      { text: '<strong>2 – Du:</strong> Wechsle zu direktem Dialog. "Du bist..." Sprich direkt mit dieser Person/Qualität. Was würdest du ihr sagen? Was fühlt sich an als du sie direkt ansprichst?', time: 120 },
-      { text: '<strong>1 – Ich:</strong> Übernimm die Eigenschaft. "Ich bin..." Diese Qualität die du in anderen siehst IST ein Teil von dir. Wie zeigt sich diese Eigenschaft in deinem Leben? Wie kannst du sie integrieren?', time: 120 },
-      { text: '<strong>Reflexion</strong> – Spüre nach. Was hat sich verändert? Oft kommt nach der Integration Mitgefühl für die andere Person.', time: 60 },
-    ],
-    tips: 'Schattenanteile sind nicht "böse" – sie sind Ressourcen die zurückgewonnen werden wollen. Starke positive Projektion (Begeisterung für andere) zeigt ebenso Schatten wie negative.',
-    goldMin: 5, silverMin: 20, platinumMin: 60,
-  },
-  {
-    id: 'shadow-dream',
-    module: 'shadow',
-    title: '3-2-1 mit Traumfiguren',
-    subtitle: 'Unbewusstes Material integrieren',
-    duration: 15,
-    level: 'silver',
-    description: 'Schattenarbeit mit Traumbildern nach dem 3-2-1-Prozess. Träume sind direkte Botschaften des Unbewussten.',
-    steps: [
-      { text: '<strong>Traumfigur wählen</strong> – Erinnere einen Traum (egal wie fragmentarisch). Wähle eine Figur oder ein Element das stark aufgefallen ist.', time: 60 },
-      { text: '<strong>3 – Beschreiben</strong> – Beschreibe diese Traumfigur in der dritten Person. Was tut sie? Wie ist sie? Was strahlt sie aus?', time: 120 },
-      { text: '<strong>2 – Dialog</strong> – Führe innerlich einen Dialog. "Was willst du mir sagen?" Antworte spontan als die Figur.', time: 180 },
-      { text: '<strong>1 – Identifizieren</strong> – Werde die Figur. "Ich bin..." Diese Energie lebt in dir. Wie ist das?', time: 180 },
-      { text: '<strong>Integration</strong> – Schreibe 3 Sätze: Welche Eigenschaft habe ich zurückgewonnen? Wie kann ich sie im Alltag leben?', time: 180 },
-    ],
-    tips: 'Halte ein Traumtagebuch – sofort nach dem Aufwachen notieren bevor Bilder verblassen. Über Zeit werden Muster sichtbar.',
-    goldMin: 5, silverMin: 15, platinumMin: 45,
-  },
-  {
-    id: 'shadow-body',
-    module: 'shadow',
-    title: 'Körperschatten-Arbeit',
-    subtitle: 'Verkörperte Schattenintegration',
-    duration: 15,
-    level: 'silver',
-    description: 'Schatten manifestiert sich im Körper als chronische Spannung, Haltung und körperlicher Ausdruck.',
-    steps: [
-      { text: '<strong>Body Scan</strong> (3 Min) – Lie oder sitze. Scanne deinen Körper. Wo hältst du chronische Spannung? Kiefer, Schultern, Bauch, Hüfte?', time: 180 },
-      { text: '<strong>Fokussieren</strong> (3 Min) – Wähle die Spannungsstelle mit der stärksten Qualität. Lege Aufmerksamkeit dorthin ohne sofort etwas zu ändern.', time: 180 },
-      { text: '<strong>Erleben</strong> (5 Min) – Was ist die Qualität dieser Spannung? Was würde sie sagen wenn sie sprechen könnte? Welches Gefühl oder Erlebnis hält sie zurück?', time: 300 },
-      { text: '<strong>Auflösen oder Ausdrücken</strong> (4 Min) – Lass die Spannung auf ihre eigene Weise reagieren: Zittern, Seufzen, Bewegung, Klang. Widerstehe dem Impuls zur Kontrolle.', time: 240 },
-    ],
-    tips: 'Peter Levine, Bessel van der Kolk: Trauma und Schatten leben im Körper. Rein kognitive Ansätze greifen oft nicht tief genug.',
-    goldMin: 5, silverMin: 15, platinumMin: 45,
-  },
+  { id:'shadow-321', module:'shadow', title:'3-2-1 Schatten-Prozess', subtitle:'Das Gold-Stern Minimum', duration:10, level:'gold',
+    description:'Die effektivste Kurzform der Schattenarbeit. 3 Schritte transformieren abgespaltene Anteile.',
+    steps:[
+      {text:'<strong>Wahle einen Ausloser</strong> – Person oder Situation die dich emotional stark beruhrt (positiv ODER negativ).',time:60},
+      {text:'<strong>3 – Er/Sie/Es:</strong> Beschreibe in der dritten Person. "Er/sie ist..."',time:120},
+      {text:'<strong>2 – Du:</strong> Direkter Dialog. "Du bist..." Was wurdest du sagen?',time:120},
+      {text:'<strong>1 – Ich:</strong> Ubernimm die Eigenschaft. "Ich bin..." Wie zeigt sich das in deinem Leben?',time:120},
+      {text:'<strong>Reflexion</strong> – Spure nach. Was hat sich verandert?',time:60},
+    ], tips:'Schattenanteile sind Ressourcen die zuruckgewonnen werden wollen. Auch positive Projektion zeigt Schatten.', goldMin:5, silverMin:20, platinumMin:60 },
+  { id:'shadow-dream', module:'shadow', title:'3-2-1 mit Traumfiguren', subtitle:'Unbewusstes integrieren', duration:15, level:'silver',
+    description:'Schattenarbeit mit Traumbildern. Traume sind direkte Botschaften des Unbewussten.',
+    steps:[
+      {text:'<strong>Traumfigur wahlen</strong> – Erinnere einen Traum. Wahle eine auffallende Figur.',time:60},
+      {text:'<strong>3 – Beschreiben</strong> – Dritte Person. Was tut sie? Wie ist sie?',time:120},
+      {text:'<strong>2 – Dialog</strong> – "Was willst du mir sagen?" Antworte spontan als die Figur.',time:180},
+      {text:'<strong>1 – Identifizieren</strong> – "Ich bin..." Diese Energie lebt in dir.',time:180},
+      {text:'<strong>Integration</strong> – Welche Eigenschaft habe ich zuruckgewonnen?',time:180},
+    ], tips:'Sofort nach dem Aufwachen notieren. Uber Zeit werden Muster sichtbar.', goldMin:5, silverMin:15, platinumMin:45 },
+  { id:'shadow-body', module:'shadow', title:'Korperschatten-Arbeit', subtitle:'Verkorperte Schattenintegration', duration:15, level:'silver',
+    description:'Schatten manifestiert sich im Korper als chronische Spannung und Haltung.',
+    steps:[
+      {text:'<strong>Body Scan</strong> (3 Min) – Wo haltst du chronische Spannung? Kiefer, Schultern, Bauch?',time:180},
+      {text:'<strong>Fokussieren</strong> (3 Min) – Aufmerksamkeit auf die starkste Spannungsstelle.',time:180},
+      {text:'<strong>Erleben</strong> (5 Min) – Was wurde diese Spannung sagen? Welches Gefuhl halt sie zuruck?',time:300},
+      {text:'<strong>Ausdrucken</strong> (4 Min) – Lass die Spannung reagieren: Zittern, Seufzen, Bewegung.',time:240},
+    ], tips:'Trauma und Schatten leben im Korper. Rein kognitive Ansatze greifen oft nicht tief genug.', goldMin:5, silverMin:15, platinumMin:45 },
+
+  // ─── ZUSATZMODULE ───
+  { id:'ethics-daily', module:'ethics', title:'Taglicher Ethik-Check', subtitle:'Integrale Ethik', duration:5, level:'gold',
+    description:'Kurze tagliche Reflexion uber ethisches Handeln in allen vier Quadranten.',
+    steps:[
+      {text:'<strong>Ruckblick</strong> (2 Min) – Was habe ich heute getan das andere betroffen hat? Positiv und negativ.',time:120},
+      {text:'<strong>Vierquadranten-Ethik</strong> (2 Min) – Ich: War ich ehrlich mit mir? Es: Habe ich meinem Korper geschadet? Wir: Habe ich Beziehungen gepflegt? Es/Sie: Habe ich systemisch verantwortlich gehandelt?',time:120},
+      {text:'<strong>Intention</strong> (1 Min) – Was nehme ich mir fur morgen vor?',time:60},
+    ], tips:'Integrale Ethik ist nicht dogmatisch sondern entwicklungssensitiv. Was ethisch ist, wachst mit deiner Stufe.', goldMin:5, silverMin:15, platinumMin:30 },
+  { id:'ethics-inquiry', module:'ethics', title:'Ethische Erkundung', subtitle:'Tiefe moralische Reflexion', duration:20, level:'silver',
+    description:'Vertiefung eines ethischen Dilemmas durch integrale Perspektiven.',
+    steps:[
+      {text:'<strong>Dilemma benennen</strong> (3 Min) – Wahle eine ethische Frage die dich beschaftigt.',time:180},
+      {text:'<strong>Pra-konventionell</strong> (3 Min) – Was will ich personlich? Egozentrische Perspektive.',time:180},
+      {text:'<strong>Konventionell</strong> (3 Min) – Was sagt meine Gemeinschaft/Tradition? Ethno-/Soziozentrische Perspektive.',time:180},
+      {text:'<strong>Post-konventionell</strong> (3 Min) – Was dient dem universellen Wohl? Weltozentrische Perspektive.',time:180},
+      {text:'<strong>Integral</strong> (5 Min) – Wie kann ich alle Perspektiven ehren und dennoch handeln?',time:300},
+    ], tips:'Moral ist nicht relativ – sie ist entwicklungslogisch. Hohere Stufen schliessen niedrigere ein und transzendieren sie.', goldMin:5, silverMin:20, platinumMin:45 },
+
+  { id:'relation-conscious', module:'relation', title:'Bewusste Kommunikation', subtitle:'Integrale Beziehungspraxis', duration:10, level:'gold',
+    description:'Achtsame Beziehungspraxis: Zuhoren, Sprechen und Verbinden auf allen Ebenen.',
+    steps:[
+      {text:'<strong>Selbst-Check</strong> (2 Min) – Wie fuhle ich mich gerade in meinen wichtigsten Beziehungen? Wo bin ich offen, wo verschlossen?',time:120},
+      {text:'<strong>Perspektivenwechsel</strong> (3 Min) – Wahle eine Person. Versuche die Welt durch ihre Augen zu sehen. Was braucht sie?',time:180},
+      {text:'<strong>Intention</strong> (3 Min) – Wie mochte ich heute kommunizieren? Formuliere eine Absicht: z.B. "Ich hore erst zu bevor ich antworte."',time:180},
+      {text:'<strong>Wertschatzung</strong> (2 Min) – Benenne innerlich 3 Dinge die du an jemandem in deinem Leben schatzt.',time:120},
+    ], tips:'Beziehung ist der schnellste Spiegel. Projektion ist unvermeidlich – die Frage ist ob du sie erkennst.', goldMin:5, silverMin:20, platinumMin:45 },
+
+  { id:'work-integral', module:'work', title:'Integrale Arbeitspraxis', subtitle:'Bewusstes Wirken', duration:10, level:'gold',
+    description:'Die Arbeit als spirituelle Praxis begreifen. Karma Yoga im modernen Kontext.',
+    steps:[
+      {text:'<strong>Intention setzen</strong> (2 Min) – Bevor du mit der Arbeit beginnst: Warum tue ich das? Fur wen? Mit welcher Haltung?',time:120},
+      {text:'<strong>Vier-Quadranten der Arbeit</strong> (5 Min) – Ich: Bin ich prasent? Es: Sind meine Handlungen effektiv? Wir: Dient meine Arbeit der Gemeinschaft? Es/Sie: Welchen systemischen Einfluss hat sie?',time:300},
+      {text:'<strong>Loslassen</strong> (3 Min) – Arbeite ohne Anhaftung an das Ergebnis. Die Handlung selbst ist die Praxis.',time:180},
+    ], tips:'Karma Yoga: Handle ohne Anhaftung an die Frucht. Die Qualitat deiner Aufmerksamkeit bei der Arbeit IST die Praxis.', goldMin:5, silverMin:20, platinumMin:45 },
+
+  { id:'creative-expression', module:'creative', title:'Kreative Expression', subtitle:'Integrale Kreativitat', duration:15, level:'gold',
+    description:'Kreativitat als direkte Verbindung mit dem Unbewussten und als Ausdrucksmittel aller Quadranten.',
+    steps:[
+      {text:'<strong>Stille</strong> (3 Min) – Sitze ruhig. Lass den inneren Kritiker verstummen. Es gibt kein "richtig".',time:180},
+      {text:'<strong>Freier Ausdruck</strong> (10 Min) – Schreibe, zeichne, singe, bewege dich – ohne Plan, ohne Urteil. Lass es fliessen.',time:600},
+      {text:'<strong>Reflexion</strong> (2 Min) – Was ist entstanden? Uberrascht es dich? Was sagt es uber deinen inneren Zustand?',time:120},
+    ], tips:'Kreativitat ist keine Begabung sondern ein Muskel. Je ofter du ihn nutzt, desto starker wird er. Der innere Kritiker ist der grosste Feind.', goldMin:5, silverMin:30, platinumMin:60 },
 ];
+
+const EXTRA_MODULES = ['ethics','relation','work','creative'];
 
 // ═══════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════
 
-function loadState() {
-  return JSON.parse(localStorage.getItem('ilp_state') || '{}');
-}
+function loadState() { return JSON.parse(localStorage.getItem('ilp_state') || '{}'); }
 let _syncDebounce = null;
 function saveState(s) {
   localStorage.setItem('ilp_state', JSON.stringify(s));
-  if (getSyncToken()) {
-    clearTimeout(_syncDebounce);
-    _syncDebounce = setTimeout(() => syncToGitHub(getState()), 3000);
-  }
+  if (getSyncToken()) { clearTimeout(_syncDebounce); _syncDebounce = setTimeout(() => syncToGitHub(getState()), 3000); }
 }
-
 function getState() {
   const s = loadState();
   if (!s.completedByDay) s.completedByDay = {};
   if (!s.journalEntries) s.journalEntries = [];
   if (!s.totalSessions) s.totalSessions = 0;
   if (!s.settings) s.settings = {};
-  if (!s.settings.dailyPractice) {
-    s.settings.dailyPractice = ['body-3min', 'mind-1min', 'soul-1min', 'shadow-321'];
-  }
+  if (!s.settings.dailyPractice) s.settings.dailyPractice = ['body-3min','mind-1min','soul-1min','shadow-321'];
   if (!s.settings.defaultLevel) s.settings.defaultLevel = 'gold';
+  if (!s.settings.reminderTime) s.settings.reminderTime = '07:00';
+  if (s.settings.reminderEnabled === undefined) s.settings.reminderEnabled = false;
   return s;
 }
-
-function todayKey() {
-  return new Date().toISOString().split('T')[0];
-}
+function todayKey() { return new Date().toISOString().split('T')[0]; }
 
 // ═══════════════════════════════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════════════════════════════
 
 let currentFilter = 'all';
-
 function showPage(name, filter) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-
   const page = document.getElementById('page-' + name);
   if (page) page.classList.add('active');
-
-  // highlight sidebar
   document.querySelectorAll('.nav-item').forEach(btn => {
-    const onclick = btn.getAttribute('onclick') || '';
-    if (onclick.includes("'" + name + "'")) {
-      if (!filter || onclick.includes("'" + filter + "'")) {
-        btn.classList.add('active');
-      }
-    }
+    const oc = btn.getAttribute('onclick') || '';
+    if (oc.includes("'"+name+"'")) { if (!filter || oc.includes("'"+filter+"'")) btn.classList.add('active'); }
   });
-
   if (name === 'dashboard') renderDashboard();
-  if (name === 'library') {
-    currentFilter = filter || 'all';
-    renderLibrary();
-    // activate tab
-    document.querySelectorAll('#library-tabs .tab-btn').forEach(t => {
-      t.classList.toggle('active', t.textContent.toLowerCase().includes(currentFilter) || (currentFilter === 'all' && t.textContent === 'Alle'));
-    });
-  }
+  if (name === 'library') { currentFilter = filter || 'all'; renderLibrary(); document.querySelectorAll('#library-tabs .tab-btn').forEach(t => t.classList.toggle('active', t.textContent.toLowerCase().includes(currentFilter) || (currentFilter==='all' && t.textContent==='Alle') || (currentFilter==='extra' && t.textContent==='Zusatz'))); }
   if (name === 'week') renderWeek();
   if (name === 'journal') renderJournal();
+  if (name === 'stats') renderStats();
   if (name === 'settings') renderSettings();
-  if (name === 'logo') renderLogoPage();
 }
-
-function setLibraryFilter(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('#library-tabs .tab-btn').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  renderLibrary();
-}
+function setLibFilter(f, btn) { currentFilter = f; document.querySelectorAll('#library-tabs .tab-btn').forEach(t => t.classList.remove('active')); btn.classList.add('active'); renderLibrary(); }
+function setMobileNav(name) { document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active')); const btn = document.getElementById('mbnav-'+name); if (btn) btn.classList.add('active'); }
 
 // ═══════════════════════════════════════════════════════
 // DASHBOARD
 // ═══════════════════════════════════════════════════════
 
 function renderDashboard() {
-  const s = getState();
-  const today = todayKey();
-  const completed = s.completedByDay[today] || [];
-
-  // greeting
+  const s = getState(), today = todayKey(), completed = s.completedByDay[today] || [];
   const h = new Date().getHours();
-  const greet = h < 12 ? 'Guten Morgen' : h < 17 ? 'Guten Tag' : 'Guten Abend';
-  document.getElementById('dashboard-greeting').textContent = greet;
-  document.getElementById('dashboard-date').textContent = new Date().toLocaleDateString('de-DE', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-
-  // stats
-  const streak = calcStreak(s);
-  document.getElementById('stat-streak').textContent = streak;
+  document.getElementById('dashboard-greeting').textContent = h < 12 ? 'Guten Morgen' : h < 17 ? 'Guten Tag' : 'Guten Abend';
+  document.getElementById('dashboard-date').textContent = new Date().toLocaleDateString('de-DE',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('stat-streak').textContent = calcStreak(s);
   document.getElementById('stat-today').textContent = completed.length + '/' + s.settings.dailyPractice.length;
   document.getElementById('stat-total').textContent = s.totalSessions;
-  const weekCount = calcWeekSessions(s);
-  document.getElementById('stat-week').textContent = weekCount;
+  document.getElementById('stat-week').textContent = calcWeekSessions(s);
 
-  // today's practices
-  const list = document.getElementById('today-practices');
-  list.innerHTML = '';
+  const list = document.getElementById('today-practices'); list.innerHTML = '';
   s.settings.dailyPractice.forEach(id => {
-    const ex = EXERCISES.find(e => e.id === id);
-    if (!ex) return;
-    const done = completed.includes(id);
-    const m = MODULES[ex.module];
+    const ex = EXERCISES.find(e => e.id === id); if (!ex) return;
+    const done = completed.includes(id), m = MODULES[ex.module];
     const el = document.createElement('div');
     el.className = 'practice-item' + (done ? ' done' : '');
     el.onclick = () => done ? uncomplete(id) : openExercise(ex, true);
-    el.innerHTML = `
-      <div class="practice-check">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="practice-info">
-        <div class="practice-name">${ex.title}</div>
-        <div class="practice-meta">
-          <span class="module-badge ${m.badgeClass}">${m.label}</span>
-          <span class="level-badge level-${ex.level}">${ex.level === 'gold' ? '★' : ex.level === 'silver' ? '◆' : '✦'} ${ex.level}</span>
-          <span>· ${ex.goldMin} Min Minimum</span>
-        </div>
-      </div>
-      <div class="practice-actions">
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openExercise(EXERCISES.find(e=>e.id==='${id}'))">Anleitung</button>
-      </div>
-    `;
+    el.innerHTML = `<div class="practice-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="practice-info"><div class="practice-name">${ex.title}</div><div class="practice-meta"><span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span><span>· ${ex.goldMin} Min</span></div></div>
+      <div class="practice-actions"><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openExercise(EXERCISES.find(e=>e.id==='${id}'))">Anleitung</button></div>`;
     list.appendChild(el);
   });
-
-  if (s.settings.dailyPractice.length === 0) {
-    list.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><p>Keine Übungen ausgewählt.<br>Konfiguriere deine Praxis in <strong>Einstellungen → Meine Praxis</strong>.</p></div>';
-  }
+  if (!s.settings.dailyPractice.length) list.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><p>Keine Ubungen ausgewahlt.<br>Konfiguriere in <strong>Meine Praxis</strong>.</p></div>';
 }
 
-function uncomplete(id) {
-  const s = getState();
-  const today = todayKey();
-  s.completedByDay[today] = (s.completedByDay[today] || []).filter(x => x !== id);
-  s.totalSessions = Math.max(0, s.totalSessions - 1);
-  saveState(s);
-  renderDashboard();
-}
-
-function completeExercise(id) {
-  const s = getState();
-  const today = todayKey();
-  if (!s.completedByDay[today]) s.completedByDay[today] = [];
-  if (!s.completedByDay[today].includes(id)) {
-    s.completedByDay[today].push(id);
-    s.totalSessions++;
-  }
-  saveState(s);
-  renderDashboard();
-  closeModal();
-}
-
-function resetToday() {
-  if (!confirm('Heutige Einträge zurücksetzen?')) return;
-  const s = getState();
-  const today = todayKey();
-  const count = (s.completedByDay[today] || []).length;
-  s.totalSessions = Math.max(0, s.totalSessions - count);
-  s.completedByDay[today] = [];
-  saveState(s);
-  renderDashboard();
-}
+function uncomplete(id) { const s=getState(),t=todayKey(); s.completedByDay[t]=(s.completedByDay[t]||[]).filter(x=>x!==id); s.totalSessions=Math.max(0,s.totalSessions-1); saveState(s); renderDashboard(); }
+function completeExercise(id) { const s=getState(),t=todayKey(); if(!s.completedByDay[t])s.completedByDay[t]=[]; if(!s.completedByDay[t].includes(id)){s.completedByDay[t].push(id);s.totalSessions++;} saveState(s); renderDashboard(); closeModal(); }
+function resetToday() { if(!confirm('Heutige Eintrage zurucksetzen?'))return; const s=getState(),t=todayKey(),c=(s.completedByDay[t]||[]).length; s.totalSessions=Math.max(0,s.totalSessions-c); s.completedByDay[t]=[]; saveState(s); renderDashboard(); }
 
 // ═══════════════════════════════════════════════════════
 // STATS
 // ═══════════════════════════════════════════════════════
 
-function calcStreak(s) {
-  let streak = 0;
-  const d = new Date();
-  for (let i = 0; i < 365; i++) {
-    const key = d.toISOString().split('T')[0];
-    const done = s.completedByDay[key] || [];
-    if (done.length > 0) {
-      streak++;
-      d.setDate(d.getDate() - 1);
-    } else {
-      if (i === 0) { d.setDate(d.getDate() - 1); continue; } // today not done yet
-      break;
-    }
-  }
-  return streak;
-}
+function calcStreak(s) { let streak=0; const d=new Date(); for(let i=0;i<365;i++){const k=d.toISOString().split('T')[0];if((s.completedByDay[k]||[]).length>0){streak++;d.setDate(d.getDate()-1);}else{if(i===0){d.setDate(d.getDate()-1);continue;}break;}} return streak; }
+function calcWeekSessions(s) { let c=0; const d=new Date(); for(let i=0;i<7;i++){c+=(s.completedByDay[d.toISOString().split('T')[0]]||[]).length;d.setDate(d.getDate()-1);} return c; }
 
-function calcWeekSessions(s) {
-  let count = 0;
-  const d = new Date();
-  for (let i = 0; i < 7; i++) {
-    const key = d.toISOString().split('T')[0];
-    count += (s.completedByDay[key] || []).length;
-    d.setDate(d.getDate() - 1);
+function renderStats() {
+  const s = getState();
+  // Heatmap 90 days
+  const hm = document.getElementById('heatmap-90'); hm.innerHTML = '';
+  const d = new Date(); d.setDate(d.getDate()-89);
+  for (let i=0; i<90; i++) {
+    const k = d.toISOString().split('T')[0];
+    const cnt = (s.completedByDay[k]||[]).length;
+    const cell = document.createElement('div');
+    cell.className = 'heat-cell' + (cnt>=4?' heat-4':cnt>=3?' heat-3':cnt>=2?' heat-2':cnt>=1?' heat-1':'');
+    cell.title = k + ': ' + cnt + ' Ubungen';
+    hm.appendChild(cell);
+    d.setDate(d.getDate()+1);
   }
-  return count;
+
+  // Module distribution (last 30 days)
+  const dist = document.getElementById('stats-module-dist'); dist.innerHTML = '';
+  const modCount = {}; const d2 = new Date();
+  for (let i=0; i<30; i++) { const k=d2.toISOString().split('T')[0]; (s.completedByDay[k]||[]).forEach(id => { const ex=EXERCISES.find(e=>e.id===id); if(ex){ modCount[ex.module]=(modCount[ex.module]||0)+1; } }); d2.setDate(d2.getDate()-1); }
+  const maxMod = Math.max(1, ...Object.values(modCount));
+  Object.entries(MODULES).forEach(([key,m]) => {
+    const cnt = modCount[key]||0; if(cnt===0) return;
+    dist.innerHTML += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span style="font-size:12px;width:70px;color:var(--text2);">${m.label}</span><div class="progress-bar" style="flex:1;"><div class="progress-fill" style="width:${cnt/maxMod*100}%;background:${m.color};"></div></div><span style="font-size:11px;color:var(--text2);">${cnt}</span></div>`;
+  });
+  if (!Object.keys(modCount).length) dist.innerHTML = '<p style="font-size:12px;color:var(--text2);">Noch keine Daten.</p>';
+
+  // Monthly overview (last 6 months)
+  const mo = document.getElementById('stats-monthly'); mo.innerHTML = '';
+  const months = ['Jan','Feb','Mar','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const now = new Date();
+  for (let m=5; m>=0; m--) {
+    const md = new Date(now.getFullYear(), now.getMonth()-m, 1);
+    const yr = md.getFullYear(), mn = md.getMonth();
+    let cnt = 0;
+    Object.entries(s.completedByDay).forEach(([k,ids]) => { const kd=new Date(k); if(kd.getFullYear()===yr && kd.getMonth()===mn) cnt+=ids.length; });
+    mo.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;"><span>${months[mn]} ${yr}</span><span style="color:var(--text2);">${cnt} Ubungen</span></div>`;
+  }
 }
 
 // ═══════════════════════════════════════════════════════
@@ -1278,69 +853,19 @@ function calcWeekSessions(s) {
 // ═══════════════════════════════════════════════════════
 
 function renderWeek() {
-  const s = getState();
-  const grid = document.getElementById('week-grid');
-  grid.innerHTML = '';
-  const days = ['So','Mo','Di','Mi','Do','Fr','Sa'];
-  const today = new Date();
-
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const key = d.toISOString().split('T')[0];
-    const completed = s.completedByDay[key] || [];
-    const isToday = i === 0;
-
-    const cell = document.createElement('div');
-    cell.className = 'week-day' + (isToday ? ' today' : '');
-    const dotsHtml = completed.map(id => {
-      const ex = EXERCISES.find(e => e.id === id);
-      if (!ex) return '';
-      const m = MODULES[ex.module];
-      return `<div class="day-dot" style="background:${m.color}"></div>`;
-    }).join('');
-
-    cell.innerHTML = `
-      <div class="day-name">${days[d.getDay()]}</div>
-      <div class="day-num">${d.getDate()}</div>
-      <div class="day-dots">${dotsHtml || '<div style="height:5px"></div>'}</div>
-    `;
-    grid.appendChild(cell);
-  }
-
-  // Module progress
-  const prog = document.getElementById('module-progress-grid');
-  prog.innerHTML = '';
-  Object.entries(MODULES).forEach(([key, m]) => {
-    const total = s.settings.dailyPractice.filter(id => {
-      const ex = EXERCISES.find(e => e.id === id);
-      return ex && ex.module === key;
-    }).length * 7;
-
-    let done = 0;
-    const d2 = new Date(today);
-    for (let i = 0; i < 7; i++) {
-      const dayKey = d2.toISOString().split('T')[0];
-      const dayDone = (s.completedByDay[dayKey] || []).filter(id => {
-        const ex = EXERCISES.find(e => e.id === id);
-        return ex && ex.module === key;
-      }).length;
-      done += dayDone;
-      d2.setDate(d2.getDate() - 1);
-    }
-
-    const pct = total > 0 ? Math.min(100, Math.round(done / total * 100)) : 0;
-    const el = document.createElement('div');
-    el.innerHTML = `
-      <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-        <span style="font-size:13px; font-weight:600;">${m.label}</span>
-        <span style="font-size:12px; color:var(--text2);">${done}/${total || '–'} Einheiten</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:${pct}%; background:${m.color};"></div>
-      </div>
-    `;
-    prog.appendChild(el);
+  const s=getState(), grid=document.getElementById('week-grid'); grid.innerHTML='';
+  const days=['So','Mo','Di','Mi','Do','Fr','Sa'], today=new Date();
+  for(let i=6;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);const k=d.toISOString().split('T')[0],completed=s.completedByDay[k]||[],isToday=i===0;
+    const cell=document.createElement('div');cell.className='week-day'+(isToday?' today':'');
+    cell.innerHTML=`<div class="day-name">${days[d.getDay()]}</div><div class="day-num">${d.getDate()}</div><div class="day-dots">${completed.map(id=>{const ex=EXERCISES.find(e=>e.id===id);return ex?`<div class="day-dot" style="background:${MODULES[ex.module].color}"></div>`:''}).join('')||'<div style="height:5px"></div>'}</div>`;
+    grid.appendChild(cell);}
+  const prog=document.getElementById('module-progress-grid');prog.innerHTML='';
+  Object.entries(MODULES).forEach(([key,m])=>{
+    if(EXTRA_MODULES.includes(key)) return; // only core modules in week view
+    const total=s.settings.dailyPractice.filter(id=>{const ex=EXERCISES.find(e=>e.id===id);return ex&&ex.module===key;}).length*7;
+    let done=0;const d2=new Date(today);for(let i=0;i<7;i++){(s.completedByDay[d2.toISOString().split('T')[0]]||[]).filter(id=>{const ex=EXERCISES.find(e=>e.id===id);return ex&&ex.module===key;}).forEach(()=>done++);d2.setDate(d2.getDate()-1);}
+    const pct=total>0?Math.min(100,Math.round(done/total*100)):0;
+    prog.innerHTML+=`<div><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:13px;font-weight:600;">${m.label}</span><span style="font-size:12px;color:var(--text2);">${done}/${total||'–'}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:${m.color};"></div></div></div>`;
   });
 }
 
@@ -1349,213 +874,81 @@ function renderWeek() {
 // ═══════════════════════════════════════════════════════
 
 function renderLibrary() {
-  const list = document.getElementById('library-list');
-  list.innerHTML = '';
-  const filtered = currentFilter === 'all' ? EXERCISES : EXERCISES.filter(e => e.module === currentFilter);
-
+  const list=document.getElementById('library-list');list.innerHTML='';
+  const filtered = currentFilter==='all' ? EXERCISES : currentFilter==='extra' ? EXERCISES.filter(e=>EXTRA_MODULES.includes(e.module)) : EXERCISES.filter(e=>e.module===currentFilter);
   filtered.forEach(ex => {
-    const m = MODULES[ex.module];
-    const card = document.createElement('div');
-    card.className = 'exercise-card';
-    card.onclick = () => openExercise(ex);
-    card.innerHTML = `
-      <div class="exercise-card-header">
-        <div>
-          <div class="exercise-card-title">${ex.title}</div>
-          <div class="exercise-card-badges">
-            <span class="module-badge ${m.badgeClass}">${m.label}</span>
-            <span class="level-badge level-${ex.level}">${ex.level === 'gold' ? '★' : ex.level === 'silver' ? '◆' : '✦'} ${ex.level}</span>
-          </div>
-        </div>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:var(--text2); flex-shrink:0; margin-top:4px;">
-          <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="exercise-card-desc">${ex.description}</div>
-      <div class="exercise-card-duration">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Gold: ${ex.goldMin} Min · Silber: ${ex.silverMin} Min · Platin: ${ex.platinumMin} Min
-      </div>
-    `;
+    const m=MODULES[ex.module],card=document.createElement('div');card.className='exercise-card';card.onclick=()=>openExercise(ex);
+    card.innerHTML=`<div class="exercise-card-header"><div><div class="exercise-card-title">${ex.title}</div><div class="exercise-card-badges"><span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span></div></div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:var(--text2);flex-shrink:0;margin-top:4px;"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    <div class="exercise-card-desc">${ex.description}</div><div class="exercise-card-duration"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Gold: ${ex.goldMin} Min · Silber: ${ex.silverMin} Min · Platin: ${ex.platinumMin} Min</div>`;
     list.appendChild(card);
   });
 }
 
 // ═══════════════════════════════════════════════════════
-// MODAL & EXERCISE DETAIL
+// MODAL & EXERCISE
 // ═══════════════════════════════════════════════════════
 
-let activeTimer = null;
-let timerState = { running: false, total: 0, remaining: 0, stepIndex: 0 };
-
-function openExercise(ex, fromDashboard) {
-  const m = MODULES[ex.module];
-  document.getElementById('modal-badges').innerHTML = `
-    <span class="module-badge ${m.badgeClass}">${m.label}</span>
-    <span class="level-badge level-${ex.level}">${ex.level === 'gold' ? '★' : ex.level === 'silver' ? '◆' : '✦'} ${ex.level}</span>
-  `;
-  document.getElementById('modal-title').textContent = ex.title;
-
-  // Build steps with timers
-  const stepsHtml = ex.steps.map((step, i) => `
-    <li>
-      <div class="step-num">${i+1}</div>
-      <div style="flex:1;">
-        <div>${step.text}</div>
-        ${step.time ? `<div style="margin-top:6px; display:flex; gap:6px; align-items:center;">
-          <button class="btn btn-ghost btn-sm" onclick="startStepTimer(${step.time}, ${i})">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-            ${formatTime(step.time)} Timer
-          </button>
-        </div>` : ''}
-      </div>
-    </li>
-  `).join('');
-
-  const totalSecs = ex.steps.reduce((a, b) => a + (b.time || 0), 0);
-
-  document.getElementById('modal-body').innerHTML = `
-    <p style="font-size:13px; color:var(--text2); margin-bottom:20px;">${ex.description}</p>
-
-    <!-- Full timer -->
-    <div class="timer-display" id="timer-display">
-      <div class="timer-ring" id="timer-ring">
-        <svg width="160" height="160" viewBox="0 0 160 160">
-          <circle class="ring-bg" cx="80" cy="80" r="68"/>
-          <circle class="ring-progress" id="ring-progress" cx="80" cy="80" r="68"
-            stroke-dasharray="${2 * Math.PI * 68}"
-            stroke-dashoffset="${2 * Math.PI * 68}"/>
-        </svg>
-        <div class="timer-time" id="timer-time">–:––</div>
-      </div>
-      <div class="timer-controls">
-        <button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startFullTimer(${totalSecs})">
-          Komplette Praxis starten (${formatTime(totalSecs)})
-        </button>
-        <button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button>
-        <button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button>
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <div class="section-title">Schritte</div>
-    <ul class="step-list">${stepsHtml}</ul>
-
-    ${ex.tips ? `
-    <hr class="divider">
-    <div class="section-title">Hinweise</div>
-    <p style="font-size:13px; color:var(--text2);">${ex.tips}</p>
-    ` : ''}
-
-    <hr class="divider">
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <button class="btn btn-success" onclick="completeExercise('${ex.id}')">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L6 11L12 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Als erledigt markieren
-      </button>
-      ${fromDashboard ? '' : `<button class="btn btn-ghost" onclick="addToDailyPractice('${ex.id}')">+ Zur täglichen Praxis</button>`}
-    </div>
-  `;
-
+let activeTimer=null, timerState={running:false,total:0,remaining:0};
+function openExercise(ex,fromDash) {
+  const m=MODULES[ex.module];
+  document.getElementById('modal-badges').innerHTML=`<span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span>`;
+  document.getElementById('modal-title').textContent=ex.title;
+  const stepsHtml=ex.steps.map((step,i)=>`<li><div class="step-num">${i+1}</div><div style="flex:1;"><div>${step.text}</div>${step.time?`<div style="margin-top:6px;"><button class="btn btn-ghost btn-sm" onclick="startTimerWith(${step.time})"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>${formatTime(step.time)} Timer</button></div>`:''}</div></li>`).join('');
+  const totalSecs=ex.steps.reduce((a,b)=>a+(b.time||0),0);
+  document.getElementById('modal-body').innerHTML=`<p style="font-size:13px;color:var(--text2);margin-bottom:20px;">${ex.description}</p>
+    <div class="timer-display"><div class="timer-ring"><svg width="160" height="160" viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="68"/><circle class="ring-progress" id="ring-progress" cx="80" cy="80" r="68" stroke-dasharray="${2*Math.PI*68}" stroke-dashoffset="${2*Math.PI*68}"/></svg><div class="timer-time" id="timer-time">–:––</div></div>
+    <div class="timer-controls"><button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startTimerWith(${totalSecs})">Komplette Praxis (${formatTime(totalSecs)})</button><button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button><button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button></div></div>
+    <hr class="divider"><div class="section-title">Schritte</div><ul class="step-list">${stepsHtml}</ul>
+    ${ex.tips?`<hr class="divider"><div class="section-title">Hinweise</div><p style="font-size:13px;color:var(--text2);">${ex.tips}</p>`:''}
+    <hr class="divider"><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-success" onclick="completeExercise('${ex.id}')"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L6 11L12 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Erledigt</button>${fromDash?'':`<button class="btn btn-ghost" onclick="addToDailyPractice('${ex.id}')">+ Zur taglichen Praxis</button>`}</div>`;
   document.getElementById('modal').classList.add('open');
   clearTimerInterval();
 }
-
-function closeModal(e) {
-  if (e && e.target !== document.getElementById('modal')) return;
-  document.getElementById('modal').classList.remove('open');
-  clearTimerInterval();
+function closeModal(e){if(e&&e.target!==document.getElementById('modal'))return;document.getElementById('modal').classList.remove('open');clearTimerInterval();}
+function clearTimerInterval(){if(activeTimer){clearInterval(activeTimer);activeTimer=null;}}
+function formatTime(secs){return Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0');}
+function startTimerWith(totalSecs){
+  clearTimerInterval();timerState={running:true,total:totalSecs,remaining:totalSecs};updateTimerUI(totalSecs,totalSecs);
+  document.getElementById('btn-start-full').style.display='none';document.getElementById('btn-pause').style.display='inline-flex';document.getElementById('btn-reset').style.display='inline-flex';
+  activeTimer=setInterval(()=>{timerState.remaining--;updateTimerUI(timerState.remaining,timerState.total);if(timerState.remaining<=0){clearTimerInterval();timerState.running=false;playGong();document.getElementById('timer-time').textContent='✓';}},1000);
 }
+function pauseTimer(){if(timerState.running){clearTimerInterval();timerState.running=false;document.getElementById('btn-pause').textContent='Weiter';}else{timerState.running=true;document.getElementById('btn-pause').textContent='Pause';activeTimer=setInterval(()=>{timerState.remaining--;updateTimerUI(timerState.remaining,timerState.total);if(timerState.remaining<=0){clearTimerInterval();timerState.running=false;playGong();document.getElementById('timer-time').textContent='✓';}},1000);}}
+function resetTimer(){clearTimerInterval();timerState.running=false;document.getElementById('btn-start-full').style.display='inline-flex';document.getElementById('btn-pause').style.display='none';document.getElementById('btn-reset').style.display='none';document.getElementById('timer-time').textContent='–:––';const r=document.getElementById('ring-progress');if(r)r.style.strokeDashoffset=2*Math.PI*68;}
+function updateTimerUI(rem,tot){const el=document.getElementById('timer-time'),r=document.getElementById('ring-progress');if(el)el.textContent=formatTime(Math.max(0,rem));if(r){const c=2*Math.PI*68;r.style.strokeDashoffset=c*(tot>0?rem/tot:0);}}
 
-function clearTimerInterval() {
-  if (activeTimer) { clearInterval(activeTimer); activeTimer = null; }
-}
+// ═══════════════════════════════════════════════════════
+// MEDITATION GONG (improved sound)
+// ═══════════════════════════════════════════════════════
 
-function formatTime(secs) {
-  const m = Math.floor(secs / 60);
-  const s = secs % 60;
-  return m + ':' + String(s).padStart(2, '0');
-}
-
-function startFullTimer(totalSecs) {
-  startTimerWith(totalSecs);
-}
-function startStepTimer(secs) {
-  startTimerWith(secs);
-}
-
-function startTimerWith(totalSecs) {
-  clearTimerInterval();
-  timerState = { running: true, total: totalSecs, remaining: totalSecs };
-  updateTimerUI(totalSecs, totalSecs);
-  document.getElementById('btn-start-full').style.display = 'none';
-  document.getElementById('btn-pause').style.display = 'inline-flex';
-  document.getElementById('btn-reset').style.display = 'inline-flex';
-
-  activeTimer = setInterval(() => {
-    timerState.remaining--;
-    updateTimerUI(timerState.remaining, timerState.total);
-    if (timerState.remaining <= 0) {
-      clearTimerInterval();
-      timerState.running = false;
-      playDone();
-      document.getElementById('timer-time').textContent = '✓';
-    }
-  }, 1000);
-}
-
-function pauseTimer() {
-  if (timerState.running) {
-    clearTimerInterval(); timerState.running = false;
-    document.getElementById('btn-pause').textContent = 'Weiter';
-  } else {
-    timerState.running = true;
-    document.getElementById('btn-pause').textContent = 'Pause';
-    activeTimer = setInterval(() => {
-      timerState.remaining--;
-      updateTimerUI(timerState.remaining, timerState.total);
-      if (timerState.remaining <= 0) {
-        clearTimerInterval(); timerState.running = false;
-        playDone();
-        document.getElementById('timer-time').textContent = '✓';
-      }
-    }, 1000);
-  }
-}
-
-function resetTimer() {
-  clearTimerInterval(); timerState.running = false;
-  document.getElementById('btn-start-full').style.display = 'inline-flex';
-  document.getElementById('btn-pause').style.display = 'none';
-  document.getElementById('btn-reset').style.display = 'none';
-  document.getElementById('timer-time').textContent = '–:––';
-  const ring = document.getElementById('ring-progress');
-  if (ring) ring.style.strokeDashoffset = 2 * Math.PI * 68;
-}
-
-function updateTimerUI(remaining, total) {
-  const el = document.getElementById('timer-time');
-  const ring = document.getElementById('ring-progress');
-  if (el) el.textContent = formatTime(Math.max(0, remaining));
-  if (ring) {
-    const circ = 2 * Math.PI * 68;
-    const progress = total > 0 ? remaining / total : 0;
-    ring.style.strokeDashoffset = circ * progress;
-  }
-}
-
-function playDone() {
+function playGong() {
   try {
-    const ctx = new AudioContext();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain); gain.connect(ctx.destination);
-    osc.frequency.setValueAtTime(528, ctx.currentTime);
-    gain.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 1.2);
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const freqs = [261.6, 523.3, 784.9, 1046.5]; // C4, C5, G5, C6
+    const gains = [0.25, 0.15, 0.08, 0.04];
+    const decays = [4.0, 3.0, 2.5, 2.0];
+    freqs.forEach((f, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass'; filter.frequency.value = 2000;
+      filter.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + decays[i]);
+      osc.frequency.setValueAtTime(f, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(gains[i], ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + decays[i]);
+      osc.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + decays[i]);
+    });
+    // Add shimmer
+    const noise = ctx.createOscillator();
+    const nGain = ctx.createGain();
+    noise.frequency.setValueAtTime(4186, ctx.currentTime); // C8
+    noise.type = 'sine';
+    nGain.gain.setValueAtTime(0.02, ctx.currentTime);
+    nGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 3);
+    noise.connect(nGain); nGain.connect(ctx.destination);
+    noise.start(ctx.currentTime); noise.stop(ctx.currentTime + 3);
   } catch(e) {}
 }
 
@@ -1564,49 +957,16 @@ function playDone() {
 // ═══════════════════════════════════════════════════════
 
 function renderJournal() {
-  const s = getState();
-  document.getElementById('journal-date-label').textContent = new Date().toLocaleDateString('de-DE', {weekday:'long', day:'numeric', month:'long'});
-
-  const container = document.getElementById('journal-entries');
-  container.innerHTML = '';
-
-  if (s.journalEntries.length === 0) {
-    container.innerHTML = '<div class="empty-state"><div class="empty-icon">📓</div><p>Noch keine Einträge.<br>Deine Reflexionen und Einsichten erscheinen hier.</p></div>';
-    return;
-  }
-
-  [...s.journalEntries].reverse().forEach((entry, idx) => {
-    const el = document.createElement('div');
-    el.className = 'journal-entry';
-    const realIdx = s.journalEntries.length - 1 - idx;
-    el.innerHTML = `
-      <div class="journal-date" style="display:flex; justify-content:space-between;">
-        <span>${new Date(entry.date).toLocaleDateString('de-DE', {weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit'})}</span>
-        <button class="btn btn-ghost btn-sm" onclick="deleteJournalEntry(${realIdx})" style="padding:2px 8px;">✕</button>
-      </div>
-      <div class="journal-text">${entry.text.replace(/\n/g, '<br>')}</div>
-    `;
-    container.appendChild(el);
-  });
+  const s=getState();
+  document.getElementById('journal-date-label').textContent=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
+  const container=document.getElementById('journal-entries');container.innerHTML='';
+  if(!s.journalEntries.length){container.innerHTML='<div class="empty-state"><div class="empty-icon">📓</div><p>Noch keine Eintrage.</p></div>';return;}
+  [...s.journalEntries].reverse().forEach((entry,idx)=>{const el=document.createElement('div');el.className='journal-entry';const ri=s.journalEntries.length-1-idx;
+    el.innerHTML=`<div class="journal-date" style="display:flex;justify-content:space-between;"><span>${new Date(entry.date).toLocaleDateString('de-DE',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'})}</span><button class="btn btn-ghost btn-sm" onclick="deleteJournalEntry(${ri})" style="padding:2px 8px;">✕</button></div><div class="journal-text">${entry.text.replace(/\n/g,'<br>')}</div>`;
+    container.appendChild(el);});
 }
-
-function saveJournalEntry() {
-  const text = document.getElementById('journal-input').value.trim();
-  if (!text) return;
-  const s = getState();
-  s.journalEntries.push({ date: new Date().toISOString(), text });
-  saveState(s);
-  document.getElementById('journal-input').value = '';
-  renderJournal();
-}
-
-function deleteJournalEntry(idx) {
-  if (!confirm('Eintrag löschen?')) return;
-  const s = getState();
-  s.journalEntries.splice(idx, 1);
-  saveState(s);
-  renderJournal();
-}
+function saveJournalEntry(){const t=document.getElementById('journal-input').value.trim();if(!t)return;const s=getState();s.journalEntries.push({date:new Date().toISOString(),text:t});saveState(s);document.getElementById('journal-input').value='';renderJournal();}
+function deleteJournalEntry(idx){if(!confirm('Eintrag loschen?'))return;const s=getState();s.journalEntries.splice(idx,1);saveState(s);renderJournal();}
 
 // ═══════════════════════════════════════════════════════
 // SETTINGS
@@ -1614,316 +974,118 @@ function deleteJournalEntry(idx) {
 
 function renderSettings() {
   const s = getState();
-  document.getElementById('settings-level').value = s.settings.defaultLevel || 'gold';
+  document.getElementById('settings-level').value = s.settings.defaultLevel;
+  document.getElementById('reminder-time').value = s.settings.reminderTime || '07:00';
+  const toggleBtn = document.getElementById('toggle-reminder');
+  toggleBtn.classList.toggle('on', !!s.settings.reminderEnabled);
   const inp = document.getElementById('sync-token-input');
-  if (inp) {
-    const t = getSyncToken();
-    inp.placeholder = t ? '✓ Token gespeichert – zum Ändern neu eingeben' : 'github_pat_...';
-    inp.value = '';
-  }
-
-  const list = document.getElementById('settings-practice-list');
-  list.innerHTML = '';
-
+  if (inp) { inp.placeholder = getSyncToken() ? '✓ Token gespeichert' : 'github_pat_...'; inp.value = ''; }
+  const list = document.getElementById('settings-practice-list'); list.innerHTML = '';
   EXERCISES.forEach(ex => {
-    const m = MODULES[ex.module];
-    const checked = s.settings.dailyPractice.includes(ex.id);
-    const row = document.createElement('div');
-    row.className = 'settings-row';
-    row.innerHTML = `
-      <div>
-        <div class="settings-label" style="display:flex; align-items:center; gap:8px;">
-          ${ex.title}
-          <span class="module-badge ${m.badgeClass}" style="font-size:10px;">${m.label}</span>
-          <span class="level-badge level-${ex.level}" style="font-size:10px;">${ex.level}</span>
-        </div>
-        <div class="settings-desc">${ex.subtitle} · ${ex.goldMin} Min Minimum</div>
-      </div>
-      <button class="toggle ${checked ? 'on' : ''}" onclick="toggleDailyPractice('${ex.id}', this)"></button>
-    `;
-    list.appendChild(row);
+    const m=MODULES[ex.module], checked=s.settings.dailyPractice.includes(ex.id);
+    list.innerHTML += `<div class="settings-row"><div><div class="settings-label" style="display:flex;align-items:center;gap:8px;">${ex.title}<span class="module-badge ${m.badgeClass}" style="font-size:10px;">${m.label}</span><span class="level-badge level-${ex.level}" style="font-size:10px;">${ex.level}</span></div><div class="settings-desc">${ex.subtitle} · ${ex.goldMin} Min</div></div><button class="toggle ${checked?'on':''}" onclick="toggleDailyPractice('${ex.id}',this)"></button></div>`;
   });
 }
-
-function toggleDailyPractice(id, btn) {
-  const s = getState();
-  const idx = s.settings.dailyPractice.indexOf(id);
-  if (idx >= 0) {
-    s.settings.dailyPractice.splice(idx, 1);
-    btn.classList.remove('on');
-  } else {
-    s.settings.dailyPractice.push(id);
-    btn.classList.add('on');
-  }
-  saveState(s);
-}
-
-function addToDailyPractice(id) {
-  const s = getState();
-  if (!s.settings.dailyPractice.includes(id)) {
-    s.settings.dailyPractice.push(id);
-    saveState(s);
-    alert('Zur täglichen Praxis hinzugefügt!');
-  } else {
-    alert('Diese Übung ist bereits in deiner täglichen Praxis.');
-  }
-}
-
-function saveSetting(key, value) {
-  const s = getState();
-  s.settings[key] = value;
-  saveState(s);
-}
+function toggleDailyPractice(id,btn){const s=getState(),idx=s.settings.dailyPractice.indexOf(id);if(idx>=0){s.settings.dailyPractice.splice(idx,1);btn.classList.remove('on');}else{s.settings.dailyPractice.push(id);btn.classList.add('on');}saveState(s);}
+function addToDailyPractice(id){const s=getState();if(!s.settings.dailyPractice.includes(id)){s.settings.dailyPractice.push(id);saveState(s);alert('Hinzugefugt!');}else{alert('Bereits vorhanden.');}}
+function saveSetting(key,value){const s=getState();s.settings[key]=value;saveState(s);}
 
 // ═══════════════════════════════════════════════════════
-// MOBILE NAV
+// REMINDERS (Notification API)
 // ═══════════════════════════════════════════════════════
 
-function setMobileNav(name) {
-  document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
-  const btn = document.getElementById('mbnav-' + name);
-  if (btn) btn.classList.add('active');
+function toggleReminder(btn) {
+  const s = getState();
+  if (!s.settings.reminderEnabled) {
+    if ('Notification' in window) {
+      Notification.requestPermission().then(p => {
+        if (p === 'granted') { s.settings.reminderEnabled = true; btn.classList.add('on'); saveState(s); scheduleReminder(); }
+        else { alert('Benachrichtigungen wurden vom Browser blockiert. Bitte in den Browsereinstellungen erlauben.'); }
+      });
+    } else { alert('Dein Browser unterstutzt keine Benachrichtigungen.'); }
+  } else {
+    s.settings.reminderEnabled = false; btn.classList.remove('on'); saveState(s);
+  }
+}
+function saveReminderTime(v) { const s=getState(); s.settings.reminderTime=v; saveState(s); scheduleReminder(); }
+
+let reminderTimeout = null;
+function scheduleReminder() {
+  if (reminderTimeout) clearTimeout(reminderTimeout);
+  const s = getState();
+  if (!s.settings.reminderEnabled) return;
+  const [h,m] = (s.settings.reminderTime||'07:00').split(':').map(Number);
+  const now = new Date(), target = new Date(now); target.setHours(h,m,0,0);
+  if (target <= now) target.setDate(target.getDate() + 1);
+  const ms = target - now;
+  reminderTimeout = setTimeout(() => {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification('Integrale Lebenspraxis', { body: 'Zeit fur deine tagliche Praxis! 🜿', icon: 'ilp-icon-180.png' });
+    }
+    scheduleReminder(); // schedule for next day
+  }, ms);
 }
 
 // ═══════════════════════════════════════════════════════
 // GITHUB SYNC
 // ═══════════════════════════════════════════════════════
 
-const SYNC_REPO = { owner: 'smukn', repo: 'ilp', file: 'ilp-data.json' };
+const SYNC_REPO = { owner:'smukn', repo:'ilp', file:'ilp-data.json' };
+function getSyncToken(){return localStorage.getItem('ilp_sync_token')||'';}
+function saveSyncToken(t){if(t.trim())localStorage.setItem('ilp_sync_token',t.trim());renderSettings();setSyncStatus('Token gespeichert','var(--shadow-c)');}
+function setSyncStatus(msg,color){document.querySelectorAll('#sync-status,#sync-status-settings').forEach(el=>{el.textContent=msg;el.style.color=color||'var(--text2)';});}
 
-function getSyncToken() { return localStorage.getItem('ilp_sync_token') || ''; }
-function saveSyncToken(t) {
-  if (t.trim()) localStorage.setItem('ilp_sync_token', t.trim());
-  renderSettings();
+async function fetchRemoteState(){const res=await fetch(`https://raw.githubusercontent.com/${SYNC_REPO.owner}/${SYNC_REPO.repo}/main/${SYNC_REPO.file}?t=${Date.now()}`);if(!res.ok)return null;return await res.json();}
+function mergeStates(local,remote){
+  if(!remote) return local;
+  const m=JSON.parse(JSON.stringify(local));
+  Object.entries(remote.completedByDay||{}).forEach(([day,ids])=>{if(!m.completedByDay[day])m.completedByDay[day]=[];ids.forEach(id=>{if(!m.completedByDay[day].includes(id))m.completedByDay[day].push(id);});});
+  m.totalSessions=Object.values(m.completedByDay).reduce((s,ids)=>s+ids.length,0);
+  const jMap={};[...(local.journalEntries||[]),...(remote.journalEntries||[])].forEach(e=>{jMap[e.date]=e;});
+  m.journalEntries=Object.values(jMap).sort((a,b)=>a.date.localeCompare(b.date));
+  return m;
 }
-function clearSyncToken() {
-  localStorage.removeItem('ilp_sync_token');
-  renderSettings();
-  setSyncStatus('Token gelöscht', 'var(--text2)');
+async function syncToGitHub(state){
+  const token=getSyncToken();if(!token)return false;
+  try{const checkRes=await fetch(`https://api.github.com/repos/${SYNC_REPO.owner}/${SYNC_REPO.repo}/contents/${SYNC_REPO.file}`,{headers:{'Authorization':`Bearer ${token}`,'Accept':'application/vnd.github.v3+json'}});
+  let sha=null;if(checkRes.ok)sha=(await checkRes.json()).sha;
+  const content=btoa(unescape(encodeURIComponent(JSON.stringify(state,null,2))));
+  const body={message:'ILP sync',content,branch:'main'};if(sha)body.sha=sha;
+  const res=await fetch(`https://api.github.com/repos/${SYNC_REPO.owner}/${SYNC_REPO.repo}/contents/${SYNC_REPO.file}`,{method:'PUT',headers:{'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},body:JSON.stringify(body)});
+  if(res.ok)setSyncStatus(`✓ Gespeichert ${new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}`,'var(--shadow-c)');
+  return res.ok;}catch(e){return false;}
 }
-function setSyncStatus(msg, color) {
-  document.querySelectorAll('#sync-status').forEach(el => {
-    el.textContent = msg; el.style.color = color || 'var(--text2)';
-  });
-}
-
-async function fetchRemoteState() {
-  const url = `https://raw.githubusercontent.com/${SYNC_REPO.owner}/${SYNC_REPO.repo}/main/${SYNC_REPO.file}?t=${Date.now()}`;
-  const res = await fetch(url);
-  if (!res.ok) return null;
-  return await res.json();
-}
-
-function mergeStates(local, remote) {
-  if (!remote) return local;
-  const merged = JSON.parse(JSON.stringify(local));
-  // Merge completedByDay: union pro Tag
-  Object.entries(remote.completedByDay || {}).forEach(([day, ids]) => {
-    if (!merged.completedByDay[day]) merged.completedByDay[day] = [];
-    ids.forEach(id => { if (!merged.completedByDay[day].includes(id)) merged.completedByDay[day].push(id); });
-  });
-  // Recalculate totalSessions
-  merged.totalSessions = Object.values(merged.completedByDay).reduce((s, ids) => s + ids.length, 0);
-  // Merge journal (deduplizieren nach Datum)
-  const jMap = {};
-  [...(local.journalEntries || []), ...(remote.journalEntries || [])].forEach(e => { jMap[e.date] = e; });
-  merged.journalEntries = Object.values(jMap).sort((a, b) => a.date.localeCompare(b.date));
-  return merged;
+async function manualSync(){
+  setSyncStatus('Synchronisiere…','var(--accent)');
+  try{const remote=await fetchRemoteState();const merged=mergeStates(getState(),remote);localStorage.setItem('ilp_state',JSON.stringify(merged));
+  if(getSyncToken())await syncToGitHub(merged);else setSyncStatus(`✓ Geladen (nur lesend)`,'var(--gold)');
+  renderDashboard();renderSettings();}catch(e){setSyncStatus('✗ Fehlgeschlagen','var(--body-c)');}
 }
 
-async function syncToGitHub(state) {
-  const token = getSyncToken();
-  if (!token) return false;
-  try {
-    // Aktuellen SHA holen (nötig für Updates)
-    const checkRes = await fetch(
-      `https://api.github.com/repos/${SYNC_REPO.owner}/${SYNC_REPO.repo}/contents/${SYNC_REPO.file}`,
-      { headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' } }
-    );
-    let sha = null;
-    if (checkRes.ok) sha = (await checkRes.json()).sha;
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(state, null, 2))));
-    const body = { message: 'ILP sync', content, branch: 'main' };
-    if (sha) body.sha = sha;
-    const res = await fetch(
-      `https://api.github.com/repos/${SYNC_REPO.owner}/${SYNC_REPO.repo}/contents/${SYNC_REPO.file}`,
-      { method: 'PUT', headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' }, body: JSON.stringify(body) }
-    );
-    if (res.ok) {
-      const t = new Date().toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'});
-      setSyncStatus(`✓ Gespeichert um ${t}`, 'var(--shadow-c)');
-    }
-    return res.ok;
-  } catch(e) { return false; }
-}
+// ═══════════════════════════════════════════════════════
+// ONBOARDING
+// ═══════════════════════════════════════════════════════
 
-async function manualSync() {
-  setSyncStatus('Synchronisiere…', 'var(--accent)');
-  try {
-    const remote = await fetchRemoteState();
-    const merged = mergeStates(getState(), remote);
-    localStorage.setItem('ilp_state', JSON.stringify(merged)); // direkt ohne auto-push-loop
-    const token = getSyncToken();
-    if (token) {
-      await syncToGitHub(merged);
-    } else {
-      const t = new Date().toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'});
-      setSyncStatus(`✓ Geladen um ${t} (kein Token – nur lesend)`, 'var(--gold)');
-    }
-    renderDashboard();
-    renderSettings();
-  } catch(e) { setSyncStatus('✗ Sync fehlgeschlagen', 'var(--body-c)'); }
+let onbStep = 0;
+function nextOnboarding() {
+  onbStep++;
+  document.querySelectorAll('.onboarding-step').forEach((s,i)=>s.classList.toggle('active',i===onbStep));
+  document.querySelectorAll('.onboarding-dot').forEach((d,i)=>d.classList.toggle('active',i===onbStep));
+}
+function finishOnboarding() {
+  document.getElementById('onboarding').style.display = 'none';
+  localStorage.setItem('ilp_onboarded','1');
 }
 
 // ═══════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════
 
-renderDashboard();
-renderLibrary();
+if (!localStorage.getItem('ilp_onboarded')) document.getElementById('onboarding').style.display = 'flex';
+renderDashboard(); renderLibrary(); scheduleReminder();
 
-// Auto-Sync beim Laden (liest ohne Token, schreibt mit Token)
-setTimeout(async () => {
-  try {
-    const remote = await fetchRemoteState();
-    if (remote) {
-      const merged = mergeStates(getState(), remote);
-      localStorage.setItem('ilp_state', JSON.stringify(merged));
-      if (getSyncToken()) await syncToGitHub(merged);
-      const t = new Date().toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'});
-      setSyncStatus(`✓ Synchronisiert um ${t}`, 'var(--shadow-c)');
-      renderDashboard();
-    }
-  } catch(e) {}
-}, 800);
-
-// ═══════════════════════════════════════════════════════
-// LOGO GENERATOR
-// ═══════════════════════════════════════════════════════
-
-function drawILPLogo(canvas, size) {
-  const c = canvas;
-  c.width = size; c.height = size;
-  const ctx = c.getContext('2d');
-  const s = size;
-  const r = s * 0.18; // corner radius for background
-
-  // Background
-  ctx.fillStyle = '#0f1117';
-  roundRect(ctx, 0, 0, s, s, r);
-  ctx.fill();
-
-  // Four quadrant squares
-  const pad = s * 0.08;
-  const gap = s * 0.04;
-  const sq = (s - pad * 2 - gap) / 2;
-  const qr = s * 0.07;
-
-  const quads = [
-    { x: pad,         y: pad,         color: '#e8785a' }, // Körper
-    { x: pad+sq+gap,  y: pad,         color: '#6cb8e8' }, // Geist
-    { x: pad,         y: pad+sq+gap,  color: '#68c896' }, // Schatten
-    { x: pad+sq+gap,  y: pad+sq+gap,  color: '#a87ccc' }, // Seele
-  ];
-
-  quads.forEach(q => {
-    ctx.fillStyle = q.color;
-    ctx.globalAlpha = 0.92;
-    roundRect(ctx, q.x, q.y, sq, sq, qr);
-    ctx.fill();
-  });
-
-  // Icons in each quadrant (white, centered)
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = 'rgba(255,255,255,0.90)';
-  const ic = sq * 0.42; // icon size
-  const fs = ic;
-
-  ctx.font = `${fs}px serif`;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-
-  const icons = ['⚡', '💡', '🌙', '🔥'];
-  quads.forEach((q, i) => {
-    ctx.fillText(icons[i], q.x + sq/2, q.y + sq/2);
-  });
-
-  // Center cross lines (subtle)
-  ctx.globalAlpha = 0.25;
-  ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = s * 0.008;
-  ctx.beginPath();
-  ctx.moveTo(s/2, pad); ctx.lineTo(s/2, s - pad);
-  ctx.moveTo(pad, s/2); ctx.lineTo(s - pad, s/2);
-  ctx.stroke();
-  ctx.globalAlpha = 1;
-}
-
-function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
-}
-
-function renderLogoPage() {
-  const container = document.getElementById('logo-preview-area');
-  if (!container) return;
-  container.innerHTML = '';
-
-  const sizes = [
-    { label: 'iPhone (180×180)', size: 180, filename: 'ilp-icon-180.png' },
-    { label: 'iPad (167×167)',   size: 167, filename: 'ilp-icon-167.png' },
-    { label: 'Android (512×512)', size: 512, filename: 'ilp-icon-512.png' },
-    { label: 'Favicon (32×32)',  size: 32,  filename: 'ilp-favicon-32.png' },
-  ];
-
-  sizes.forEach(({ label, size, filename }) => {
-    const canvas = document.createElement('canvas');
-    drawILPLogo(canvas, size);
-
-    const previewCanvas = document.createElement('canvas');
-    const displaySize = 100;
-    previewCanvas.width = displaySize;
-    previewCanvas.height = displaySize;
-    previewCanvas.style.cssText = 'border-radius:18px; border:1px solid var(--border);';
-    const pctx = previewCanvas.getContext('2d');
-    pctx.drawImage(canvas, 0, 0, displaySize, displaySize);
-
-    const row = document.createElement('div');
-    row.style.cssText = 'display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid var(--border);';
-    row.innerHTML = `
-      <div></div>
-      <div style="flex:1;">
-        <div style="font-size:13px; font-weight:600;">${label}</div>
-        <div style="font-size:11px; color:var(--text2); margin-top:2px;">${size}×${size} px · PNG</div>
-      </div>
-      <button class="btn btn-primary btn-sm" id="dl-${size}">↓ Download</button>
-    `;
-    row.querySelector('div').appendChild(previewCanvas);
-    row.querySelector(`#dl-${size}`).onclick = () => {
-      const a = document.createElement('a');
-      a.download = filename;
-      a.href = canvas.toDataURL('image/png');
-      a.click();
-    };
-    container.appendChild(row);
-  });
-
-  // Also set as apple-touch-icon dynamically
-  const iconCanvas = document.createElement('canvas');
-  drawILPLogo(iconCanvas, 180);
-  let link = document.querySelector("link[rel='apple-touch-icon']");
-  if (!link) { link = document.createElement('link'); link.rel = 'apple-touch-icon'; document.head.appendChild(link); }
-  link.href = iconCanvas.toDataURL('image/png');
-}
+// Auto-sync
+setTimeout(async()=>{try{const remote=await fetchRemoteState();if(remote){const merged=mergeStates(getState(),remote);localStorage.setItem('ilp_state',JSON.stringify(merged));if(getSyncToken())await syncToGitHub(merged);setSyncStatus(`✓ Sync ${new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}`,'var(--shadow-c)');renderDashboard();}}catch(e){}},800);
 </script>
 </body>
 </html>
