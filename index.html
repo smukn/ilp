@@ -965,33 +965,71 @@ function copyVideoPath(file, btn) {
   });
 }
 
-// Start-Gong: sanft, einladend, aufsteigend – wie eine Klangschale die zum Sitzen einladt
+// Start-Gong: Klangschale mit naturlichem Schwebungsmuster
 function playStartGong() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     const t = ctx.currentTime;
-    // Einzelner sanfter Ton, aufsteigend (F4 -> G4), kurzer Nachhall
-    const tones = [
-      { f: 349.2, g: 0.15, d: 2.5, delay: 0 },     // F4 – warm, einladend
-      { f: 698.5, g: 0.08, d: 2.0, delay: 0 },      // F5 – Oberton
-      { f: 1047,  g: 0.03, d: 1.5, delay: 0 },      // C6 – Schimmer
+    const dur = 3.5;
+
+    // Anschlags-Transient: kurzes gefiltertes Rauschen (Holzkloppel auf Metall)
+    const bufSize = ctx.sampleRate * 0.06;
+    const noiseBuf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const data = noiseBuf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i/bufSize, 3);
+    const noiseSrc = ctx.createBufferSource();
+    noiseSrc.buffer = noiseBuf;
+    const nFilt = ctx.createBiquadFilter();
+    nFilt.type = 'bandpass'; nFilt.frequency.value = 1800; nFilt.Q.value = 2;
+    const nGain = ctx.createGain();
+    nGain.gain.setValueAtTime(0.12, t);
+    noiseSrc.connect(nFilt); nFilt.connect(nGain); nGain.connect(ctx.destination);
+    noiseSrc.start(t); noiseSrc.stop(t + 0.06);
+
+    // Klangschale: leicht verstimmte Oszillator-Paare erzeugen naturliches Beating
+    const partials = [
+      { f: 340, detune: 1.2, vol: 0.14, decay: dur },       // Grundton ~F4
+      { f: 342, detune: -0.8, vol: 0.13, decay: dur },       // Leicht verstimmt → Schwebung ~2Hz
+      { f: 680, detune: 2.0, vol: 0.06, decay: dur * 0.8 },  // Oktave
+      { f: 683, detune: -1.5, vol: 0.055, decay: dur * 0.8 }, // Verstimmt
+      { f: 1025, detune: 3.0, vol: 0.02, decay: dur * 0.6 }, // Quinte daruber
+      { f: 1365, detune: -2.0, vol: 0.01, decay: dur * 0.5 }, // Hoher Oberton
     ];
-    tones.forEach(({ f, g, d, delay }) => {
+    partials.forEach(({ f, detune, vol, decay }) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(3000, t + delay);
-      filter.frequency.exponentialRampToValueAtTime(500, t + delay + d);
+      filter.frequency.setValueAtTime(2200, t);
+      filter.frequency.exponentialRampToValueAtTime(400, t + decay);
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(f, t + delay);
-      // Sanftes Einschwingen (kein harter Anschlag)
-      gain.gain.setValueAtTime(0.001, t + delay);
-      gain.gain.exponentialRampToValueAtTime(g, t + delay + 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + delay + d);
+      osc.frequency.setValueAtTime(f, t);
+      osc.detune.setValueAtTime(detune, t);
+      // Schneller aber nicht harter Anschlag, langer naturlicher Nachhall
+      gain.gain.setValueAtTime(0.001, t);
+      gain.gain.linearRampToValueAtTime(vol, t + 0.025);
+      gain.gain.setValueAtTime(vol * 0.85, t + 0.15);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + decay);
       osc.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
-      osc.start(t + delay); osc.stop(t + delay + d);
+      osc.start(t); osc.stop(t + decay + 0.1);
     });
+
+    // Langsame Amplituden-Modulation (Tremolo ~3Hz) fur lebendigen Klang
+    const lfo = ctx.createOscillator();
+    const lfoGain = ctx.createGain();
+    lfo.frequency.value = 3.2;
+    lfoGain.gain.value = 0.015;
+    lfo.connect(lfoGain);
+    // LFO moduliert einen separaten leisen Ton
+    const modOsc = ctx.createOscillator();
+    const modGain = ctx.createGain();
+    modOsc.frequency.value = 340;
+    modGain.gain.setValueAtTime(0.04, t);
+    modGain.gain.exponentialRampToValueAtTime(0.001, t + dur);
+    lfoGain.connect(modOsc.frequency);
+    modOsc.connect(modGain); modGain.connect(ctx.destination);
+    lfo.start(t); modOsc.start(t);
+    lfo.stop(t + dur); modOsc.stop(t + dur);
   } catch(e) {}
 }
 
