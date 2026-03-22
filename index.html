@@ -986,14 +986,14 @@ function playStartGong() {
     noiseSrc.connect(nFilt); nFilt.connect(nGain); nGain.connect(ctx.destination);
     noiseSrc.start(t); noiseSrc.stop(t + 0.06);
 
-    // Klangschale: tiefe, warme Tonlage (~C3/G3), verstimmte Paare fur Beating
+    // Klangschale: mittlere Tonlage (~G3/D4), verstimmte Paare fur Beating
     const partials = [
-      { f: 131, detune: 1.0, vol: 0.18, decay: dur },        // C3 – tiefer Grundton
-      { f: 132.5, detune: -0.7, vol: 0.17, decay: dur },      // Verstimmt → Schwebung ~1.5Hz
-      { f: 196, detune: 1.5, vol: 0.10, decay: dur * 0.9 },   // G3 – Quinte
-      { f: 197, detune: -1.0, vol: 0.09, decay: dur * 0.9 },   // Verstimmt
-      { f: 262, detune: 2.0, vol: 0.05, decay: dur * 0.7 },   // C4 – Oktave (dezent)
-      { f: 392, detune: -1.5, vol: 0.015, decay: dur * 0.5 },  // G4 – leiser Oberton
+      { f: 196, detune: 1.0, vol: 0.17, decay: dur },         // G3 – warmer Grundton
+      { f: 197.5, detune: -0.7, vol: 0.16, decay: dur },       // Verstimmt → Schwebung ~1.5Hz
+      { f: 294, detune: 1.5, vol: 0.09, decay: dur * 0.9 },   // D4 – Quinte
+      { f: 295.5, detune: -1.0, vol: 0.08, decay: dur * 0.9 }, // Verstimmt
+      { f: 392, detune: 2.0, vol: 0.04, decay: dur * 0.7 },   // G4 – Oktave (dezent)
+      { f: 588, detune: -1.5, vol: 0.012, decay: dur * 0.5 },  // D5 – leiser Oberton
     ];
     partials.forEach(({ f, detune, vol, decay }) => {
       const osc = ctx.createOscillator();
@@ -1023,7 +1023,7 @@ function playStartGong() {
     // LFO moduliert einen separaten leisen Ton
     const modOsc = ctx.createOscillator();
     const modGain = ctx.createGain();
-    modOsc.frequency.value = 131;
+    modOsc.frequency.value = 196;
     modGain.gain.setValueAtTime(0.04, t);
     modGain.gain.exponentialRampToValueAtTime(0.001, t + dur);
     lfoGain.connect(modOsc.frequency);
