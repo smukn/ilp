@@ -14,6 +14,8 @@
       "soul-1min",
       "shadow-321"
     ],
-    "defaultLevel": "gold"
+    "defaultLevel": "gold",
+    "reminderTime": "07:00",
+    "reminderEnabled": false
   }
 }
