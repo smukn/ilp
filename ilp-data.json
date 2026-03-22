@@ -1,11 +1,12 @@
 {
   "completedByDay": {
     "2026-03-22": [
-      "body-3min"
+      "body-3min",
+      "soul-1min"
     ]
   },
   "journalEntries": [],
-  "totalSessions": 1,
+  "totalSessions": 2,
   "settings": {
     "dailyPractice": [
       "body-3min",
