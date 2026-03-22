@@ -1,0 +1,18 @@
+{
+  "completedByDay": {
+    "2026-03-22": [
+      "body-3min"
+    ]
+  },
+  "journalEntries": [],
+  "totalSessions": 1,
+  "settings": {
+    "dailyPractice": [
+      "body-3min",
+      "mind-1min",
+      "soul-1min",
+      "shadow-321"
+    ],
+    "defaultLevel": "gold"
+  }
+}
