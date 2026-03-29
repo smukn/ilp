@@ -300,7 +300,7 @@
       <p class="subtitle">Jedes Modul trainiert eine andere Dimension deines Seins</p>
       <div class="onboarding-modules">
         <div class="onboarding-module" style="border-left: 3px solid var(--body-c);">
-          <h3 style="color:var(--body-c);">Korper</h3>
+          <h3 style="color:var(--body-c);">Körper</h3>
           <p>Physische Bewegung, Atmung, Energie</p>
         </div>
         <div class="onboarding-module" style="border-left: 3px solid var(--mind-c);">
@@ -325,7 +325,7 @@
       <p class="subtitle">Auch 10 Minuten pro Tag haben tiefe Wirkung</p>
       <div style="text-align:left; margin:24px 0; font-size:13px;">
         <div style="padding:10px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
-          <span><span style="color:var(--body-c);">●</span> 3-Minuten Korperubung</span><span style="color:var(--text2);">3 Min</span>
+          <span><span style="color:var(--body-c);">●</span> 3-Minuten Körperübung</span><span style="color:var(--text2);">3 Min</span>
         </div>
         <div style="padding:10px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between;">
           <span><span style="color:var(--mind-c);">●</span> 1-Minuten Geist-Modul</span><span style="color:var(--text2);">1 Min</span>
@@ -359,7 +359,7 @@
     <p>Ken Wilber &middot; ILP-Begleiter</p>
   </div>
   <div class="nav-section">
-    <div class="nav-label">Ubersicht</div>
+    <div class="nav-label">Übersicht</div>
     <button class="nav-item active" onclick="showPage('dashboard')"><div class="dot" style="background:var(--accent)"></div> Heute</button>
     <button class="nav-item" onclick="showPage('week')"><div class="dot" style="background:var(--text2)"></div> Wochenansicht</button>
     <button class="nav-item" onclick="showPage('stats')"><div class="dot" style="background:var(--text2)"></div> Fortschritt</button>
@@ -367,12 +367,12 @@
   </div>
   <div class="nav-section">
     <div class="nav-label">Module</div>
-    <button class="nav-item" onclick="showPage('library','body')"><div class="dot" style="background:var(--body-c)"></div> Korper</button>
+    <button class="nav-item" onclick="showPage('library','body')"><div class="dot" style="background:var(--body-c)"></div> Körper</button>
     <button class="nav-item" onclick="showPage('library','mind')"><div class="dot" style="background:var(--mind-c)"></div> Geist</button>
     <button class="nav-item" onclick="showPage('library','soul')"><div class="dot" style="background:var(--soul-c)"></div> Seele</button>
     <button class="nav-item" onclick="showPage('library','shadow')"><div class="dot" style="background:var(--shadow-c)"></div> Schatten</button>
     <button class="nav-item" onclick="showPage('library','extra')"><div class="dot" style="background:var(--text2)"></div> Zusatzmodule</button>
-    <button class="nav-item" onclick="showPage('library','all')"><div class="dot" style="background:var(--text2)"></div> Alle Ubungen</button>
+    <button class="nav-item" onclick="showPage('library','all')"><div class="dot" style="background:var(--text2)"></div> Alle Übungen</button>
   </div>
   <div class="nav-section">
     <div class="nav-label">Theorie</div>
@@ -401,10 +401,10 @@
       <div class="stat-card"><div class="stat-value" id="stat-week">0</div><div class="stat-label">Diese Woche</div></div>
     </div>
     <div class="section-title">Heutige Praxis</div>
-    <div class="notice">💡 Das <strong>Gold-Stern-Minimum</strong>: Eine kurze Ubung aus jedem Kernmodul – auch 10 Minuten taglich haben tiefe Wirkung.</div>
+    <div class="notice">💡 Das <strong>Gold-Stern-Minimum</strong>: Eine kurze Übung aus jedem Kernmodul – auch 10 Minuten täglich haben tiefe Wirkung.</div>
     <div id="today-practices"></div>
     <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
-      <button class="btn btn-ghost btn-sm" onclick="resetToday()">Zurucksetzen</button>
+      <button class="btn btn-ghost btn-sm" onclick="resetToday()">Zurücksetzen</button>
       <button class="btn btn-ghost btn-sm" onclick="showPage('settings')">Praxis anpassen</button>
       <span id="sync-status" style="font-size:11px; color:var(--text2); align-self:center;"></span>
     </div>
@@ -436,7 +436,7 @@
         <div id="stats-module-dist"></div>
       </div>
       <div class="card mb-0">
-        <div class="section-title">Monats-Ubersicht</div>
+        <div class="section-title">Monats-Übersicht</div>
         <div id="stats-monthly"></div>
       </div>
     </div>
@@ -444,10 +444,10 @@
 
   <!-- ══════════ LIBRARY ══════════ -->
   <div id="page-library" class="page">
-    <div class="page-header"><h2 id="library-title">Ubungsbibliothek</h2><p>Alle Praktiken aus Integral Life Practice</p></div>
+    <div class="page-header"><h2 id="library-title">Übungsbibliothek</h2><p>Alle Praktiken aus Integral Life Practice</p></div>
     <div class="tab-bar" id="library-tabs">
       <button class="tab-btn active" onclick="setLibFilter('all',this)">Alle</button>
-      <button class="tab-btn" onclick="setLibFilter('body',this)"><span style="color:var(--body-c)">●</span> Korper</button>
+      <button class="tab-btn" onclick="setLibFilter('body',this)"><span style="color:var(--body-c)">●</span> Körper</button>
       <button class="tab-btn" onclick="setLibFilter('mind',this)"><span style="color:var(--mind-c)">●</span> Geist</button>
       <button class="tab-btn" onclick="setLibFilter('soul',this)"><span style="color:var(--soul-c)">●</span> Seele</button>
       <button class="tab-btn" onclick="setLibFilter('shadow',this)"><span style="color:var(--shadow-c)">●</span> Schatten</button>
@@ -474,17 +474,17 @@
   <!-- ══════════ THEORY ══════════ -->
   <div id="page-theory" class="page">
     <div class="page-header"><h2>AQAL-Rahmen</h2><p>Die theoretische Grundlage der Integralen Praxis</p></div>
-    <div class="notice">AQAL steht fur <strong>All Quadrants, All Levels, All Lines, All States, All Types</strong> – ein Kartenmodell der menschlichen Entwicklung.</div>
+    <div class="notice">AQAL steht für <strong>All Quadrants, All Levels, All Lines, All States, All Types</strong> – ein Kartenmodell der menschlichen Entwicklung.</div>
     <div class="section-title">Die vier Quadranten</div>
     <div class="quadrant-grid" style="margin-bottom:24px;">
-      <div class="quadrant"><div class="quadrant-label">Oben-Links &middot; Intentional</div><div class="quadrant-title">Ich (I)</div><div class="quadrant-items">Bewusstsein &middot; Gedanken<br>Gefuhle &middot; Traume<br>Innere Erfahrung<br><em>Praxis: Meditation, Schatten</em></div></div>
-      <div class="quadrant"><div class="quadrant-label">Oben-Rechts &middot; Verhaltensmassig</div><div class="quadrant-title">Es (It)</div><div class="quadrant-items">Korper &middot; Gehirn<br>Verhalten &middot; Neurologie<br>Physische Handlungen<br><em>Praxis: Sport, Ernahrung</em></div></div>
+      <div class="quadrant"><div class="quadrant-label">Oben-Links &middot; Intentional</div><div class="quadrant-title">Ich (I)</div><div class="quadrant-items">Bewusstsein &middot; Gedanken<br>Gefühle &middot; Traume<br>Innere Erfahrung<br><em>Praxis: Meditation, Schatten</em></div></div>
+      <div class="quadrant"><div class="quadrant-label">Oben-Rechts &middot; Verhaltensmassig</div><div class="quadrant-title">Es (It)</div><div class="quadrant-items">Körper &middot; Gehirn<br>Verhalten &middot; Neurologie<br>Physische Handlungen<br><em>Praxis: Sport, Ernährung</em></div></div>
       <div class="quadrant"><div class="quadrant-label">Unten-Links &middot; Kulturell</div><div class="quadrant-title">Wir (We)</div><div class="quadrant-items">Kultur &middot; Werte<br>Gemeinsame Bedeutung<br>Intersubjektivitat<br><em>Praxis: Sangha, Dialog</em></div></div>
       <div class="quadrant"><div class="quadrant-label">Unten-Rechts &middot; Sozial</div><div class="quadrant-title">Es/Sie (Its)</div><div class="quadrant-items">Soziale Systeme<br>Institutionen &middot; Umwelt<br>Technologie<br><em>Praxis: Ethisches Handeln</em></div></div>
     </div>
     <div class="section-title">Die Kernmodule</div>
     <div class="grid-2" style="margin-bottom:24px;">
-      <div class="card mb-0"><span class="module-badge badge-body">Korper</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Der physische Aspekt. Die 3-Minuten-Ubung stimuliert alle 3 Korperschichten: kausal, subtil, grob.</p></div>
+      <div class="card mb-0"><span class="module-badge badge-body">Körper</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Der physische Aspekt. Die 3-Minuten-Übung stimuliert alle 3 Körperschichten: kausal, subtil, grob.</p></div>
       <div class="card mb-0"><span class="module-badge badge-mind">Geist</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Mentale Entwicklung durch integrales Denken, Perspektivenwechsel und AQAL-Theorie.</p></div>
       <div class="card mb-0"><span class="module-badge badge-soul">Seele</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Spirituelle Praxis: Meditation, kontemplatives Gebet, Big Mind – Kontakt mit dem Zeugen-Bewusstsein.</p></div>
       <div class="card mb-0"><span class="module-badge badge-shadow">Schatten</span><p style="font-size:13px; color:var(--text2); margin-top:8px;">Integration abgespaltener Personlichkeitsanteile. Der 3-2-1 Prozess macht unbewusste Muster sichtbar.</p></div>
@@ -492,23 +492,23 @@
     <div class="section-title">Die Praxis-Level</div>
     <div class="card">
       <div style="display:flex; flex-direction:column; gap:14px;">
-        <div><span class="level-badge level-gold">★ Gold</span> <strong style="font-size:13px;">Minimum Viable Practice</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Die kurzest mogliche Version jeder Ubung. Auch 10 Minuten halten die Praxis am Leben. Kontinuitat schlagt Intensitat.</p></div>
+        <div><span class="level-badge level-gold">★ Gold</span> <strong style="font-size:13px;">Minimum Viable Practice</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Die kurzest mögliche Version jeder Übung. Auch 10 Minuten halten die Praxis am Leben. Kontinuitat schlagt Intensitat.</p></div>
         <hr class="divider" style="margin:0;">
         <div><span class="level-badge level-silver">◆ Silber</span> <strong style="font-size:13px;">Vertiefte Praxis</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Vollstandigere Versionen. Empfohlen 3–5 Tage pro Woche wenn Zeit erlaubt.</p></div>
         <hr class="divider" style="margin:0;">
-        <div><span class="level-badge level-platinum">✦ Platin</span> <strong style="font-size:13px;">Intensive Praxis</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Volle, tiefe Praxis fur Retreats oder besondere Ausrichtung. Nicht fur jeden Tag – aber transformativ.</p></div>
+        <div><span class="level-badge level-platinum">✦ Platin</span> <strong style="font-size:13px;">Intensive Praxis</strong><p style="font-size:13px; color:var(--text2); margin-top:4px;">Volle, tiefe Praxis für Retreats oder besondere Ausrichtung. Nicht für jeden Tag – aber transformativ.</p></div>
       </div>
     </div>
   </div>
 
   <!-- ══════════ SETTINGS ══════════ -->
   <div id="page-settings" class="page">
-    <div class="page-header"><h2>Meine Praxis</h2><p>Passe deine tagliche Praxis an</p></div>
+    <div class="page-header"><h2>Meine Praxis</h2><p>Passe deine tägliche Praxis an</p></div>
 
     <div class="section-title">Erinnerungen</div>
     <div class="card">
       <div class="settings-row">
-        <div><div class="settings-label">Tagliche Erinnerung</div><div class="settings-desc">Benachrichtigung zur Praxis-Zeit</div></div>
+        <div><div class="settings-label">Tägliche Erinnerung</div><div class="settings-desc">Benachrichtigung zur Praxis-Zeit</div></div>
         <button class="toggle" id="toggle-reminder" onclick="toggleReminder(this)"></button>
       </div>
       <div class="settings-row">
@@ -519,7 +519,7 @@
 
     <div class="section-title">Cloud-Sync</div>
     <div class="card">
-      <p style="font-size:12px; color:var(--text2); margin-bottom:12px;">Synchronisiere deinen Fortschritt zwischen iPhone und Mac uber dein GitHub-Repository.</p>
+      <p style="font-size:12px; color:var(--text2); margin-bottom:12px;">Synchronisiere deinen Fortschritt zwischen iPhone und Mac über dein GitHub-Repository.</p>
       <div class="settings-row">
         <div><div class="settings-label">GitHub Token</div><div class="settings-desc">Personal Access Token mit <code>repo</code>-Berechtigung</div></div>
         <div style="display:flex; gap:6px;">
@@ -533,13 +533,13 @@
       </div>
     </div>
 
-    <div class="section-title">Tagliches Minimum (Gold-Stern)</div>
+    <div class="section-title">Tägliches Minimum (Gold-Stern)</div>
     <div class="card"><div id="settings-practice-list"></div></div>
 
     <div class="section-title">Ziel-Level</div>
     <div class="card">
       <div class="settings-row">
-        <div><div class="settings-label">Standard-Level</div><div class="settings-desc">Bevorzugtes Ubungs-Niveau</div></div>
+        <div><div class="settings-label">Standard-Level</div><div class="settings-desc">Bevorzugtes Übungs-Niveau</div></div>
         <select id="settings-level" onchange="saveSetting('defaultLevel', this.value)">
           <option value="gold">Gold (Minimum)</option><option value="silver">Silber (Vertieft)</option><option value="platinum">Platin (Intensiv)</option>
         </select>
@@ -575,7 +575,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Heute
     </button>
     <button class="mobile-nav-btn" id="mbnav-library" onclick="showPage('library','all'); setMobileNav('library')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Ubungen
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>Übungen
     </button>
     <button class="mobile-nav-btn" id="mbnav-stats" onclick="showPage('stats'); setMobileNav('stats')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>Stats
@@ -632,36 +632,36 @@
 // ═══════════════════════════════════════════════════════
 
 const MODULES = {
-  body:     { label: 'Korper',      color: 'var(--body-c)',     badgeClass: 'badge-body' },
+  body:     { label: 'Körper',      color: 'var(--body-c)',     badgeClass: 'badge-body' },
   mind:     { label: 'Geist',       color: 'var(--mind-c)',     badgeClass: 'badge-mind' },
   soul:     { label: 'Seele',       color: 'var(--soul-c)',     badgeClass: 'badge-soul' },
   shadow:   { label: 'Schatten',    color: 'var(--shadow-c)',   badgeClass: 'badge-shadow' },
   ethics:   { label: 'Ethik',       color: 'var(--ethics-c)',   badgeClass: 'badge-ethics' },
   relation: { label: 'Beziehung',   color: 'var(--relation-c)', badgeClass: 'badge-relation' },
   work:     { label: 'Arbeit',      color: 'var(--work-c)',     badgeClass: 'badge-work' },
-  creative: { label: 'Kreativitat', color: 'var(--creative-c)', badgeClass: 'badge-creative' },
+  creative: { label: 'Kreativität', color: 'var(--creative-c)', badgeClass: 'badge-creative' },
 };
 
 const EXERCISES = [
   // ─── KORPER ───
-  { id:'body-3min', module:'body', title:'3-Minuten Korperubung', subtitle:'Das Gold-Stern Minimum', duration:3, level:'gold',
-    description:'Die kurzeste vollstandige Korperpraxis. Stimuliert alle drei Korperschichten (kausal, subtil, grob) in nur 3 Minuten.',
+  { id:'body-3min', module:'body', title:'3-Minuten Körperübung', subtitle:'Das Gold-Stern Minimum', duration:3, level:'gold',
+    description:'Die kurzeste vollstandige Körperpraxis. Stimuliert alle drei Körperschichten (kausal, subtil, grob) in nur 3 Minuten.',
     steps:[
-      {text:'<strong>Kniebeugen-Pumpen</strong> (30–60 Sek) – Steh mit schulterbreiten Fussen. Tiefe Kniebeuge, drucke dich hoch. Spure die grobe Korperkraft.',time:60},
-      {text:'<strong>Herz-Offner</strong> (30–60 Sek) – Steh aufrecht, breite die Arme aus, offne Brust und Herz. Atme tief. Spure subtile Energie.',time:60},
-      {text:'<strong>Stiller Stand</strong> (30–60 Sek) – Steh ruhig, Augen halb geschlossen. Lasse alle Anstrengung los. Erlebe formloses Gewahrsein – den kausalen Korper.',time:60},
+      {text:'<strong>Kniebeugen-Pumpen</strong> (30–60 Sek) – Steh mit schulterbreiten Füssen. Tiefe Kniebeuge, drücke dich hoch. Spüre die grobe Körperkraft.',time:60},
+      {text:'<strong>Herz-Öffner</strong> (30–60 Sek) – Steh aufrecht, breite die Arme aus, öffne Brust und Herz. Atme tief. Spüre subtile Energie.',time:60},
+      {text:'<strong>Stiller Stand</strong> (30–60 Sek) – Steh ruhig, Augen halb geschlossen. Lasse alle Anstrengung los. Erlebe formloses Gewahrsein – den kausalen Körper.',time:60},
     ],
-    tips:'Qualitat > Quantitat. Auch 3 Minuten haben Wirkung wenn du wirklich prasent bist. Idealerweise morgens als Einstieg.',
+    tips:'Qualität > Quantität. Auch 3 Minuten haben Wirkung wenn du wirklich präsent bist. Idealerweise morgens als Einstieg.',
     goldMin:3, silverMin:20, platinumMin:45,
     videos:[
       {title:'Body Module: Introduction',file:'ILP_3-1_Body_Module_Introduction/ILP_3-1_Body_Module_Introduction.mp4'},
       {title:'Body Module: 1 Minute Workout',file:'ILP_3-2_Body_Module_1_Minute_Workout/ILP_3-2_Body_Module_1_Minute_Workout.mp4'},
       {title:'Body Module: 10 Minute Workout',file:'ILP_3-3_Body_Module_10_Minute_Workou/ILP_3-3_Body_Module_10_Minute_Workou.mp4'},
     ] },
-  { id:'body-yoga', module:'body', title:'Yoga / Bewegungsmeditation', subtitle:'Subtiler Korper & Atempraxis', duration:20, level:'silver',
-    description:'Vollstandige Korperpraxis, die physische Starke mit subtiler Energiearbeit verbindet.',
+  { id:'body-yoga', module:'body', title:'Yoga / Bewegungsmeditation', subtitle:'Subtiler Körper & Atempraxis', duration:20, level:'silver',
+    description:'Vollstandige Körperpraxis, die physische Starke mit subtiler Energiearbeit verbindet.',
     steps:[
-      {text:'<strong>Ankommen</strong> (3 Min) – Liege auf dem Rucken, atme naturlich, scan den Korper.',time:180},
+      {text:'<strong>Ankommen</strong> (3 Min) – Liege auf dem Rücken, atme natürlich, scan den Körper.',time:180},
       {text:'<strong>Sonnengruss</strong> (5–10 Min) – 3–6 Runden Surya Namaskar. Synchronisiere Bewegung mit Atem.',time:600},
       {text:'<strong>Yin-Positionen</strong> (5 Min) – 2–3 gehaltene Dehnpositionen. Muskelspannung loslassen.',time:300},
       {text:'<strong>Savasana</strong> (3 Min) – Vollstandige Ruhe. Integriere die Praxis.',time:180},
@@ -669,20 +669,20 @@ const EXERCISES = [
     videos:[
       {title:'Body Module: Subtle Breath Practice',file:'ILP_3-6_Body_Module_Subtle_Breath_Pr/ILP_3-6_Body_Module_Subtle_Breath_Pr.mp4'},
     ] },
-  { id:'body-run', module:'body', title:'Laufen / Ausdauer', subtitle:'Grober Korper & Vitalitat', duration:30, level:'silver',
-    description:'Aerobe Ausdauerpraxis als integrales Korpertraining.',
+  { id:'body-run', module:'body', title:'Laufen / Ausdauer', subtitle:'Grober Körper & Vitalität', duration:30, level:'silver',
+    description:'Aerobe Ausdauerpraxis als integrales Körpertraining.',
     steps:[
       {text:'<strong>Warmmachen</strong> (3 Min) – Schnell gehen, Arme schwingen.',time:180},
-      {text:'<strong>Laufen</strong> (20–30 Min) – Tempo nach Gefuhl. Bleibe prasent.',time:1500},
+      {text:'<strong>Laufen</strong> (20–30 Min) – Tempo nach Gefühl. Bleibe präsent.',time:1500},
       {text:'<strong>Abkuhlen</strong> (5 Min) – Langsam auslaufen, dehnen.',time:300},
     ], tips:'Nutze das Laufen als bewegte Meditation.', goldMin:3, silverMin:30, platinumMin:60 },
-  { id:'body-strength', module:'body', title:'Krafttraining', subtitle:'Struktureller grober Korper', duration:40, level:'silver',
-    description:'Widerstandstraining fur Kraft, Muskelaufbau und Knochengesundheit.',
+  { id:'body-strength', module:'body', title:'Krafttraining', subtitle:'Struktureller grober Körper', duration:40, level:'silver',
+    description:'Widerstandstraining für Kraft, Muskelaufbau und Knochengesundheit.',
     steps:[
       {text:'<strong>Aufwarmen</strong> (5 Min) – Kreisen, Schwingen, Mobilisierung.',time:300},
       {text:'<strong>Compound-Bewegungen</strong> (25 Min) – Kniebeugen, Liegestutze, Klimmzuge. 3 Satze je 8–12 Wdh.',time:1500},
       {text:'<strong>Cool-Down</strong> (5 Min) – Dehnen, tief atmen.',time:300},
-    ], tips:'Korper als Tempel, nicht als Ego-Projekt.', goldMin:3, silverMin:40, platinumMin:90,
+    ], tips:'Körper als Tempel, nicht als Ego-Projekt.', goldMin:3, silverMin:40, platinumMin:90,
     videos:[
       {title:'Body Module: 35 Minute Workout',file:'ILP_3-4_Body_Module_35_Minute_Workou/ILP_3-4_Body_Module_35_Minute_Workou.mp4'},
       {title:'Body Module: Intro to FIT',file:'ILP_3-7_Body_Module_Intro_to_FIT/ILP_3-7_Body_Module_Intro_to_FIT.mp4'},
@@ -692,21 +692,21 @@ const EXERCISES = [
 
   // ─── GEIST ───
   { id:'mind-1min', module:'mind', title:'1-Minuten Geist-Modul', subtitle:'Das Gold-Stern Minimum', duration:1, level:'gold',
-    description:'Kurze mentale Ubung die das integrale Kartensystem aktiviert.',
-    steps:[{text:'<strong>Vierquadranten-Scan</strong> – Was erlebe ich <em>innerlich</em> (Ich)? Was tut mein <em>Korper/Verhalten</em> (Es)? Was verbindet mich mit anderen <em>kulturell</em> (Wir)? In welchen <em>Systemen</em> befinde ich mich (Es/Sie)?',time:60}],
-    tips:'Diese 1 Minute scharft uber Zeit deine integrale Wahrnehmung radikal.', goldMin:1, silverMin:15, platinumMin:60,
+    description:'Kurze mentale Übung die das integrale Kartensystem aktiviert.',
+    steps:[{text:'<strong>Vierquadranten-Scan</strong> – Was erlebe ich <em>innerlich</em> (Ich)? Was tut mein <em>Körper/Verhalten</em> (Es)? Was verbindet mich mit anderen <em>kulturell</em> (Wir)? In welchen <em>Systemen</em> befinde ich mich (Es/Sie)?',time:60}],
+    tips:'Diese 1 Minute scharft über Zeit deine integrale Wahrnehmung radikal.', goldMin:1, silverMin:15, platinumMin:60,
     videos:[
       {title:'Mind Module: AQAL Framework',file:'ILP_5-1_Mind_Module_AQAL_Framework/ILP_5-1_Mind_Module_AQAL_Framework.mp4'},
     ] },
-  { id:'mind-integral-review', module:'mind', title:'Integrale Uberprufung', subtitle:'AQAL-Selbstreflexion', duration:15, level:'silver',
+  { id:'mind-integral-review', module:'mind', title:'Integrale Überprufung', subtitle:'AQAL-Selbstreflexion', duration:15, level:'silver',
     description:'Tiefere Analyse deines Lebens durch die integralen Linsen.',
     steps:[
-      {text:'<strong>Ich-Quadrant</strong> (3 Min) – Innerer Zustand: Gefuhle, Gedanken, Uberzeugungen.',time:180},
-      {text:'<strong>Es-Quadrant</strong> (3 Min) – Korper, Verhalten, Handlungen.',time:180},
+      {text:'<strong>Ich-Quadrant</strong> (3 Min) – Innerer Zustand: Gefühle, Gedanken, Überzeugungen.',time:180},
+      {text:'<strong>Es-Quadrant</strong> (3 Min) – Körper, Verhalten, Handlungen.',time:180},
       {text:'<strong>Wir-Quadrant</strong> (3 Min) – Beziehungen, Kultur, Zugehorigkeit.',time:180},
       {text:'<strong>Es/Sie-Quadrant</strong> (3 Min) – Systeme, Strukturen, unsichtbare Einflusse.',time:180},
       {text:'<strong>Integration</strong> (3 Min) – Wo besteht eine Lucke zwischen Quadranten?',time:180},
-    ], tips:'Halte Antworten im Journal fest. Muster werden uber Wochen sichtbar.', goldMin:1, silverMin:15, platinumMin:45 },
+    ], tips:'Halte Antworten im Journal fest. Muster werden über Wochen sichtbar.', goldMin:1, silverMin:15, platinumMin:45 },
   { id:'mind-reading', module:'mind', title:'Integrale Lekture', subtitle:'Mentale Linien entwickeln', duration:20, level:'silver',
     description:'Gezieltes Studium integraler Texte.',
     steps:[
@@ -716,12 +716,12 @@ const EXERCISES = [
 
   // ─── SEELE ───
   { id:'soul-1min', module:'soul', title:'3-Minuten Meditation', subtitle:'Das Gold-Stern Minimum', duration:3, level:'gold',
-    description:'Kurzeste wirksame Meditationspraxis. Selbst 3 Minuten tagliches Sitzen transformieren uber Zeit.',
+    description:'Kurzeste wirksame Meditationspraxis. Selbst 3 Minuten tägliches Sitzen transformieren über Zeit.',
     steps:[
-      {text:'<strong>Setze dich aufrecht</strong> – Bequem sitzen. Rucken aufrecht aber entspannt.',time:15},
-      {text:'<strong>Ankern</strong> (1 Min) – Schliesse die Augen. 3 tiefe Atemzuge. Lass den Atem naturlich werden.',time:60},
+      {text:'<strong>Setze dich aufrecht</strong> – Bequem sitzen. Rücken aufrecht aber entspannt.',time:15},
+      {text:'<strong>Ankern</strong> (1 Min) – Schliesse die Augen. 3 tiefe Atemzuge. Lass den Atem natürlich werden.',time:60},
       {text:'<strong>Zeugen</strong> (2 Min) – Gedanken beobachten ohne mitzugehen. Du bist der Raum in dem Gedanken entstehen.',time:120},
-    ], tips:'Das Ziel ist das Wiederkehren zum Gewahrsein. Jedes Zuruckkommen ist Praxis.', goldMin:3, silverMin:20, platinumMin:45,
+    ], tips:'Das Ziel ist das Wiederkehren zum Gewahrsein. Jedes Zurückkommen ist Praxis.', goldMin:3, silverMin:20, platinumMin:45,
     videos:[
       {title:'Spirit Module: Integral Meditation',file:'ILP_2-1_Spirit_Module_Integral_Medit/ILP_2-1_Spirit_Module_Integral_Medit.mp4'},
     ] },
@@ -729,13 +729,13 @@ const EXERCISES = [
     description:'Gefuhrter Dialog-Prozess nach Genpo Roshi.',
     steps:[
       {text:'<strong>Vorbereitung</strong> (2 Min) – Sitze bequem. Dreimal tief atmen.',time:120},
-      {text:'<strong>Kleiner Geist</strong> (3 Min) – "Ich bin der kleine Geist." Spure die Enge, die Sorgen.',time:180},
+      {text:'<strong>Kleiner Geist</strong> (3 Min) – "Ich bin der kleine Geist." Spüre die Enge, die Sorgen.',time:180},
       {text:'<strong>Sucher</strong> (3 Min) – "Ich bin der Sucher." Erlebe die Sehnsucht nach Tiefe.',time:180},
       {text:'<strong>Nicht-Sucher</strong> (3 Min) – "Ich bin der Nicht-Sucher." Alles ist bereits da.',time:180},
       {text:'<strong>Big Mind</strong> (5 Min) – "Ich bin Big Mind." Grenzenlos, allgegenwartig. Verweile hier.',time:300},
       {text:'<strong>Big Heart</strong> (3 Min) – "Ich bin Big Heart." Unbegrenztes Mitgefuhl.',time:180},
-      {text:'<strong>Integration</strong> (1 Min) – Offne langsam die Augen.',time:60},
-    ], tips:'Uberraschend zuganglich – kein jahrelange Erfahrung notig.', goldMin:3, silverMin:20, platinumMin:45,
+      {text:'<strong>Integration</strong> (1 Min) – Öffne langsam die Augen.',time:60},
+    ], tips:'Überraschend zuganglich – kein jahrelange Erfahrung notig.', goldMin:3, silverMin:20, platinumMin:45,
     videos:[
       {title:'Spirit Module: Big Mind Process (Teil 1)',file:'ILP_1-1a_Spirit_Module_Big_Mind_Proc/ILP_1-1a_Spirit_Module_Big_Mind_Proc.mp4'},
       {title:'Spirit Module: Big Mind Process (Teil 2)',file:'ILP_1-1b_Spirit_Module_Big_Mind_Proc/ILP_1-1b_Spirit_Module_Big_Mind_Proc.mp4'},
@@ -743,30 +743,30 @@ const EXERCISES = [
   { id:'soul-sitting', module:'soul', title:'Sitz-Meditation (Vipassana)', subtitle:'Einsichtsmeditation', duration:20, level:'silver',
     description:'Klassische Achtsamkeits- und Einsichtsmeditation.',
     steps:[
-      {text:'<strong>Ankunft</strong> (2 Min) – Aufrecht sitzen. Intention: "Fur meine Befreiung und die aller Wesen."',time:120},
-      {text:'<strong>Atemfokus</strong> (5 Min) – Atem beobachten. Bei Gedanken sanft zuruckkehren.',time:300},
-      {text:'<strong>Vipassana-Scan</strong> (10 Min) – Aufmerksamkeit langsam durch den Korper bewegen.',time:600},
+      {text:'<strong>Ankunft</strong> (2 Min) – Aufrecht sitzen. Intention: "Für meine Befreiung und die aller Wesen."',time:120},
+      {text:'<strong>Atemfokus</strong> (5 Min) – Atem beobachten. Bei Gedanken sanft zurückkehren.',time:300},
+      {text:'<strong>Vipassana-Scan</strong> (10 Min) – Aufmerksamkeit langsam durch den Körper bewegen.',time:600},
       {text:'<strong>Metta</strong> (3 Min) – "Moge ich glucklich sein. Mogen alle Wesen frei sein."',time:180},
-    ], tips:'Nicht kampfen – beobachten. Das Zuruckkehren ist die Praxis.', goldMin:3, silverMin:20, platinumMin:60 },
-  { id:'soul-prayer', module:'soul', title:'Kontemplatives Gebet', subtitle:'Fur spirituelle Traditionen', duration:15, level:'silver',
+    ], tips:'Nicht kampfen – beobachten. Das Zurückkehren ist die Praxis.', goldMin:3, silverMin:20, platinumMin:60 },
+  { id:'soul-prayer', module:'soul', title:'Kontemplatives Gebet', subtitle:'Für spirituelle Traditionen', duration:15, level:'silver',
     description:'Kontemplatives Gebet als Verbindung mit dem Grosseren.',
     steps:[
       {text:'<strong>Stille</strong> (3 Min) – Zur Ruhe kommen. Inneren Monolog verlangsamen.',time:180},
-      {text:'<strong>Offnen</strong> (5 Min) – Offne dich einem Grosseren. Bitte nur um Offnung.',time:300},
+      {text:'<strong>Öffnen</strong> (5 Min) – Öffne dich einem Grosseren. Bitte nur um Offnung.',time:300},
       {text:'<strong>Empfangen</strong> (5 Min) – Stille Empfangsbereitschaft.',time:300},
-      {text:'<strong>Dankbarkeit</strong> (2 Min) – Dankbarkeit fur das Dasein.',time:120},
+      {text:'<strong>Dankbarkeit</strong> (2 Min) – Dankbarkeit für das Dasein.',time:120},
     ], tips:'Das Integrale Modell respektiert alle spirituellen Wege.', goldMin:3, silverMin:15, platinumMin:45 },
 
   // ─── SCHATTEN ───
   { id:'shadow-321', module:'shadow', title:'3-2-1 Schatten-Prozess', subtitle:'Das Gold-Stern Minimum', duration:10, level:'gold',
     description:'Die effektivste Kurzform der Schattenarbeit. 3 Schritte transformieren abgespaltene Anteile.',
     steps:[
-      {text:'<strong>Wahle einen Ausloser</strong> – Person oder Situation die dich emotional stark beruhrt (positiv ODER negativ).',time:60},
+      {text:'<strong>Wähle einen Ausloser</strong> – Person oder Situation die dich emotional stark beruhrt (positiv ODER negativ).',time:60},
       {text:'<strong>3 – Er/Sie/Es:</strong> Beschreibe in der dritten Person. "Er/sie ist..."',time:120},
       {text:'<strong>2 – Du:</strong> Direkter Dialog. "Du bist..." Was wurdest du sagen?',time:120},
-      {text:'<strong>1 – Ich:</strong> Ubernimm die Eigenschaft. "Ich bin..." Wie zeigt sich das in deinem Leben?',time:120},
-      {text:'<strong>Reflexion</strong> – Spure nach. Was hat sich verandert?',time:60},
-    ], tips:'Schattenanteile sind Ressourcen die zuruckgewonnen werden wollen. Auch positive Projektion zeigt Schatten.', goldMin:5, silverMin:20, platinumMin:60,
+      {text:'<strong>1 – Ich:</strong> Übernimm die Eigenschaft. "Ich bin..." Wie zeigt sich das in deinem Leben?',time:120},
+      {text:'<strong>Reflexion</strong> – Spüre nach. Was hat sich verandert?',time:60},
+    ], tips:'Schattenanteile sind Ressourcen die zurückgewonnen werden wollen. Auch positive Projektion zeigt Schatten.', goldMin:5, silverMin:20, platinumMin:60,
     videos:[
       {title:'3-2-1 Module: One Minute Module',file:'ILP_4-1_321_Module_One_Minute_Module/ILP_4-1_321_Module_One_Minute_Module.mp4'},
       {title:'3-2-1 Module: 3-2-1 Process',file:'ILP_4-2_321_Module_3-2-1_Process/ILP_4-2_321_Module_3-2-1_Process.mp4'},
@@ -774,33 +774,33 @@ const EXERCISES = [
   { id:'shadow-dream', module:'shadow', title:'3-2-1 mit Traumfiguren', subtitle:'Unbewusstes integrieren', duration:15, level:'silver',
     description:'Schattenarbeit mit Traumbildern. Traume sind direkte Botschaften des Unbewussten.',
     steps:[
-      {text:'<strong>Traumfigur wahlen</strong> – Erinnere einen Traum. Wahle eine auffallende Figur.',time:60},
+      {text:'<strong>Traumfigur wählen</strong> – Erinnere einen Traum. Wähle eine auffallende Figur.',time:60},
       {text:'<strong>3 – Beschreiben</strong> – Dritte Person. Was tut sie? Wie ist sie?',time:120},
       {text:'<strong>2 – Dialog</strong> – "Was willst du mir sagen?" Antworte spontan als die Figur.',time:180},
       {text:'<strong>1 – Identifizieren</strong> – "Ich bin..." Diese Energie lebt in dir.',time:180},
-      {text:'<strong>Integration</strong> – Welche Eigenschaft habe ich zuruckgewonnen?',time:180},
-    ], tips:'Sofort nach dem Aufwachen notieren. Uber Zeit werden Muster sichtbar.', goldMin:5, silverMin:15, platinumMin:45 },
-  { id:'shadow-body', module:'shadow', title:'Korperschatten-Arbeit', subtitle:'Verkorperte Schattenintegration', duration:15, level:'silver',
-    description:'Schatten manifestiert sich im Korper als chronische Spannung und Haltung.',
+      {text:'<strong>Integration</strong> – Welche Eigenschaft habe ich zurückgewonnen?',time:180},
+    ], tips:'Sofort nach dem Aufwachen notieren. Über Zeit werden Muster sichtbar.', goldMin:5, silverMin:15, platinumMin:45 },
+  { id:'shadow-body', module:'shadow', title:'Körperschatten-Arbeit', subtitle:'Verkörperte Schattenintegration', duration:15, level:'silver',
+    description:'Schatten manifestiert sich im Körper als chronische Spannung und Haltung.',
     steps:[
       {text:'<strong>Body Scan</strong> (3 Min) – Wo haltst du chronische Spannung? Kiefer, Schultern, Bauch?',time:180},
       {text:'<strong>Fokussieren</strong> (3 Min) – Aufmerksamkeit auf die starkste Spannungsstelle.',time:180},
-      {text:'<strong>Erleben</strong> (5 Min) – Was wurde diese Spannung sagen? Welches Gefuhl halt sie zuruck?',time:300},
-      {text:'<strong>Ausdrucken</strong> (4 Min) – Lass die Spannung reagieren: Zittern, Seufzen, Bewegung.',time:240},
-    ], tips:'Trauma und Schatten leben im Korper. Rein kognitive Ansatze greifen oft nicht tief genug.', goldMin:5, silverMin:15, platinumMin:45 },
+      {text:'<strong>Erleben</strong> (5 Min) – Was wurde diese Spannung sagen? Welches Gefühl halt sie zurück?',time:300},
+      {text:'<strong>Ausdrücken</strong> (4 Min) – Lass die Spannung reagieren: Zittern, Seufzen, Bewegung.',time:240},
+    ], tips:'Trauma und Schatten leben im Körper. Rein kognitive Ansätze greifen oft nicht tief genug.', goldMin:5, silverMin:15, platinumMin:45 },
 
   // ─── ZUSATZMODULE ───
-  { id:'ethics-daily', module:'ethics', title:'Taglicher Ethik-Check', subtitle:'Integrale Ethik', duration:5, level:'gold',
-    description:'Kurze tagliche Reflexion uber ethisches Handeln in allen vier Quadranten.',
+  { id:'ethics-daily', module:'ethics', title:'Täglicher Ethik-Check', subtitle:'Integrale Ethik', duration:5, level:'gold',
+    description:'Kurze tägliche Reflexion über ethisches Handeln in allen vier Quadranten.',
     steps:[
       {text:'<strong>Ruckblick</strong> (2 Min) – Was habe ich heute getan das andere betroffen hat? Positiv und negativ.',time:120},
-      {text:'<strong>Vierquadranten-Ethik</strong> (2 Min) – Ich: War ich ehrlich mit mir? Es: Habe ich meinem Korper geschadet? Wir: Habe ich Beziehungen gepflegt? Es/Sie: Habe ich systemisch verantwortlich gehandelt?',time:120},
-      {text:'<strong>Intention</strong> (1 Min) – Was nehme ich mir fur morgen vor?',time:60},
+      {text:'<strong>Vierquadranten-Ethik</strong> (2 Min) – Ich: War ich ehrlich mit mir? Es: Habe ich meinem Körper geschadet? Wir: Habe ich Beziehungen gepflegt? Es/Sie: Habe ich systemisch verantwortlich gehandelt?',time:120},
+      {text:'<strong>Intention</strong> (1 Min) – Was nehme ich mir für morgen vor?',time:60},
     ], tips:'Integrale Ethik ist nicht dogmatisch sondern entwicklungssensitiv. Was ethisch ist, wachst mit deiner Stufe.', goldMin:5, silverMin:15, platinumMin:30 },
   { id:'ethics-inquiry', module:'ethics', title:'Ethische Erkundung', subtitle:'Tiefe moralische Reflexion', duration:20, level:'silver',
     description:'Vertiefung eines ethischen Dilemmas durch integrale Perspektiven.',
     steps:[
-      {text:'<strong>Dilemma benennen</strong> (3 Min) – Wahle eine ethische Frage die dich beschaftigt.',time:180},
+      {text:'<strong>Dilemma benennen</strong> (3 Min) – Wähle eine ethische Frage die dich beschaftigt.',time:180},
       {text:'<strong>Pra-konventionell</strong> (3 Min) – Was will ich personlich? Egozentrische Perspektive.',time:180},
       {text:'<strong>Konventionell</strong> (3 Min) – Was sagt meine Gemeinschaft/Tradition? Ethno-/Soziozentrische Perspektive.',time:180},
       {text:'<strong>Post-konventionell</strong> (3 Min) – Was dient dem universellen Wohl? Weltozentrische Perspektive.',time:180},
@@ -811,30 +811,30 @@ const EXERCISES = [
     description:'Achtsame Beziehungspraxis: Zuhoren, Sprechen und Verbinden auf allen Ebenen.',
     steps:[
       {text:'<strong>Selbst-Check</strong> (2 Min) – Wie fuhle ich mich gerade in meinen wichtigsten Beziehungen? Wo bin ich offen, wo verschlossen?',time:120},
-      {text:'<strong>Perspektivenwechsel</strong> (3 Min) – Wahle eine Person. Versuche die Welt durch ihre Augen zu sehen. Was braucht sie?',time:180},
+      {text:'<strong>Perspektivenwechsel</strong> (3 Min) – Wähle eine Person. Versuche die Welt durch ihre Augen zu sehen. Was braucht sie?',time:180},
       {text:'<strong>Intention</strong> (3 Min) – Wie mochte ich heute kommunizieren? Formuliere eine Absicht: z.B. "Ich hore erst zu bevor ich antworte."',time:180},
       {text:'<strong>Wertschatzung</strong> (2 Min) – Benenne innerlich 3 Dinge die du an jemandem in deinem Leben schatzt.',time:120},
     ], tips:'Beziehung ist der schnellste Spiegel. Projektion ist unvermeidlich – die Frage ist ob du sie erkennst.', goldMin:5, silverMin:20, platinumMin:45,
     videos:[
       {title:'Better Relationships',file:'Better-Relationships/Better-Relationships.mp4'},
-      {title:'ILP: Intimitat & Sexualitat',file:'ilp_sex1/ilp_sex1.m4v'},
+      {title:'ILP: Intimität & Sexualität',file:'ilp_sex1/ilp_sex1.m4v'},
     ] },
 
   { id:'work-integral', module:'work', title:'Integrale Arbeitspraxis', subtitle:'Bewusstes Wirken', duration:10, level:'gold',
     description:'Die Arbeit als spirituelle Praxis begreifen. Karma Yoga im modernen Kontext.',
     steps:[
-      {text:'<strong>Intention setzen</strong> (2 Min) – Bevor du mit der Arbeit beginnst: Warum tue ich das? Fur wen? Mit welcher Haltung?',time:120},
-      {text:'<strong>Vier-Quadranten der Arbeit</strong> (5 Min) – Ich: Bin ich prasent? Es: Sind meine Handlungen effektiv? Wir: Dient meine Arbeit der Gemeinschaft? Es/Sie: Welchen systemischen Einfluss hat sie?',time:300},
+      {text:'<strong>Intention setzen</strong> (2 Min) – Bevor du mit der Arbeit beginnst: Warum tue ich das? Für wen? Mit welcher Haltung?',time:120},
+      {text:'<strong>Vier-Quadranten der Arbeit</strong> (5 Min) – Ich: Bin ich präsent? Es: Sind meine Handlungen effektiv? Wir: Dient meine Arbeit der Gemeinschaft? Es/Sie: Welchen systemischen Einfluss hat sie?',time:300},
       {text:'<strong>Loslassen</strong> (3 Min) – Arbeite ohne Anhaftung an das Ergebnis. Die Handlung selbst ist die Praxis.',time:180},
-    ], tips:'Karma Yoga: Handle ohne Anhaftung an die Frucht. Die Qualitat deiner Aufmerksamkeit bei der Arbeit IST die Praxis.', goldMin:5, silverMin:20, platinumMin:45 },
+    ], tips:'Karma Yoga: Handle ohne Anhaftung an die Frucht. Die Qualität deiner Aufmerksamkeit bei der Arbeit IST die Praxis.', goldMin:5, silverMin:20, platinumMin:45 },
 
-  { id:'creative-expression', module:'creative', title:'Kreative Expression', subtitle:'Integrale Kreativitat', duration:15, level:'gold',
-    description:'Kreativitat als direkte Verbindung mit dem Unbewussten und als Ausdrucksmittel aller Quadranten.',
+  { id:'creative-expression', module:'creative', title:'Kreative Expression', subtitle:'Integrale Kreativität', duration:15, level:'gold',
+    description:'Kreativität als direkte Verbindung mit dem Unbewussten und als Ausdrucksmittel aller Quadranten.',
     steps:[
       {text:'<strong>Stille</strong> (3 Min) – Sitze ruhig. Lass den inneren Kritiker verstummen. Es gibt kein "richtig".',time:180},
       {text:'<strong>Freier Ausdruck</strong> (10 Min) – Schreibe, zeichne, singe, bewege dich – ohne Plan, ohne Urteil. Lass es fliessen.',time:600},
-      {text:'<strong>Reflexion</strong> (2 Min) – Was ist entstanden? Uberrascht es dich? Was sagt es uber deinen inneren Zustand?',time:120},
-    ], tips:'Kreativitat ist keine Begabung sondern ein Muskel. Je ofter du ihn nutzt, desto starker wird er. Der innere Kritiker ist der grosste Feind.', goldMin:5, silverMin:30, platinumMin:60 },
+      {text:'<strong>Reflexion</strong> (2 Min) – Was ist entstanden? Überrascht es dich? Was sagt es über deinen inneren Zustand?',time:120},
+    ], tips:'Kreativität ist keine Begabung sondern ein Muskel. Je ofter du ihn nutzt, desto starker wird er. Der innere Kritiker ist der grosste Feind.', goldMin:5, silverMin:30, platinumMin:60 },
 ];
 
 const EXTRA_MODULES = ['ethics','relation','work','creative'];
@@ -914,12 +914,12 @@ function renderDashboard() {
       <div class="practice-actions"><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openExercise(EXERCISES.find(e=>e.id==='${id}'))">Anleitung</button></div>`;
     list.appendChild(el);
   });
-  if (!s.settings.dailyPractice.length) list.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><p>Keine Ubungen ausgewahlt.<br>Konfiguriere in <strong>Meine Praxis</strong>.</p></div>';
+  if (!s.settings.dailyPractice.length) list.innerHTML = '<div class="empty-state"><div class="empty-icon">⚙️</div><p>Keine Übungen ausgewahlt.<br>Konfiguriere in <strong>Meine Praxis</strong>.</p></div>';
 }
 
 function uncomplete(id) { const s=getState(),t=todayKey(); s.completedByDay[t]=(s.completedByDay[t]||[]).filter(x=>x!==id); s.totalSessions=Math.max(0,s.totalSessions-1); saveState(s); renderDashboard(); }
 function completeExercise(id) { const s=getState(),t=todayKey(); if(!s.completedByDay[t])s.completedByDay[t]=[]; if(!s.completedByDay[t].includes(id)){s.completedByDay[t].push(id);s.totalSessions++;} saveState(s); renderDashboard(); closeModal(); }
-function resetToday() { if(!confirm('Heutige Eintrage zurucksetzen?'))return; const s=getState(),t=todayKey(),c=(s.completedByDay[t]||[]).length; s.totalSessions=Math.max(0,s.totalSessions-c); s.completedByDay[t]=[]; saveState(s); renderDashboard(); }
+function resetToday() { if(!confirm('Heutige Eintrage zurücksetzen?'))return; const s=getState(),t=todayKey(),c=(s.completedByDay[t]||[]).length; s.totalSessions=Math.max(0,s.totalSessions-c); s.completedByDay[t]=[]; saveState(s); renderDashboard(); }
 
 // ═══════════════════════════════════════════════════════
 // STATS
@@ -938,7 +938,7 @@ function renderStats() {
     const cnt = (s.completedByDay[k]||[]).length;
     const cell = document.createElement('div');
     cell.className = 'heat-cell' + (cnt>=4?' heat-4':cnt>=3?' heat-3':cnt>=2?' heat-2':cnt>=1?' heat-1':'');
-    cell.title = k + ': ' + cnt + ' Ubungen';
+    cell.title = k + ': ' + cnt + ' Übungen';
     hm.appendChild(cell);
     d.setDate(d.getDate()+1);
   }
@@ -963,7 +963,7 @@ function renderStats() {
     const yr = md.getFullYear(), mn = md.getMonth();
     let cnt = 0;
     Object.entries(s.completedByDay).forEach(([k,ids]) => { const kd=new Date(k); if(kd.getFullYear()===yr && kd.getMonth()===mn) cnt+=ids.length; });
-    mo.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;"><span>${months[mn]} ${yr}</span><span style="color:var(--text2);">${cnt} Ubungen</span></div>`;
+    mo.innerHTML += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;"><span>${months[mn]} ${yr}</span><span style="color:var(--text2);">${cnt} Übungen</span></div>`;
   }
 }
 
@@ -1027,7 +1027,7 @@ function openExercise(ex,fromDash) {
       </div>
       ${hasSideContent?`<div class="modal-col-side">${tipsHtml}${videosHtml}</div>`:''}
     </div>
-    <hr class="divider"><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-success" onclick="completeExercise('${ex.id}')"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L6 11L12 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Erledigt</button>${fromDash?'':`<button class="btn btn-ghost" onclick="addToDailyPractice('${ex.id}')">+ Zur taglichen Praxis</button>`}</div>`;
+    <hr class="divider"><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-success" onclick="completeExercise('${ex.id}')"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L6 11L12 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Erledigt</button>${fromDash?'':`<button class="btn btn-ghost" onclick="addToDailyPractice('${ex.id}')">+ Zur täglichen Praxis</button>`}</div>`;
   document.getElementById('modal').classList.add('open');
   clearTimerInterval();
 }
@@ -1056,7 +1056,7 @@ function startFullscreenTimer(ex) {
   if (fsTimer.steps.length === 0) return;
   fsTimer.exerciseTitle = ex.title;
   fsTimer.stepIndex = 0;
-  // Modal schließen, Fullscreen öffnen
+  // Modal schliessen, Fullscreen öffnen
   document.getElementById('modal').classList.remove('open');
   document.getElementById('timer-fullscreen').style.display = 'flex';
   document.getElementById('timer-fs-title').textContent = ex.title;
@@ -1210,7 +1210,7 @@ function _legacyCopyVideoPath(file, btn) {
   }
 }
 
-// Start-Gong: Klangschale mit naturlichem Schwebungsmuster
+// Start-Gong: Klangschale mit natürlichem Schwebungsmuster
 function playStartGong() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1231,7 +1231,7 @@ function playStartGong() {
     noiseSrc.connect(nFilt); nFilt.connect(nGain); nGain.connect(ctx.destination);
     noiseSrc.start(t); noiseSrc.stop(t + 0.06);
 
-    // Klangschale: mittlere Tonlage (~G3/D4), verstimmte Paare fur Beating
+    // Klangschale: mittlere Tonlage (~G3/D4), verstimmte Paare für Beating
     const partials = [
       { f: 196, detune: 1.0, vol: 0.17, decay: dur },         // G3 – warmer Grundton
       { f: 197.5, detune: -0.7, vol: 0.16, decay: dur },       // Verstimmt → Schwebung ~1.5Hz
@@ -1250,7 +1250,7 @@ function playStartGong() {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(f, t);
       osc.detune.setValueAtTime(detune, t);
-      // Schneller aber nicht harter Anschlag, langer naturlicher Nachhall
+      // Schneller aber nicht harter Anschlag, langer natürlicher Nachhall
       gain.gain.setValueAtTime(0.001, t);
       gain.gain.linearRampToValueAtTime(vol, t + 0.025);
       gain.gain.setValueAtTime(vol * 0.85, t + 0.15);
@@ -1259,7 +1259,7 @@ function playStartGong() {
       osc.start(t); osc.stop(t + decay + 0.1);
     });
 
-    // Langsame Amplituden-Modulation (Tremolo ~3Hz) fur lebendigen Klang
+    // Langsame Amplituden-Modulation (Tremolo ~3Hz) für lebendigen Klang
     const lfo = ctx.createOscillator();
     const lfoGain = ctx.createGain();
     lfo.frequency.value = 2.5;
@@ -1289,7 +1289,7 @@ function playEndGong() {
       const baseDecay = strike === 2 ? 5.0 : 3.0;  // Letzter klingt am langsten nach
       const tones = [
         { f: 174.6, g: baseGain,       d: baseDecay },       // F3 – tiefer Grundton
-        { f: 261.6, g: baseGain * 0.7, d: baseDecay * 0.85 }, // C4 – Quinte daruber
+        { f: 261.6, g: baseGain * 0.7, d: baseDecay * 0.85 }, // C4 – Quinte darüber
         { f: 349.2, g: baseGain * 0.4, d: baseDecay * 0.7 },  // F4 – Oktave
         { f: 523.3, g: baseGain * 0.2, d: baseDecay * 0.6 },  // C5 – heller Oberton
         { f: 698.5, g: baseGain * 0.08,d: baseDecay * 0.5 },  // F5 – Schimmer
@@ -1302,7 +1302,7 @@ function playEndGong() {
         filter.frequency.setValueAtTime(2500, t + delay);
         filter.frequency.exponentialRampToValueAtTime(300, t + delay + d);
         osc.type = 'sine';
-        // Leichte Frequenzmodulation fur lebendigeren Klang
+        // Leichte Frequenzmodulation für lebendigeren Klang
         osc.frequency.setValueAtTime(f, t + delay);
         osc.frequency.setValueAtTime(f * 1.002, t + delay + 0.1);
         osc.frequency.exponentialRampToValueAtTime(f * 0.999, t + delay + d);
@@ -1383,7 +1383,7 @@ function toggleReminder(btn) {
     if ('Notification' in window) {
       Notification.requestPermission().then(p => {
         if (p === 'granted') { s.settings.reminderEnabled = true; btn.classList.add('on'); saveState(s); scheduleReminder(); }
-        else { alert('Benachrichtigungen wurden vom Browser blockiert. Bitte in den Browsereinstellungen erlauben.'); }
+        else { alert('Benachrichtigungen wurden vom Browser blockiert. Bitte in den Browsereinstellungen erlaüben.'); }
       });
     } else { alert('Dein Browser unterstutzt keine Benachrichtigungen.'); }
   } else {
@@ -1403,7 +1403,7 @@ function scheduleReminder() {
   const ms = target - now;
   reminderTimeout = setTimeout(() => {
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification('Integrale Lebenspraxis', { body: 'Zeit fur deine tagliche Praxis! 🜿', icon: 'ilp-icon-180.png' });
+      new Notification('Integrale Lebenspraxis', { body: 'Zeit für deine tägliche Praxis! 🜿', icon: 'ilp-icon-180.png' });
     }
     scheduleReminder(); // schedule for next day
   }, ms);
