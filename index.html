@@ -70,10 +70,18 @@
   .mobile-nav-btn svg { width: 20px; height: 20px; }
   .mobile-nav-btn.active { color: var(--accent); }
 
+  /* Modal Grid (2-Spalten auf Desktop/Tablet) */
+  .modal-grid { display: block; }
+  .modal-col-side .section-title:first-child { margin-top: 0; }
+
   /* Desktop: Sidebar sichtbar, volle Grids */
   @media (min-width: 1025px) {
     .content { max-width: 1100px; padding: 32px 40px; }
-    .modal { max-width: 700px; }
+    .modal { max-width: 900px; }
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .modal-grid .timer-ring { width: 120px; height: 120px; }
+    .modal-grid .timer-ring svg { width: 120px; height: 120px; }
+    .modal-grid .timer-ring .ring-bg, .modal-grid .timer-ring .ring-progress { cx: 60; cy: 60; r: 51; }
     .page-header h2 { font-size: 24px; }
   }
 
@@ -85,7 +93,10 @@
     .main { padding-top: env(safe-area-inset-top); }
     .grid-3 { grid-template-columns: 1fr 1fr; }
     .grid-4 { grid-template-columns: 1fr 1fr; }
-    .modal { max-width: 700px; max-height: 85vh; }
+    .modal { max-width: 800px; max-height: 85vh; }
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .modal-grid .timer-ring { width: 120px; height: 120px; }
+    .modal-grid .timer-ring svg { width: 120px; height: 120px; }
   }
 
   /* Mobile (iPhone): Bottom-Nav, 1-Spalten-Grids, Bottom-Sheet Modal */
@@ -965,12 +976,18 @@ function openExercise(ex,fromDash) {
   document.getElementById('modal-title').textContent=ex.title;
   const stepsHtml=ex.steps.map((step,i)=>`<li><div class="step-num">${i+1}</div><div style="flex:1;"><div>${step.text}</div>${step.time?`<div style="margin-top:6px;"><button class="btn btn-ghost btn-sm" onclick="startTimerWith(${step.time})"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>${formatTime(step.time)} Timer</button></div>`:''}</div></li>`).join('');
   const totalSecs=ex.steps.reduce((a,b)=>a+(b.time||0),0);
+  const videosHtml = ex.videos&&ex.videos.length?`<div class="section-title">🎬 Kurs-Videos</div><div id="video-player-container"></div><div style="display:flex;flex-direction:column;gap:8px;">${ex.videos.map((v,i)=>`<button onclick="playVideo('${v.file.replace(/'/g,"\\'")}', '${v.title.replace(/'/g,"\\'")}', this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;cursor:pointer;transition:border-color .15s;text-align:left;width:100%;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink:0;"><polygon points="5 3 19 12 5 21 5 3"/></svg><span style="flex:1;">${v.title}</span><span class="video-status" style="font-size:11px;color:var(--accent);">▶ Abspielen</span></button>`).join('')}</div>${!getVideoBaseUrl()?`<p style="font-size:11px;color:var(--gold);margin-top:8px;">⚠️ Kein Video-Server konfiguriert. Gehe zu <strong>Praxis → Video-Server</strong> um deine Synology-IP einzutragen.</p>`:''}`:''
+  const tipsHtml = ex.tips?`<div class="section-title">Hinweise</div><p style="font-size:13px;color:var(--text2);">${ex.tips}</p>`:'';
+  const hasSideContent = ex.tips || (ex.videos&&ex.videos.length);
   document.getElementById('modal-body').innerHTML=`<p style="font-size:13px;color:var(--text2);margin-bottom:20px;">${ex.description}</p>
-    <div class="timer-display"><div class="timer-ring"><svg width="160" height="160" viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="68"/><circle class="ring-progress" id="ring-progress" cx="80" cy="80" r="68" stroke-dasharray="${2*Math.PI*68}" stroke-dashoffset="${2*Math.PI*68}"/></svg><div class="timer-time" id="timer-time">–:––</div></div>
-    <div class="timer-controls"><button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startTimerWith(${totalSecs})">Komplette Praxis (${formatTime(totalSecs)})</button><button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button><button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button></div></div>
-    <hr class="divider"><div class="section-title">Schritte</div><ul class="step-list">${stepsHtml}</ul>
-    ${ex.tips?`<hr class="divider"><div class="section-title">Hinweise</div><p style="font-size:13px;color:var(--text2);">${ex.tips}</p>`:''}
-    ${ex.videos&&ex.videos.length?`<hr class="divider"><div class="section-title">🎬 Kurs-Videos</div><div id="video-player-container"></div><div style="display:flex;flex-direction:column;gap:8px;">${ex.videos.map((v,i)=>`<button onclick="playVideo('${v.file.replace(/'/g,"\\'")}', '${v.title.replace(/'/g,"\\'")}', this)" style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;cursor:pointer;transition:border-color .15s;text-align:left;width:100%;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink:0;"><polygon points="5 3 19 12 5 21 5 3"/></svg><span style="flex:1;">${v.title}</span><span class="video-status" style="font-size:11px;color:var(--accent);">▶ Abspielen</span></button>`).join('')}</div>${!getVideoBaseUrl()?`<p style="font-size:11px;color:var(--gold);margin-top:8px;">⚠️ Kein Video-Server konfiguriert. Gehe zu <strong>Praxis → Video-Server</strong> um deine Synology-IP einzutragen.</p>`:''}`:''}
+    <div class="modal-grid">
+      <div class="modal-col-main">
+        <div class="timer-display"><div class="timer-ring"><svg width="160" height="160" viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="68"/><circle class="ring-progress" id="ring-progress" cx="80" cy="80" r="68" stroke-dasharray="${2*Math.PI*68}" stroke-dashoffset="${2*Math.PI*68}"/></svg><div class="timer-time" id="timer-time">–:––</div></div>
+        <div class="timer-controls"><button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startTimerWith(${totalSecs})">Komplette Praxis (${formatTime(totalSecs)})</button><button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button><button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button></div></div>
+        <div class="section-title">Schritte</div><ul class="step-list">${stepsHtml}</ul>
+      </div>
+      ${hasSideContent?`<div class="modal-col-side">${tipsHtml}${videosHtml}</div>`:''}
+    </div>
     <hr class="divider"><div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="btn btn-success" onclick="completeExercise('${ex.id}')"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L6 11L12 3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>Erledigt</button>${fromDash?'':`<button class="btn btn-ghost" onclick="addToDailyPractice('${ex.id}')">+ Zur taglichen Praxis</button>`}</div>`;
   document.getElementById('modal').classList.add('open');
   clearTimerInterval();
