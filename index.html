@@ -70,6 +70,17 @@
   .mobile-nav-btn svg { width: 20px; height: 20px; }
   .mobile-nav-btn.active { color: var(--accent); }
 
+  /* Fullscreen Timer */
+  .timer-fs { position: fixed; inset: 0; z-index: 200; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 24px; padding-top: max(24px, env(safe-area-inset-top)); padding-bottom: max(24px, env(safe-area-inset-bottom)); overflow: hidden; }
+  .timer-fs-header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 600px; flex-shrink: 0; padding: 0 8px; }
+  .timer-fs-header span { font-size: 16px; font-weight: 700; }
+  .timer-fs-body { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: center; width: 100%; max-width: 600px; overflow-y: auto; }
+  .timer-fs-ring { width: 240px; height: 240px; position: relative; margin-bottom: 24px; flex-shrink: 0; }
+  .timer-fs-ring svg { transform: rotate(-90deg); }
+  .timer-fs-ring .ring-bg { fill: none; stroke: var(--bg3); stroke-width: 8; }
+  .timer-fs-ring .ring-progress { fill: none; stroke: var(--accent); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset .5s; }
+  .timer-fs-controls { display: flex; gap: 12px; }
+
   /* Modal Grid (2-Spalten auf Desktop/Tablet) */
   .modal-grid { display: block; }
   .modal-col-side .section-title:first-child { margin-top: 0; }
@@ -110,6 +121,10 @@
     .page-header h2 { font-size: 18px; }
     .modal { border-radius: var(--radius) var(--radius) 0 0; max-height: 92vh; }
     .modal-overlay { align-items: flex-end; }
+    .timer-fs-ring { width: 180px; height: 180px; }
+    .timer-fs-ring svg { width: 180px; height: 180px; }
+    .timer-fs-ring .timer-time { font-size: 36px !important; }
+    #fs-step-text { font-size: 13px !important; padding: 0 8px; }
   }
 
   /* Badges */
@@ -588,6 +603,29 @@
   </div>
 </div>
 
+<!-- Fullscreen Timer -->
+<div id="timer-fullscreen" class="timer-fs" style="display:none;">
+  <div class="timer-fs-header">
+    <span id="timer-fs-title"></span>
+    <button class="modal-close" onclick="closeFullscreenTimer()">✕</button>
+  </div>
+  <div class="timer-fs-body">
+    <div class="timer-fs-ring">
+      <svg width="240" height="240" viewBox="0 0 240 240">
+        <circle class="ring-bg" cx="120" cy="120" r="100"/>
+        <circle class="ring-progress" id="fs-ring-progress" cx="120" cy="120" r="100" stroke-dasharray="628.3" stroke-dashoffset="628.3"/>
+      </svg>
+      <div class="timer-time" id="fs-timer-time" style="font-size:48px;">–:––</div>
+    </div>
+    <div id="fs-step-indicator" style="font-size:12px;color:var(--text2);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase;"></div>
+    <div id="fs-step-text" style="font-size:15px;text-align:center;max-width:600px;line-height:1.6;padding:0 16px;"></div>
+  </div>
+  <div class="timer-fs-controls">
+    <button class="btn btn-ghost" id="fs-btn-pause" onclick="pauseFullscreenTimer()">Pause</button>
+    <button class="btn btn-ghost" id="fs-btn-skip" onclick="skipFullscreenStep()">Nächster Schritt →</button>
+  </div>
+</div>
+
 <script>
 // ═══════════════════════════════════════════════════════
 // DATA
@@ -969,8 +1007,9 @@ function renderLibrary() {
 // MODAL & EXERCISE
 // ═══════════════════════════════════════════════════════
 
-let activeTimer=null, timerState={running:false,total:0,remaining:0};
+let activeTimer=null, timerState={running:false,total:0,remaining:0}, currentExercise=null;
 function openExercise(ex,fromDash) {
+  currentExercise=ex;
   const m=MODULES[ex.module];
   document.getElementById('modal-badges').innerHTML=`<span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span>`;
   document.getElementById('modal-title').textContent=ex.title;
@@ -983,7 +1022,7 @@ function openExercise(ex,fromDash) {
     <div class="modal-grid">
       <div class="modal-col-main">
         <div class="timer-display"><div class="timer-ring"><svg width="160" height="160" viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="68"/><circle class="ring-progress" id="ring-progress" cx="80" cy="80" r="68" stroke-dasharray="${2*Math.PI*68}" stroke-dashoffset="${2*Math.PI*68}"/></svg><div class="timer-time" id="timer-time">–:––</div></div>
-        <div class="timer-controls"><button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startTimerWith(${totalSecs})">Komplette Praxis (${formatTime(totalSecs)})</button><button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button><button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button></div></div>
+        <div class="timer-controls"><button class="btn btn-primary btn-sm" id="btn-start-full" onclick="startFullscreenTimer(currentExercise)">Komplette Praxis (${formatTime(totalSecs)})</button><button class="btn btn-ghost btn-sm" id="btn-pause" onclick="pauseTimer()" style="display:none;">Pause</button><button class="btn btn-ghost btn-sm" id="btn-reset" onclick="resetTimer()" style="display:none;">Reset</button></div></div>
         <div class="section-title">Schritte</div><ul class="step-list">${stepsHtml}</ul>
       </div>
       ${hasSideContent?`<div class="modal-col-side">${tipsHtml}${videosHtml}</div>`:''}
@@ -1004,6 +1043,113 @@ function startTimerWith(totalSecs){
 function pauseTimer(){if(timerState.running){clearTimerInterval();timerState.running=false;document.getElementById('btn-pause').textContent='Weiter';}else{timerState.running=true;document.getElementById('btn-pause').textContent='Pause';activeTimer=setInterval(()=>{timerState.remaining--;updateTimerUI(timerState.remaining,timerState.total);if(timerState.remaining<=0){clearTimerInterval();timerState.running=false;playGong();document.getElementById('timer-time').textContent='✓';}},1000);}}
 function resetTimer(){clearTimerInterval();timerState.running=false;document.getElementById('btn-start-full').style.display='inline-flex';document.getElementById('btn-pause').style.display='none';document.getElementById('btn-reset').style.display='none';document.getElementById('timer-time').textContent='–:––';const r=document.getElementById('ring-progress');if(r)r.style.strokeDashoffset=2*Math.PI*68;}
 function updateTimerUI(rem,tot){const el=document.getElementById('timer-time'),r=document.getElementById('ring-progress');if(el)el.textContent=formatTime(Math.max(0,rem));if(r){const c=2*Math.PI*68;r.style.strokeDashoffset=c*(tot>0?rem/tot:0);}}
+
+// ═══════════════════════════════════════════════════════
+// FULLSCREEN TIMER (step-aware)
+// ═══════════════════════════════════════════════════════
+
+let fsTimer = { interval: null, running: false, steps: [], stepIndex: 0, remaining: 0, exerciseTitle: '' };
+
+function startFullscreenTimer(ex) {
+  // Nur Schritte mit time verwenden
+  fsTimer.steps = ex.steps.filter(s => s.time && s.time > 0);
+  if (fsTimer.steps.length === 0) return;
+  fsTimer.exerciseTitle = ex.title;
+  fsTimer.stepIndex = 0;
+  // Modal schließen, Fullscreen öffnen
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('timer-fullscreen').style.display = 'flex';
+  document.getElementById('timer-fs-title').textContent = ex.title;
+  playStartGong();
+  startFsStep();
+}
+
+function startFsStep() {
+  const step = fsTimer.steps[fsTimer.stepIndex];
+  fsTimer.remaining = step.time;
+  fsTimer.running = true;
+  updateFsUI();
+  document.getElementById('fs-step-indicator').textContent = `Schritt ${fsTimer.stepIndex + 1} von ${fsTimer.steps.length}`;
+  document.getElementById('fs-step-text').innerHTML = step.text;
+  document.getElementById('fs-btn-pause').textContent = 'Pause';
+  // Letzter Schritt: Skip-Button verstecken
+  document.getElementById('fs-btn-skip').style.display = fsTimer.stepIndex < fsTimer.steps.length - 1 ? 'inline-flex' : 'none';
+  clearFsInterval();
+  fsTimer.interval = setInterval(() => {
+    fsTimer.remaining--;
+    updateFsUI();
+    if (fsTimer.remaining <= 0) {
+      clearFsInterval();
+      advanceFsStep();
+    }
+  }, 1000);
+}
+
+function advanceFsStep() {
+  fsTimer.stepIndex++;
+  if (fsTimer.stepIndex >= fsTimer.steps.length) {
+    // Alle Schritte fertig
+    fsTimer.running = false;
+    playEndGong();
+    document.getElementById('fs-timer-time').textContent = '✓';
+    document.getElementById('fs-step-indicator').textContent = 'Praxis abgeschlossen';
+    document.getElementById('fs-step-text').innerHTML = '<strong>Gut gemacht!</strong> Nimm dir einen Moment der Stille.';
+    document.getElementById('fs-btn-pause').style.display = 'none';
+    document.getElementById('fs-btn-skip').style.display = 'none';
+    // Ring voll
+    const r = document.getElementById('fs-ring-progress');
+    if (r) r.style.strokeDashoffset = 0;
+  } else {
+    // Nächster Schritt
+    playStartGong();
+    startFsStep();
+  }
+}
+
+function skipFullscreenStep() {
+  clearFsInterval();
+  advanceFsStep();
+}
+
+function pauseFullscreenTimer() {
+  if (fsTimer.running) {
+    clearFsInterval();
+    fsTimer.running = false;
+    document.getElementById('fs-btn-pause').textContent = 'Weiter';
+  } else {
+    fsTimer.running = true;
+    document.getElementById('fs-btn-pause').textContent = 'Pause';
+    fsTimer.interval = setInterval(() => {
+      fsTimer.remaining--;
+      updateFsUI();
+      if (fsTimer.remaining <= 0) {
+        clearFsInterval();
+        advanceFsStep();
+      }
+    }, 1000);
+  }
+}
+
+function closeFullscreenTimer() {
+  clearFsInterval();
+  fsTimer.running = false;
+  document.getElementById('timer-fullscreen').style.display = 'none';
+}
+
+function clearFsInterval() {
+  if (fsTimer.interval) { clearInterval(fsTimer.interval); fsTimer.interval = null; }
+}
+
+function updateFsUI() {
+  const el = document.getElementById('fs-timer-time');
+  const r = document.getElementById('fs-ring-progress');
+  if (el) el.textContent = formatTime(Math.max(0, fsTimer.remaining));
+  if (r) {
+    const step = fsTimer.steps[fsTimer.stepIndex];
+    const c = 2 * Math.PI * 100; // r=100 in fullscreen SVG
+    r.style.strokeDashoffset = c * (step.time > 0 ? fsTimer.remaining / step.time : 0);
+  }
+}
 
 // ═══════════════════════════════════════════════════════
 // MEDITATION GONG (improved sound)
