@@ -70,10 +70,30 @@
   .mobile-nav-btn svg { width: 20px; height: 20px; }
   .mobile-nav-btn.active { color: var(--accent); }
 
+  /* Desktop: Sidebar sichtbar, volle Grids */
+  @media (min-width: 1025px) {
+    .content { max-width: 1100px; padding: 32px 40px; }
+    .modal { max-width: 700px; }
+    .page-header h2 { font-size: 24px; }
+  }
+
+  /* Tablet (iPad): Bottom-Nav, 2-Spalten-Grids */
+  @media (min-width: 701px) and (max-width: 1024px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: block; }
+    .content { max-width: 860px; padding: 24px 24px calc(80px + env(safe-area-inset-bottom)) 24px; }
+    .main { padding-top: env(safe-area-inset-top); }
+    .grid-3 { grid-template-columns: 1fr 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .modal { max-width: 700px; max-height: 85vh; }
+  }
+
+  /* Mobile (iPhone): Bottom-Nav, 1-Spalten-Grids, Bottom-Sheet Modal */
   @media (max-width: 700px) {
     .sidebar { display: none; }
     .mobile-nav { display: block; }
-    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr 1fr; gap: 10px; }
     .content { padding: 16px 16px calc(80px + env(safe-area-inset-bottom)) 16px; }
     .main { padding-top: env(safe-area-inset-top); }
     .page-header h2 { font-size: 18px; }
@@ -992,7 +1012,7 @@ function playVideo(file, title, btn) {
         <span style="font-size:13px;font-weight:600;">${title}</span>
         <button onclick="document.getElementById('video-player-container').innerHTML=''" class="btn btn-ghost btn-sm" style="padding:3px 8px;">✕</button>
       </div>
-      <video controls autoplay playsinline style="width:100%;border-radius:var(--radius-sm);background:#000;max-height:360px;">
+      <video controls autoplay playsinline style="width:100%;border-radius:var(--radius-sm);background:#000;max-height:50vh;">
         <source src="${url}" type="video/mp4">
         Video kann nicht geladen werden. Prufe die Synology-Verbindung.
       </video>
