@@ -500,15 +500,15 @@
       </div>
     </div>
 
-    <div class="section-title" style="margin-top:20px;">🎬 Video-Server (Synology)</div>
+    <div class="section-title" style="margin-top:20px;">🎬 Video-Server</div>
     <div class="card">
       <div class="settings-row" style="flex-direction:column;align-items:stretch;gap:8px;">
         <div>
           <div class="settings-label">Video-Server URL</div>
-          <div class="settings-desc">Basis-URL deiner Synology (z.B. http://100.73.236.66/ilp-videos)</div>
+          <div class="settings-desc">Basis-URL für Kurs-Videos (Standard: Cloudflare R2)</div>
         </div>
         <div style="display:flex;gap:8px;">
-          <input type="text" id="settings-video-url" placeholder="http://100.73.236.66/ilp-videos"
+          <input type="text" id="settings-video-url" placeholder="https://videos.mueller-kniestedt.com"
             style="flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 12px;font-size:13px;"
             onchange="saveSetting('videoBaseUrl', this.value)">
           <button class="btn btn-ghost btn-sm" onclick="testVideoConnection()">Testen</button>
@@ -788,7 +788,7 @@ function getState() {
   if (!s.settings) s.settings = {};
   if (!s.settings.dailyPractice) s.settings.dailyPractice = ['body-3min','mind-1min','soul-1min','shadow-321'];
   if (!s.settings.defaultLevel) s.settings.defaultLevel = 'gold';
-  if (!s.settings.videoBaseUrl) s.settings.videoBaseUrl = 'http://100.73.236.66/ilp-videos';
+  if (!s.settings.videoBaseUrl) s.settings.videoBaseUrl = 'https://videos.mueller-kniestedt.com';
   if (!s.settings.reminderTime) s.settings.reminderTime = '07:00';
   if (s.settings.reminderEnabled === undefined) s.settings.reminderEnabled = false;
   return s;
