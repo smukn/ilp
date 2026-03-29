@@ -383,6 +383,7 @@
     <button class="nav-item" onclick="showPage('library','shadow')"><div class="dot" style="background:var(--shadow-c)"></div> Schatten</button>
     <button class="nav-item" onclick="showPage('library','extra')"><div class="dot" style="background:var(--text2)"></div> Zusatzmodule</button>
     <button class="nav-item" onclick="showPage('library','all')"><div class="dot" style="background:var(--text2)"></div> Alle Übungen</button>
+    <button class="nav-item" onclick="showPage('videos')"><div class="dot" style="background:var(--text2)"></div> 🎬 Videos</button>
   </div>
   <div class="nav-section">
     <div class="nav-label">Theorie</div>
@@ -568,6 +569,12 @@
         <div id="video-test-result" style="font-size:12px;"></div>
       </div>
     </div>
+  </div>
+
+  <!-- ══════════ VIDEOS ══════════ -->
+  <div id="page-videos" class="page">
+    <div class="page-header"><h2>Kurs-Videos</h2><p>Alle ILP-Videos nach Modul</p></div>
+    <div id="videos-list"></div>
   </div>
 
 </div>
@@ -823,7 +830,11 @@ const EXERCISES = [
     ], tips:'Beziehung ist der schnellste Spiegel. Projektion ist unvermeidlich – die Frage ist ob du sie erkennst.', goldMin:5, silverMin:20, platinumMin:45,
     videos:[
       {title:'Better Relationships',file:'Better-Relationships/Better-Relationships.mp4'},
-      {title:'ILP: Intimität & Sexualität',file:'ilp_sex1/ilp_sex1.m4v'},
+      {title:'ILP Sex Modul 1',file:'ilp_sex1/ilp_sex1.m4v'},
+      {title:'ILP Sex Modul 2',file:'ilp_sex2/ilp_sex2.m4v'},
+      {title:'ILP Sex Modul 3',file:'ilp_sex3/ilp_sex3.m4v'},
+      {title:'ILP Sex Modul 4',file:'ilp_sex4/ilp_sex4.m4v'},
+      {title:'ILP Sex Modul 5',file:'ilp_sex5/ilp_sex5.m4v'},
     ] },
 
   { id:'work-integral', module:'work', title:'Integrale Arbeitspraxis', subtitle:'Bewusstes Wirken', duration:10, level:'gold',
@@ -910,6 +921,7 @@ function showPage(name, filter) {
   if (name === 'journal') renderJournal();
   if (name === 'stats') renderStats();
   if (name === 'settings') renderSettings();
+  if (name === 'videos') renderVideos();
 }
 function setLibFilter(f, btn) { currentFilter = f; document.querySelectorAll('#library-tabs .tab-btn').forEach(t => t.classList.remove('active')); btn.classList.add('active'); renderLibrary(); }
 function setMobileNav(name) { document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active')); const btn = document.getElementById('mbnav-'+name); if (btn) btn.classList.add('active'); }
@@ -1363,6 +1375,53 @@ function renderJournal() {
 }
 function saveJournalEntry(){const t=document.getElementById('journal-input').value.trim();if(!t)return;const s=getState();s.journalEntries.push({date:new Date().toISOString(),text:t});saveState(s);document.getElementById('journal-input').value='';renderJournal();}
 function deleteJournalEntry(idx){if(!confirm('Eintrag löschen?'))return;const s=getState();s.journalEntries.splice(idx,1);saveState(s);renderJournal();}
+
+// ═══════════════════════════════════════════════════════
+// VIDEOS PAGE
+// ═══════════════════════════════════════════════════════
+
+function renderVideos() {
+  const container = document.getElementById('videos-list');
+  const baseUrl = getVideoBaseUrl();
+  if (!baseUrl) {
+    container.innerHTML = '<div class="notice">⚠️ Kein Video-Server konfiguriert. Gehe zu <strong>Praxis → Video-Server</strong>.</div>';
+    return;
+  }
+  // Sammle alle Übungen mit Videos, gruppiert nach Modul
+  const allModules = {...MODULES};
+  const grouped = {};
+  EXERCISES.forEach(ex => {
+    if (!ex.videos || !ex.videos.length) return;
+    if (!grouped[ex.module]) grouped[ex.module] = [];
+    grouped[ex.module].push(ex);
+  });
+  let html = '';
+  Object.entries(grouped).forEach(([mod, exercises]) => {
+    const m = allModules[mod];
+    if (!m) return;
+    html += `<div class="section-title" style="display:flex;align-items:center;gap:8px;"><div class="dot" style="background:${m.color};width:8px;height:8px;border-radius:50%;"></div>${m.label}</div>`;
+    exercises.forEach(ex => {
+      ex.videos.forEach(v => {
+        html += `<button onclick="playVideoFullscreen('${v.file.replace(/'/g,"\\'")}', '${v.title.replace(/'/g,"\\'")}')" style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-size:13px;cursor:pointer;transition:border-color .15s;text-align:left;width:100%;margin-bottom:8px;" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="flex-shrink:0;"><polygon points="5 3 19 12 5 21 5 3"/></svg><div style="flex:1;"><div style="font-weight:600;">${v.title}</div><div style="font-size:11px;color:var(--text2);margin-top:2px;">${ex.title}</div></div><span style="font-size:11px;color:var(--accent);">▶</span></button>`;
+      });
+    });
+  });
+  container.innerHTML = html;
+}
+
+function playVideoFullscreen(file, title) {
+  const baseUrl = getVideoBaseUrl();
+  if (!baseUrl) { alert('Kein Video-Server konfiguriert.'); return; }
+  const url = baseUrl.replace(/\/$/,'') + '/' + file;
+  // Nutze das bestehende Modal für Video
+  document.getElementById('modal-badges').innerHTML = '';
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = `
+    <video controls autoplay playsinline style="width:100%;border-radius:var(--radius-sm);background:#000;max-height:70vh;">
+      <source src="${url}" type="video/mp4">Video kann nicht geladen werden.
+    </video>`;
+  document.getElementById('modal').classList.add('open');
+}
 
 // ═══════════════════════════════════════════════════════
 // SETTINGS
