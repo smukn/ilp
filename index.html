@@ -70,6 +70,16 @@
   .mobile-nav-btn svg { width: 20px; height: 20px; }
   .mobile-nav-btn.active { color: var(--accent); }
 
+  /* Module Level Segmented Control */
+  .level-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .level-row:last-child { border-bottom: none; }
+  .level-row-label { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .level-row-label .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .level-seg { display: flex; background: var(--bg3); border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border); }
+  .level-seg button { padding: 5px 12px; font-size: 11px; font-weight: 600; border: none; background: none; color: var(--text2); cursor: pointer; transition: all .15s; }
+  .level-seg button.active { background: var(--accent); color: #fff; }
+  .level-exercise-name { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
   /* Fullscreen Timer */
   .timer-fs { position: fixed; inset: 0; z-index: 200; background: var(--bg); color: var(--text); display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 24px; padding-top: max(24px, env(safe-area-inset-top)); padding-bottom: max(24px, env(safe-area-inset-bottom)); overflow: hidden; }
   .timer-fs-header { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 600px; flex-shrink: 0; padding: 0 8px; }
@@ -533,18 +543,14 @@
       </div>
     </div>
 
-    <div class="section-title">Tägliches Minimum (Gold-Stern)</div>
-    <div class="card"><div id="settings-practice-list"></div></div>
-
-    <div class="section-title">Ziel-Level</div>
-    <div class="card">
-      <div class="settings-row">
-        <div><div class="settings-label">Standard-Level</div><div class="settings-desc">Bevorzugtes Übungs-Niveau</div></div>
-        <select id="settings-level" onchange="saveSetting('defaultLevel', this.value)">
-          <option value="gold">Gold (Minimum)</option><option value="silver">Silber (Vertieft)</option><option value="platinum">Platin (Intensiv)</option>
-        </select>
-      </div>
+    <div class="section-title">Modul-Level</div>
+    <div class="card" id="module-levels-card">
+      <div class="settings-desc" style="margin-bottom:12px;">Wähle pro Modul dein Übungs-Niveau für die tägliche Praxis.</div>
+      <div id="module-levels-list"></div>
     </div>
+
+    <div class="section-title">Zusatzmodule</div>
+    <div class="card"><div id="settings-practice-list"></div></div>
 
     <div class="section-title" style="margin-top:20px;">🎬 Video-Server</div>
     <div class="card">
@@ -839,6 +845,13 @@ const EXERCISES = [
 
 const EXTRA_MODULES = ['ethics','relation','work','creative'];
 
+const MODULE_LEVEL_EXERCISES = {
+  body:   { gold: 'body-3min', silver: 'body-yoga', platinum: 'body-strength' },
+  mind:   { gold: 'mind-1min', silver: 'mind-integral-review', platinum: 'mind-reading' },
+  soul:   { gold: 'soul-1min', silver: 'soul-bigmind', platinum: 'soul-sitting' },
+  shadow: { gold: 'shadow-321', silver: 'shadow-dream', platinum: 'shadow-body' }
+};
+
 // ═══════════════════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════════════════
@@ -857,12 +870,25 @@ function getState() {
   if (!s.settings) s.settings = {};
   if (!s.settings.dailyPractice) s.settings.dailyPractice = ['body-3min','mind-1min','soul-1min','shadow-321'];
   if (!s.settings.defaultLevel) s.settings.defaultLevel = 'gold';
+  if (!s.settings.moduleLevels) s.settings.moduleLevels = { body:'gold', mind:'gold', soul:'gold', shadow:'gold' };
   if (!s.settings.videoBaseUrl) s.settings.videoBaseUrl = 'https://videos.mueller-kniestedt.com';
   if (!s.settings.reminderTime) s.settings.reminderTime = '07:00';
   if (s.settings.reminderEnabled === undefined) s.settings.reminderEnabled = false;
   return s;
 }
 function todayKey() { return new Date().toISOString().split('T')[0]; }
+
+function getDailyPractice() {
+  const s = getState();
+  const levels = s.settings.moduleLevels || { body:'gold', mind:'gold', soul:'gold', shadow:'gold' };
+  const core = ['body','mind','soul','shadow'].map(mod => MODULE_LEVEL_EXERCISES[mod][levels[mod]]);
+  // Extra-Module aus dailyPractice beibehalten
+  const extras = (s.settings.dailyPractice || []).filter(id => {
+    const ex = EXERCISES.find(e => e.id === id);
+    return ex && EXTRA_MODULES.includes(ex.module);
+  });
+  return [...core, ...extras];
+}
 
 // ═══════════════════════════════════════════════════════
 // NAVIGATION
@@ -898,19 +924,20 @@ function renderDashboard() {
   document.getElementById('dashboard-greeting').textContent = h < 12 ? 'Guten Morgen' : h < 17 ? 'Guten Tag' : 'Guten Abend';
   document.getElementById('dashboard-date').textContent = new Date().toLocaleDateString('de-DE',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   document.getElementById('stat-streak').textContent = calcStreak(s);
-  document.getElementById('stat-today').textContent = completed.length + '/' + s.settings.dailyPractice.length;
+  const dailyPractice = getDailyPractice();
+  document.getElementById('stat-today').textContent = completed.length + '/' + dailyPractice.length;
   document.getElementById('stat-total').textContent = s.totalSessions;
   document.getElementById('stat-week').textContent = calcWeekSessions(s);
 
   const list = document.getElementById('today-practices'); list.innerHTML = '';
-  s.settings.dailyPractice.forEach(id => {
+  dailyPractice.forEach(id => {
     const ex = EXERCISES.find(e => e.id === id); if (!ex) return;
     const done = completed.includes(id), m = MODULES[ex.module];
     const el = document.createElement('div');
     el.className = 'practice-item' + (done ? ' done' : '');
     el.onclick = () => done ? uncomplete(id) : openExercise(ex, true);
     el.innerHTML = `<div class="practice-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <div class="practice-info"><div class="practice-name">${ex.title}</div><div class="practice-meta"><span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span><span>· ${ex.goldMin} Min</span></div></div>
+      <div class="practice-info"><div class="practice-name">${ex.title}</div><div class="practice-meta"><span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span><span>· ${ex.duration || ex.goldMin} Min</span></div></div>
       <div class="practice-actions"><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); openExercise(EXERCISES.find(e=>e.id==='${id}'))">Anleitung</button></div>`;
     list.appendChild(el);
   });
@@ -1343,7 +1370,6 @@ function deleteJournalEntry(idx){if(!confirm('Eintrag loschen?'))return;const s=
 
 function renderSettings() {
   const s = getState();
-  document.getElementById('settings-level').value = s.settings.defaultLevel;
   document.getElementById('reminder-time').value = s.settings.reminderTime || '07:00';
   const toggleBtn = document.getElementById('toggle-reminder');
   toggleBtn.classList.toggle('on', !!s.settings.reminderEnabled);
@@ -1351,14 +1377,43 @@ function renderSettings() {
   if (videoUrlInput) videoUrlInput.value = s.settings.videoBaseUrl || '';
   const inp = document.getElementById('sync-token-input');
   if (inp) { inp.placeholder = getSyncToken() ? '✓ Token gespeichert' : 'github_pat_...'; inp.value = ''; }
+
+  // Module Levels
+  const levels = s.settings.moduleLevels || { body:'gold', mind:'gold', soul:'gold', shadow:'gold' };
+  const mlList = document.getElementById('module-levels-list'); mlList.innerHTML = '';
+  ['body','mind','soul','shadow'].forEach(mod => {
+    const m = MODULES[mod];
+    const currentLevel = levels[mod] || 'gold';
+    const exId = MODULE_LEVEL_EXERCISES[mod][currentLevel];
+    const ex = EXERCISES.find(e => e.id === exId);
+    mlList.innerHTML += `<div class="level-row">
+      <div><div class="level-row-label"><div class="dot" style="background:${m.color}"></div>${m.label}</div>
+      <div class="level-exercise-name">${ex ? ex.title : ''}</div></div>
+      <div class="level-seg">
+        <button class="${currentLevel==='gold'?'active':''}" onclick="setModuleLevel('${mod}','gold')">★ Gold</button>
+        <button class="${currentLevel==='silver'?'active':''}" onclick="setModuleLevel('${mod}','silver')">◆ Silber</button>
+        <button class="${currentLevel==='platinum'?'active':''}" onclick="setModuleLevel('${mod}','platinum')">✦ Platin</button>
+      </div>
+    </div>`;
+  });
+
+  // Extra-Module Toggles
   const list = document.getElementById('settings-practice-list'); list.innerHTML = '';
-  EXERCISES.forEach(ex => {
+  EXERCISES.filter(ex => EXTRA_MODULES.includes(ex.module)).forEach(ex => {
     const m=MODULES[ex.module], checked=s.settings.dailyPractice.includes(ex.id);
-    list.innerHTML += `<div class="settings-row"><div><div class="settings-label" style="display:flex;align-items:center;gap:8px;">${ex.title}<span class="module-badge ${m.badgeClass}" style="font-size:10px;">${m.label}</span><span class="level-badge level-${ex.level}" style="font-size:10px;">${ex.level}</span></div><div class="settings-desc">${ex.subtitle} · ${ex.goldMin} Min</div></div><button class="toggle ${checked?'on':''}" onclick="toggleDailyPractice('${ex.id}',this)"></button></div>`;
+    list.innerHTML += `<div class="settings-row"><div><div class="settings-label" style="display:flex;align-items:center;gap:8px;">${ex.title}<span class="module-badge ${m.badgeClass}" style="font-size:10px;">${m.label}</span></div><div class="settings-desc">${ex.subtitle} · ${ex.duration} Min</div></div><button class="toggle ${checked?'on':''}" onclick="toggleDailyPractice('${ex.id}',this)"></button></div>`;
   });
 }
 function toggleDailyPractice(id,btn){const s=getState(),idx=s.settings.dailyPractice.indexOf(id);if(idx>=0){s.settings.dailyPractice.splice(idx,1);btn.classList.remove('on');}else{s.settings.dailyPractice.push(id);btn.classList.add('on');}saveState(s);}
 function addToDailyPractice(id){const s=getState();if(!s.settings.dailyPractice.includes(id)){s.settings.dailyPractice.push(id);saveState(s);alert('Hinzugefugt!');}else{alert('Bereits vorhanden.');}}
+function setModuleLevel(mod, level) {
+  const s = getState();
+  if (!s.settings.moduleLevels) s.settings.moduleLevels = { body:'gold', mind:'gold', soul:'gold', shadow:'gold' };
+  s.settings.moduleLevels[mod] = level;
+  saveState(s);
+  renderSettings();
+  renderDashboard();
+}
 function saveSetting(key,value){const s=getState();s.settings[key]=value;saveState(s);}
 
 function testVideoConnection() {
