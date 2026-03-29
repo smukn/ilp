@@ -20,6 +20,12 @@
     "defaultLevel": "gold",
     "reminderTime": "07:00",
     "reminderEnabled": false,
-    "videoBaseUrl": "https://videos.mueller-kniestedt.com"
+    "videoBaseUrl": "https://videos.mueller-kniestedt.com",
+    "moduleLevels": {
+      "body": "gold",
+      "mind": "gold",
+      "soul": "gold",
+      "shadow": "gold"
+    }
   }
 }
