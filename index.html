@@ -907,6 +907,10 @@ function getState() {
 }
 function todayKey() { return new Date().toISOString().split('T')[0]; }
 
+function isLevelExercise(id) {
+  return Object.values(MODULE_LEVEL_EXERCISES).some(levels => Object.values(levels).includes(id));
+}
+
 function getDailyPractice() {
   const s = getState();
   const levels = s.settings.moduleLevels || { body:'gold', mind:'gold', soul:'gold', shadow:'gold' };
@@ -1055,7 +1059,7 @@ function renderLibrary() {
   filtered.forEach(ex => {
     const m=MODULES[ex.module],card=document.createElement('div');card.className='exercise-card';card.onclick=()=>openExercise(ex);
     card.innerHTML=`<div class="exercise-card-header"><div><div class="exercise-card-title">${ex.title}</div><div class="exercise-card-badges"><span class="module-badge ${m.badgeClass}">${m.label}</span><span class="level-badge level-${ex.level}">${ex.level==='gold'?'★':ex.level==='silver'?'◆':'✦'} ${ex.level}</span></div></div><svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:var(--text2);flex-shrink:0;margin-top:4px;"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-    <div class="exercise-card-desc">${ex.description}</div><div class="exercise-card-duration"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>Gold: ${ex.goldMin} Min · Silber: ${ex.silverMin} Min · Platin: ${ex.platinumMin} Min</div>`;
+    <div class="exercise-card-desc">${ex.description}</div><div class="exercise-card-duration"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3v3l2 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>${isLevelExercise(ex.id) ? `Gold: ${ex.goldMin} Min · Silber: ${ex.silverMin} Min · Platin: ${ex.platinumMin} Min` : `${ex.duration || ex.goldMin} Min`}</div>`;
     list.appendChild(card);
   });
 }
