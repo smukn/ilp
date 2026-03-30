@@ -6,22 +6,24 @@
     ],
     "2026-03-24": [
       "body-3min"
+    ],
+    "2026-03-30": [
+      "body-3min"
     ]
   },
   "journalEntries": [],
-  "totalSessions": 3,
+  "totalSessions": 4,
   "settings": {
     "dailyPractice": [
       "body-3min",
       "mind-1min",
       "soul-1min",
-      "shadow-321",
-      "work-integral"
+      "shadow-321"
     ],
     "defaultLevel": "gold",
     "reminderTime": "07:00",
     "reminderEnabled": false,
-    "videoBaseUrl": "http://100.73.236.66/ilp-videos",
+    "videoBaseUrl": "https://videos.mueller-kniestedt.com",
     "moduleLevels": {
       "body": "gold",
       "mind": "gold",
